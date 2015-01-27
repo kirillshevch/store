@@ -50,6 +50,11 @@ gem 'mini_magick', '~> 4.0.2'
 
 # HTML abstraction markup language
 gem 'haml', '~> 4.0.6'
+gem 'haml-rails'
+
+group :development do
+  gem 'html2haml'
+end
 
 group :development, :test do
   gem 'rspec-rails'
@@ -60,4 +65,5 @@ group :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers'
   gem 'faker'
+  gem 'factory_girl_rails'
 end
