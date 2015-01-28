@@ -7,7 +7,7 @@ gem 'rails', '4.0.2'
 gem 'pg'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', github: 'rails/sass-rails', branch: '4-0-stable'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -16,7 +16,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '3.1.2'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -49,8 +49,10 @@ gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.0.2'
 
 # HTML abstraction markup language
-gem 'haml', '~> 4.0.6'
 gem 'haml-rails'
+
+# Beautiful web 2.0 design
+gem 'bootstrap-sass', '~> 3.3.3'
 
 group :development do
   gem 'html2haml'
