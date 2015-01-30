@@ -10,7 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
    def create
      super
-     flash[:hello] = 'You registered!'
+     flash[:success] = 'Authentication success!'
    end
 
   # GET /resource/edit

@@ -13,3 +13,9 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+// For flash messages
+.alert-notice {
+  @extend .alert-info
+}
+
