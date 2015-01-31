@@ -3,6 +3,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+require 'support/factories'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -25,6 +26,7 @@ require 'rspec/rails'
 ActiveRecord::Migration.check_pending!
 
 RSpec.configure do |config|
+  config.include FactoryGirl::Syntax::Methods
   config.include Rails.application.routes.url_helpers
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

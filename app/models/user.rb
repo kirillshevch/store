@@ -5,6 +5,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable
 
+  validates :password,   presence: true
+  validates :first_name, length: { maximum: 50 }, numericality: false
+  validates :last_name,  length: { maximum: 50 }, numericality: false
+
   def self.find_for_facebook_oauth access_token
     if user = User.where(:url => access_token.info.urls.Facebook).first
       user

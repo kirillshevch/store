@@ -26,6 +26,7 @@ module Store
     # config.i18n.default_locale = :de
     config.generators do |g|
       g.test_framework :rspec
+      g.fixture_replacement :factory_girl, :dir => "spec/factories"
     end
   end
 end
