@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable
 
+  has_many :ratings
+  has_many :books, through: :ratings
+
   validates :password,   presence: true
   validates :first_name, length: { maximum: 50 }, numericality: false
   validates :last_name,  length: { maximum: 50 }, numericality: false

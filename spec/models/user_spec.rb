@@ -36,4 +36,14 @@ RSpec.describe User, :type => :model do
       expect(FactoryGirl.build :user, last_name: nil).to be_valid
     end
   end
+
+  context 'testing associations' do
+    it 'is has many ratings' do
+      expect(user).to have_many(:ratings)
+    end
+
+    it 'is has many books' do
+      expect(user).to have_many(:books).through(:ratings)
+    end
+  end
 end
