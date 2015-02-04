@@ -40,7 +40,7 @@ gem 'rails_admin', '~> 0.6.6'
 gem 'cancancan', '~> 1.10'
 
 # Paginator
-gem 'will_paginate', '~> 3.0.6'
+gem 'kaminari'
 
 # Classier solution for file uploads for Rails, Sinatra and other Ruby web frameworks
 gem 'carrierwave', '~> 0.10.0'

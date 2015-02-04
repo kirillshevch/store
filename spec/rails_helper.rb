@@ -26,7 +26,9 @@ require 'support/factories'
 ActiveRecord::Migration.check_pending!
 
 RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
+  config.infer_spec_type_from_file_location!
+  config.include Devise::TestHelpers, type: :controller
+  config.include Warden::Test::Helpers
   config.include Rails.application.routes.url_helpers
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -35,6 +37,7 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
@@ -49,5 +52,4 @@ RSpec.configure do |config|
   #
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
-  config.infer_spec_type_from_file_location!
 end

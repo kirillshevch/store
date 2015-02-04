@@ -5,6 +5,10 @@ FactoryGirl.define do
     password   Faker::Internet.password(8)
     first_name Faker::Name.first_name
     last_name  Faker::Name.last_name
+
+    factory :admin do
+      admin true
+    end
   end
 
   factory :book do
@@ -25,5 +29,12 @@ FactoryGirl.define do
 
   factory :category do
     name Faker::Name.name
+  end
+
+  factory :rating do
+    review Faker::Lorem.paragraph(10)
+    number 1
+    user
+    book
   end
 end
