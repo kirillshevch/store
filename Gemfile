@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
+gem 'rails-i18n', '~> 4.0.0'
+
+
 # Use postgresql as the database for Active Record
 gem 'pg'
 
@@ -60,12 +63,12 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'faker'
 end
 
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'shoulda-matchers'
-  gem 'faker'
   gem 'factory_girl_rails'
 end

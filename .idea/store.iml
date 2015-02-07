@@ -182,6 +182,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rack-pjax (v0.8.0, RVM: ruby-2.0.0-p576) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack-test (v0.6.3, RVM: ruby-2.0.0-p576) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rails (v4.0.2, RVM: ruby-2.0.0-p576) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rails-i18n (v4.0.3, RVM: ruby-2.0.0-p576) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rails_admin (v0.6.6, RVM: ruby-2.0.0-p576) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="railties (v4.0.2, RVM: ruby-2.0.0-p576) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rake (v10.4.2, RVM: ruby-2.0.0-p576) [gem]" level="application" />

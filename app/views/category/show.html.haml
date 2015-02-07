@@ -1,0 +1,11 @@
+= link_to t('home'), root_url
+>>
+= link_to t('shop'), category_index_url
+>>
+= link_to @category.name, request.url
+
+
+%h3 Categories - #{@category.name}
+= render 'books'
+
+= render 'categories'

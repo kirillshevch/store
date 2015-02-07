@@ -12,4 +12,8 @@ class Book < ActiveRecord::Base
   validates :full_description,  length: { maximum: 500 }
 
   validates :price, numericality: true
+
+  def self.best_sellers
+    Book.where(best_seller: true)
+  end
 end

@@ -1,0 +1,20 @@
+#myCarousel.carousel.slide{"data-ride" => "carousel"}
+  / Carousel items
+  .carousel-inner
+    -@books.each do |value|
+      .item
+        = value.title
+        = value.author.first_name
+        = value.author.last_name
+        .carousel-caption
+          = value.full_description
+          = image_tag value.image
+          = value.price
+
+  / Carousel nav
+  %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"}
+    %span.glyphicon.glyphicon-chevron-left
+  %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"}
+    %span.glyphicon.glyphicon-chevron-right
+
+%h2 Welcome to our amazing Bookstore! Choose anything you wish, we'll sjip it anywhere!

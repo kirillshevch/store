@@ -1,7 +1,10 @@
 Store::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get "users/omniauth_callbacks/facebook"
+
   root "main#index"
+
+  resources :category, only: [:index, :show]
   devise_for :users, controllers: {
                        registrations: "users/registrations",
                        sessions: "users/sessions",

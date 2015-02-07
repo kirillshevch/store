@@ -23,7 +23,9 @@ module Store
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
+    config.i18n.enforce_available_locales = true
+    config.i18n.default_locale = :en
+
     config.generators do |g|
       g.test_framework :rspec
       g.fixture_replacement :factory_girl, :dir => "spec/factories"

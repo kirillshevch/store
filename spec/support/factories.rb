@@ -1,3 +1,5 @@
+
+
 FactoryGirl.define do
 
   factory :user do
@@ -14,7 +16,7 @@ FactoryGirl.define do
   factory :book do
     title             Faker::Lorem.word
     short_description Faker::Lorem.sentence(4)
-    full_description  Faker::Lorem.paragraph(10)
+    full_description  Faker::Lorem.paragraph(4)
     author
     category
     image             Faker::Avatar.image
@@ -24,7 +26,7 @@ FactoryGirl.define do
   factory :author do
     first_name  Faker::Name.first_name
     last_name   Faker::Name.last_name
-    description Faker::Lorem.paragraph(10)
+    description Faker::Lorem.paragraph(4)
   end
 
   factory :category do
@@ -32,7 +34,7 @@ FactoryGirl.define do
   end
 
   factory :rating do
-    review Faker::Lorem.paragraph(10)
+    review Faker::Lorem.paragraph(4)
     number 1
     user
     book
