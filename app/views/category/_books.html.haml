@@ -1,4 +1,6 @@
 -@books.each do |value|
   = image_tag value.image
-  = value.short_description
+  = link_to value.title, book_url(value.id)
   = value.price
+
+= paginate @books

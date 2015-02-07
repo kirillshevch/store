@@ -1,4 +1,4 @@
 %p Shop by categories
 
 -@categories.each do |value|
-  = link_to value.name, "#{category_index_url}/#{value.id}"
+  = link_to value.name, category_url(value.id)

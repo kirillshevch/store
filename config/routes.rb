@@ -5,6 +5,8 @@ Store::Application.routes.draw do
   root "main#index"
 
   resources :category, only: [:index, :show]
+  resources :book,     only: [:show]
+
   devise_for :users, controllers: {
                        registrations: "users/registrations",
                        sessions: "users/sessions",

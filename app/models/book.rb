@@ -1,4 +1,6 @@
 class Book < ActiveRecord::Base
+  paginates_per 9
+
   belongs_to :author
   belongs_to :category
   has_many   :ratings
