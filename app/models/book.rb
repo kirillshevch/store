@@ -5,6 +5,7 @@ class Book < ActiveRecord::Base
   belongs_to :category
   has_many   :ratings
   has_many   :users, through: :ratings
+  has_many   :order_items, dependent: :destroy
 
   validates :title, :short_description, :full_description, :price,
             presence: true

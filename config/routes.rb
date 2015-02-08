@@ -4,8 +4,9 @@ Store::Application.routes.draw do
 
   root "main#index"
 
-  resources :category, only: [:index, :show]
-  resources :book,     only: [:show]
+  resources :category,   only: [:index, :show]
+  resources :book,       only: [:show]
+  resource  :order_items, only: [:create, :edit, :update, :destroy]
 
   devise_for :users, controllers: {
                        registrations: "users/registrations",

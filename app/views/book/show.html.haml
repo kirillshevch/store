@@ -2,3 +2,8 @@
 = image_tag @book.image
 = @book.price
 = @book.full_description
+
+= form_for @orderitem do |f|
+  = f.number_field :price, value: 1
+  = f.hidden_field :book_id, value: @book.id
+  = f.submit
