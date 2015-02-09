@@ -1,5 +1,3 @@
-
-
 FactoryGirl.define do
 
   factory :user do
@@ -38,5 +36,17 @@ FactoryGirl.define do
     number 1
     user
     book
+  end
+
+  factory :country do
+    name Faker::Address.country
+  end
+
+  factory :credit_card do
+    number 1111111111111111
+    cvv 111
+    month 12
+    year Time.now.year
+    user
   end
 end
