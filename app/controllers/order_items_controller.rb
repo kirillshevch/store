@@ -1,6 +1,11 @@
 class OrderItemsController < ApplicationController
   def create
+    if current_user
 
+    else
+      flash[:notice] = t('please_sign_up')
+      redirect_to new_user_registration_url
+    end
   end
 
   def edit
