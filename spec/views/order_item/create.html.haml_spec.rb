@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe "order_item/create.html.haml", :type => :view do
+RSpec.describe "order_items/create.html.haml", :type => :view do
   pending "add some examples to (or delete) #{__FILE__}"
 end

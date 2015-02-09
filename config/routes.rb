@@ -6,7 +6,7 @@ Store::Application.routes.draw do
 
   resources :category,   only: [:index, :show]
   resources :book,       only: [:show]
-  resource  :order_items, only: [:create, :edit, :update, :destroy]
+  resource  :order_items
 
   devise_for :users, controllers: {
                        registrations: "users/registrations",

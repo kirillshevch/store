@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :books, through: :ratings
   has_many :orders
   has_many :credit_cards
+  has_many :order_items
 
   validates :password,   presence: true
   validates :first_name, length: { maximum: 50 }, numericality: false

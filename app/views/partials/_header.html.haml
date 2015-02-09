@@ -11,6 +11,8 @@
       %ul.nav.navbar-nav.navbar-right
         -if user_signed_in?
           %li
+            = link_to "#{t('cart')} #{cart_status}", order_items_url
+          %li
             = link_to t('sign_out'), destroy_user_session_path, :method => :delete
         -else
           %li
