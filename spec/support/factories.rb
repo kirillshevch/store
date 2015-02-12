@@ -11,7 +11,7 @@ FactoryGirl.define do
     end
   end
 
-  factory :book do
+  factory :books do
     title             Faker::Lorem.word
     short_description Faker::Lorem.sentence(4)
     full_description  Faker::Lorem.paragraph(4)
@@ -27,7 +27,7 @@ FactoryGirl.define do
     description Faker::Lorem.paragraph(4)
   end
 
-  factory :category do
+  factory :categories do
     name Faker::Name.name
   end
 

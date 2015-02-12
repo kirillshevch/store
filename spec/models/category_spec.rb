@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Category, :type => :model do
 
-  let(:category) { FactoryGirl.create :category }
+  let(:categories) { FactoryGirl.create :categories }
 
   context 'testing validations' do
 

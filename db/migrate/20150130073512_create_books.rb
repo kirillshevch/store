@@ -5,7 +5,7 @@ class CreateBooks < ActiveRecord::Migration
       t.string :short_description
       t.text :full_description
       t.belongs_to :author, index: true
-      t.belongs_to :category, index: true
+      t.belongs_to :categories, index: true
       t.string :image
       t.integer :price
 

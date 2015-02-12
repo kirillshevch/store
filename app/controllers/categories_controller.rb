@@ -1,4 +1,4 @@
-class CategoryController < ApplicationController
+class CategoriesController < ApplicationController
   def index
     @books = Book.all.page params[:page]
     @categories = Category.all

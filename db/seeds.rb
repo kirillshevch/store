@@ -8,4 +8,4 @@
 require 'factory_girl'
 Dir[Rails.root.join("spec/support/*.rb")].each {|f| require f}
 
-FactoryGirl.create :book
+FactoryGirl.create :books

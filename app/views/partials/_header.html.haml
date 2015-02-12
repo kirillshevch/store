@@ -7,7 +7,7 @@
         %li{class: "#{nav_active_home}"}
           = link_to t('home'), root_url
         %li{class: "#{nav_active_shop}"}
-          = link_to t('shop'), category_index_url
+          = link_to t('shop'), categories_url
       %ul.nav.navbar-nav.navbar-right
         -if user_signed_in?
           %li
