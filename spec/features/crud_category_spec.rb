@@ -3,7 +3,7 @@ require 'features/features_spec_helper'
 feature 'CRUD categories' do
   background do
     admin = FactoryGirl.create(:admin)
-    @category = FactoryGirl.create(:categories)
+    @category = FactoryGirl.create(:category)
     login_as admin
   end
 

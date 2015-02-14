@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :credit_cards
   has_many :order_items
+  has_one  :billing_address
+  has_one  :shipping_address
 
   validates :password,   presence: true
   validates :first_name, length: { maximum: 50 }, numericality: false

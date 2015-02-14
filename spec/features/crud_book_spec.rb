@@ -3,7 +3,7 @@ require 'features/features_spec_helper'
 feature 'CRUD books' do
   background do
     admin = FactoryGirl.create(:admin)
-    @book = FactoryGirl.create(:books)
+    @book = FactoryGirl.create(:book)
     login_as admin
   end
 

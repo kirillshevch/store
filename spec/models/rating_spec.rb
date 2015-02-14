@@ -16,6 +16,6 @@ RSpec.describe Rating, :type => :model do
 
   context 'testing associations' do
     it { expect(rating).to belong_to(:user) }
-    it { expect(rating).to belong_to(:books) }
+    it { expect(rating).to belong_to(:book) }
   end
 end

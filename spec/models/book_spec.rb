@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Book, :type => :model do
 
-  let(:books) { FactoryGirl.create :books }
+  let(:book) { FactoryGirl.create :book }
 
   context 'testing validations' do
     it { expect(book).to be_valid }
@@ -25,7 +25,7 @@ RSpec.describe Book, :type => :model do
     end
 
     it 'belongs to categories' do
-      expect(book).to belong_to(:categories)
+      expect(book).to belong_to(:category)
     end
 
     it 'has many ratings' do

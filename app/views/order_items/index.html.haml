@@ -1,0 +1,15 @@
+-@items.each do |value|
+  = value.book.title
+  = value.book.short_description
+  = value.book.price
+  = value.quantity
+  = form_for(value, method: "put") do |f|
+    = f.number_field :quantity, value: value.quantity
+    = f.hidden_field :book_id,  value: value.book.id
+    = f.submit
+  = link_to "delete", order_item_url(value.id), method: :delete
+
+= link_to "empty cart", order_item_url(:all), method: :delete
+= link_to "continue shopping", shop_url
+= link_to "update", "#" # TODO coupon system
+= link_to "checkout", "#" # TODO checkout
