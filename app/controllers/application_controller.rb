@@ -3,14 +3,10 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :current_user, :current_visitor
+  before_action :current_visitor
 
   def current_user
-    if cookies[:visitor_id]
-      Visitor.find(cookies[:visitor_id])
-    else
-      super
-    end
+    cookies[:visitor_id] ? Visitor.find(cookies[:visitor_id]) : super
   end
 
   def current_visitor
