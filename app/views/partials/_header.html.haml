@@ -9,9 +9,9 @@
         %li{class: "#{nav_active_shop}"}
           = link_to t('shop'), shop_url
       %ul.nav.navbar-nav.navbar-right
+        %li
+          = link_to "#{t('cart')} #{cart_status}", order_items_url
         -if !cookies[:visitor_id]
-          %li
-            = link_to "#{t('cart')} #{cart_status}", order_items_url
           %li
             = link_to t('sign_out'), destroy_user_session_path, :method => :delete
         -else
