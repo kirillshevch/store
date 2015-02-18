@@ -10,12 +10,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
    def create
      flash[:success] = "Authentication success!"
+     cookies.delete :visitor_id
      super
    end
 
   # GET /resource/edit
    def edit
-     #super
      if current_user.billing_address == nil
        @billing_address = BillingAddress.new
      else
