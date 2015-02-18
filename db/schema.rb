@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150213191928) do
+ActiveRecord::Schema.define(version: 20150218085754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20150213191928) do
     t.datetime "updated_at"
     t.string   "first_name"
     t.string   "last_name"
+    t.integer  "visitor_id"
   end
 
   add_index "billing_addresses", ["country_id"], name: "index_billing_addresses_on_country_id", using: :btree
@@ -76,6 +77,7 @@ ActiveRecord::Schema.define(version: 20150213191928) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "visitor_id"
   end
 
   add_index "credit_cards", ["user_id"], name: "index_credit_cards_on_user_id", using: :btree
@@ -102,6 +104,7 @@ ActiveRecord::Schema.define(version: 20150213191928) do
     t.datetime "updated_at"
     t.integer  "billing_address_id"
     t.integer  "shipping_address_id"
+    t.integer  "visitor_id"
   end
 
   add_index "orders", ["credit_card_id"], name: "index_orders_on_credit_card_id", using: :btree
@@ -132,6 +135,7 @@ ActiveRecord::Schema.define(version: 20150213191928) do
     t.datetime "updated_at"
     t.string   "first_name"
     t.string   "last_name"
+    t.integer  "visitor_id"
   end
 
   add_index "shipping_addresses", ["country_id"], name: "index_shipping_addresses_on_country_id", using: :btree
@@ -165,5 +169,10 @@ ActiveRecord::Schema.define(version: 20150213191928) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "visitors", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

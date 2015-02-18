@@ -10,7 +10,7 @@
   = f.submit
 
 %h2 Shipping address
-= form_for @shipping_address do |f|
+= form_for @shipping_address, url: shipping_action(@shipping_address.id) do |f|
   = f.text_field :first_name, placeholder: "First name"
   = f.text_field :last_name, placeholder: "Last name"
   = f.text_field :address, placeholder: "Address"
