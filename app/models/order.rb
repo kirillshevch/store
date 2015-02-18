@@ -6,6 +6,4 @@ class Order < ActiveRecord::Base
   belongs_to :shipping_address
   belongs_to :visitor
   has_many   :order_items, dependent: :destroy
-
-
 end
