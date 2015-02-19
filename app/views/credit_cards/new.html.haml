@@ -1,0 +1,8 @@
+%h2 Checkout
+%h2 Credit Card
+= form_for @card do |f|
+  = f.text_field :number, placeholder: "Number"
+  = f.number_field :month
+  = f.number_field :year
+  = f.text_field :cvv, placeholder: "cvv"
+  = f.submit

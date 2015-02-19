@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
 
   def update
     current_order.update(params.require(:order).permit(:delivery))
-    redirect_to credit_card_url
+    redirect_to new_credit_card_url
   end
 
   private

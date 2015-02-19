@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :ratings
   has_many :books, through: :ratings
   has_many :orders
-  has_many :credit_cards
+  has_one  :credit_card
   has_many :order_items
   has_one  :billing_address
   has_one  :shipping_address

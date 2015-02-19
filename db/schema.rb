@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150219131552) do
+ActiveRecord::Schema.define(version: 20150219144949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,7 +71,6 @@ ActiveRecord::Schema.define(version: 20150219131552) do
   end
 
   create_table "credit_cards", force: true do |t|
-    t.integer  "number"
     t.integer  "cvv"
     t.integer  "month"
     t.integer  "year"
@@ -79,6 +78,7 @@ ActiveRecord::Schema.define(version: 20150219131552) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "visitor_id"
+    t.string   "number"
   end
 
   add_index "credit_cards", ["user_id"], name: "index_credit_cards_on_user_id", using: :btree
@@ -101,14 +101,12 @@ ActiveRecord::Schema.define(version: 20150219131552) do
     t.date     "completed_date"
     t.integer  "state_id"
     t.integer  "user_id"
-    t.integer  "credit_card_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "visitor_id"
     t.integer  "delivery"
   end
 
-  add_index "orders", ["credit_card_id"], name: "index_orders_on_credit_card_id", using: :btree
   add_index "orders", ["state_id"], name: "index_orders_on_state_id", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 

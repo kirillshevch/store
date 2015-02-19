@@ -8,7 +8,7 @@ Store::Application.routes.draw do
   resources :books, only: [:show]
   resources :billing_addresses,  only: [:create, :update]
   resources :shipping_addresses, only: [:create, :update]
-  resources :credit_cards,       except: [:index, :destroy]
+  resources :credit_cards, except: [:index, :show, :destroy]
   resources :categories, only: [:index, :show]
   match "shop", to: "categories#index",  via: "get"
 
