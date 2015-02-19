@@ -15,8 +15,9 @@ Store::Application.routes.draw do
   resources :order_items, except: [:edit, :show]
   match "cart", to: "order_items#index", via: "get"
 
-  resources :orders, only: [:index, :show]
+  resources :orders, only: [:index, :show, :update]
   match "delivery", to: "orders#delivery", via: "get"
+  match "delivery_add", to: "orders#delivery_add", via: "get"
 
   devise_for :users, controllers: {
                        registrations: "users/registrations",

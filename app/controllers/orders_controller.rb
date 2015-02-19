@@ -9,7 +9,12 @@ class OrdersController < ApplicationController
 
   def delivery
     check_step
+    @order = current_order
+  end
 
+  def update
+    current_order.update(params.require(:order).permit(:delivery))
+    redirect_to credit_card_url
   end
 
   private

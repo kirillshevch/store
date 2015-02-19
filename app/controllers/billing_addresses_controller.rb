@@ -1,13 +1,13 @@
 class BillingAddressesController < ApplicationController
   def create
     current_user.create_billing_address(address_params)
-    redirect_to :back# TODO redirect to delivery if create from checkout
+    redirect_to :back
   end
 
   def update
     @address = current_user.billing_address
     @address.update(address_params)
-    redirect_to :back# TODO redirect to delivery if create from checkout
+    redirect_to :back
   end
 
   private
