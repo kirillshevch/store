@@ -1,6 +1,6 @@
 class BillingAddressesController < ApplicationController
   def create
-    current_user.billing_address = BillingAddress.create!(address_params)
+    current_user.create_billing_address(address_params)
     redirect_to :back# TODO redirect to delivery if create from checkout
   end
 

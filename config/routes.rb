@@ -4,6 +4,7 @@ Store::Application.routes.draw do
 
   root "main#index"
 
+  resources :addresses, only: [:index, :create]
   resources :books, only: [:show]
   resources :billing_addresses,  only: [:create, :update]
   resources :shipping_addresses, only: [:create, :update]
@@ -13,6 +14,9 @@ Store::Application.routes.draw do
 
   resources :order_items, except: [:edit, :show]
   match "cart", to: "order_items#index", via: "get"
+
+  resources :orders, only: [:index, :show]
+  match "delivery", to: "orders#delivery", via: "get"
 
   devise_for :users, controllers: {
                        registrations: "users/registrations",

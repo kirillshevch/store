@@ -1,13 +1,13 @@
 class ShippingAddressesController < ApplicationController
   def create
-    current_user.shipping_address = ShippingAddress.create!(address_params)
-    redirect_to :back# TODO redirect to delivery if create from checkout
+    current_user.create_shipping_address(address_params)
+    redirect_to :back
   end
 
   def update
     @address = current_user.shipping_address
     @address.update(address_params)
-    redirect_to :back# TODO redirect to delivery if create from checkout
+    redirect_to :back
   end
 
   private
