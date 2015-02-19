@@ -2,7 +2,7 @@ class AddressesController < ApplicationController
 
   before_action :check_order
 
-  def index
+  def index # TODO trash code, refactoring this
     if current_order.billing_address == nil
       if current_user.billing_address == nil
         @billing_address = current_order.build_billing_address

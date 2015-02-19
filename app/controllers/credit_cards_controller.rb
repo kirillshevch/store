@@ -10,12 +10,13 @@ class CreditCardsController < ApplicationController
 
   def create
     current_user.create_credit_card(card_params)
-    #redirect_to confirm_url
+    #TODO redirect_to confirm_url
   end
 
   def edit
     @card = current_user.credit_card
     render 'new'
+    #TODO redirect_to confirm_url
   end
 
   def update
