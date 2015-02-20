@@ -13,9 +13,8 @@ class CreditCardsController < ApplicationController
     if current_user.create_credit_card(card_params)
       redirect_to confirm_url
     else
-      redirect_to :back, notice: self.errors
+      redirect_to :back, notice: "Error create credit card"
     end
-
   end
 
   def edit

@@ -1,13 +1,20 @@
 class BillingAddressesController < ApplicationController
   def create
-    current_user.create_billing_address(address_params)
-    redirect_to :back
+    address = current_user.build_billing_address(address_params)
+    if address.save
+      redirect_to :back
+    else
+      redirect_to :back, alert: "Create billing address error"
+    end
   end
 
   def update
-    @address = current_user.billing_address
-    @address.update(address_params)
-    redirect_to :back
+    address = current_user.billing_address
+    if address.update(address_params)
+      redirect_to :back
+    else
+      redirect_to :back, alert: "Update billing address error"
+    end
   end
 
   private

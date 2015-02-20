@@ -1,13 +1,20 @@
 class ShippingAddressesController < ApplicationController
   def create
-    current_user.create_shipping_address(address_params)
-    redirect_to :back
+    address = current_user.build_shipping_address(address_params)
+    if address.save
+      redirect_to :back
+    else
+      redirect_to :back, alert: "Create shipping address error"
+    end
   end
 
   def update
-    @address = current_user.shipping_address
-    @address.update(address_params)
-    redirect_to :back
+    address = current_user.shipping_address
+    if address.update(address_params)
+      redirect_to :back
+    else
+      redirect_to :back, alert: "Update shipping address error"
+    end
   end
 
   private

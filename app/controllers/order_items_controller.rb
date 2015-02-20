@@ -4,14 +4,22 @@ class OrderItemsController < ApplicationController
   end
 
   def create
-    current_order.order_items.create!(order_item_params)
-    flash[:success] = t('add_to_cart')
-    redirect_to :back
+    item = current_order.order_items
+    if item.create!(order_item_params)
+      flash[:success] = t('add_to_cart')
+      redirect_to :back
+    else
+      redirect_to :back, alert: "Error add to cart"
+    end
   end
 
   def update
-    current_order.order_items.find(params[:id]).update_attributes(order_item_params)
-    redirect_to :back
+    item = current_order.order_items.find(params[:id])
+    if item.update_attributes(order_item_params)
+      redirect_to :back
+    else
+      redirect_to :back, alert: "Error update book quantity"
+    end
   end
 
   def destroy
