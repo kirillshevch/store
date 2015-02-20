@@ -2,25 +2,30 @@ require 'rails_helper'
 
 RSpec.describe BillingAddressesController, :type => :controller do
 
-  describe "GET create" do
-    it "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
+  describe 'POST create' do
+    let(:user) { FactoryGirl.create(:user) }
+    it 'redirects to back'
+
+    context 'with valid attributes' do
+      it 'calls create_billing_address for current_user'
+    end
+
+    context 'with invalid attributes' do
+      before do
+        controller.stub(:current_user).and_return user
+        user.stub(:create_billing_address).and_return false
+      end
+
+      it 'sends error flash' do
+        post :create, {}
+        expect(flash[:error]).to have_content 'Invalid data'
+      end
     end
   end
 
-  describe "GET edit" do
-    it "returns http success" do
-      get :edit
-      expect(response).to have_http_status(:success)
-    end
-  end
 
-  describe "GET update" do
-    it "returns http success" do
-      get :update
-      expect(response).to have_http_status(:success)
-    end
+  describe 'PUT update' do
+    it ''
   end
 
 end

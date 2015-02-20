@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :current_visitor, :current_order
+  before_action :set_visitor, :current_order
 
   helper_method :current_order
 
@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     cookies[:visitor_id] ? Visitor.find(cookies[:visitor_id]) : super
   end
 
-  def current_visitor
+  def set_visitor
     if !current_user.respond_to?(:email) && !cookies[:visitor_id]
       new_visitor = Visitor.create
       cookies[:visitor_id] = new_visitor.id

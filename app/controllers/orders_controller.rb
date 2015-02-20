@@ -8,20 +8,34 @@ class OrdersController < ApplicationController
   end
 
   def delivery
-    check_step
-    @order = current_order
+    check_step_address
+  end
+
+  def confirm
+    check_step_payment
   end
 
   def update
-    current_order.update(params.require(:order).permit(:delivery))
+    current_order.update(delivery_params)
+    #TODO послита комплита заказа отправлять на заказ
     redirect_to new_credit_card_url
   end
 
   private
 
-    def check_step
+    def check_step_address
       if current_order.shipping_address == nil
         redirect_to addresses_url
       end
+    end
+
+    def check_step_payment
+      if current_user.credit_card == nil
+        redirect_to new_credit_card_url
+      end
+    end
+
+    def delivery_params
+      params.require(:order).permit(:delivery, :state_id)
     end
 end

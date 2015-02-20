@@ -9,18 +9,23 @@ class CreditCardsController < ApplicationController
   end
 
   def create
-    current_user.create_credit_card(card_params)
-    #TODO redirect_to confirm_url
+    # TODO редиректы не работают
+    if current_user.create_credit_card(card_params)
+      redirect_to confirm_url
+    else
+      redirect_to :back, notice: self.errors
+    end
+
   end
 
   def edit
     @card = current_user.credit_card
     render 'new'
-    #TODO redirect_to confirm_url
   end
 
   def update
     current_user.credit_card.update(card_params)
+    redirect_to confirm_url
   end
 
   private

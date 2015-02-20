@@ -18,6 +18,7 @@ Store::Application.routes.draw do
   resources :orders, only: [:index, :show, :update]
   match "delivery", to: "orders#delivery", via: "get"
   match "delivery_add", to: "orders#delivery_add", via: "get"
+  match "confirm", to: "orders#confirm", via: "get"
 
   devise_for :users, controllers: {
                        registrations: "users/registrations",
