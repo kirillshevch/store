@@ -3,9 +3,10 @@ Store::Application.routes.draw do
   get "users/omniauth_callbacks/facebook"
 
   root "main#index"
-
   resources :addresses, except: [:index, :destroy]
-  resources :books, only: [:show]
+  resources :books, only: [:show] do
+    resource :review, only: [:new, :create]
+  end
   resources :billing_addresses,  only: [:create, :update]
   resources :shipping_addresses, only: [:create, :update]
   resources :credit_cards, except: [:index, :show, :destroy]
