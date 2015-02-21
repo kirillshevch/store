@@ -4,7 +4,7 @@ Store::Application.routes.draw do
 
   root "main#index"
 
-  resources :addresses, only: [:index, :create]
+  resources :addresses, except: [:index, :destroy]
   resources :books, only: [:show]
   resources :billing_addresses,  only: [:create, :update]
   resources :shipping_addresses, only: [:create, :update]

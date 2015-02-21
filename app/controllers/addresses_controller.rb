@@ -2,30 +2,54 @@ class AddressesController < ApplicationController
 
   before_action :check_order
 
-  def index # TODO trash code, refactoring this
-    if current_order.billing_address == nil
-      if current_user.billing_address == nil
+  def new
+    if current_order.billing_address.nil?
+      if current_user.billing_address.nil?
         @billing_address = current_order.build_billing_address
+        @countries = Country.all
       else
-        @billing_address = current_user.billing_address
+        redirect_to edit_address_url(current_user.billing_address.id)
       end
     else
-      @billing_address = current_order.billing_address
+      redirect_to edit_address_url(current_order.billing_address.id)
     end
+  end
+
+  def edit
+    @billing_address = current_order.billing_address
     @countries = Country.all
   end
 
   def create
-    current_order.create_billing_address(address_params)
-    copy_address(address_params)
-    redirect_to delivery_url
+    if current_order.billing_address.nil?
+      address = current_order.build_billing_address(address_params)
+      if address.save
+        if current_user.billing_address.nil?
+          current_user.billing_address.create(address_params)
+        end
+        copy_address(address_params)
+        redirect_to delivery_url
+      else
+        redirect_to :back, alert: "Save address error"
+      end
+    end
+  end
+
+  def update
+    address = current_order.billing_address
+    if address.update(address_params)
+      copy_address(address_params)
+      redirect_to delivery_url
+    else
+      redirect_to :back, alert: "Address update error"
+    end
   end
 
   private
 
     def check_order
       if current_order.order_items.count <= 0
-        redirect_to shop_url, notice: "Select paying before checkout."
+        redirect_to shop_url, alert: "Select books before checkout."
       end
     end
 
@@ -36,6 +60,9 @@ class AddressesController < ApplicationController
 
     def copy_address(address_params)
       if params[:copyaddress]
+        if current_user.shipping_address.nil?
+          current_user.shipping_address.create(address_params)
+        end
         current_order.create_shipping_address(address_params)
       end
     end

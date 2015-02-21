@@ -1,7 +1,7 @@
 class CreditCardsController < ApplicationController
 
   def new
-    if current_user.credit_card == nil
+    if current_user.credit_card.nil?
       @card = current_user.build_credit_card
     else
       redirect_to edit_credit_card_url(current_user.credit_card.id)

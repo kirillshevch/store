@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
 
   def current_order
     order = current_user.orders.find_by(state_id: 1)
-    if order == nil
+    if order.nil?
       current_user.orders.create!(state_id: 1)
     else
       order

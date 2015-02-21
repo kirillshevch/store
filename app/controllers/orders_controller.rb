@@ -24,13 +24,13 @@ class OrdersController < ApplicationController
   private
 
     def check_step_address
-      if current_order.shipping_address == nil
+      if current_order.shipping_address.nil?
         redirect_to addresses_url
       end
     end
 
     def check_step_payment
-      if current_user.credit_card == nil
+      if current_user.credit_card.nil?
         redirect_to new_credit_card_url
       end
     end

@@ -1,3 +1,11 @@
+%h2 Checkout
+%h2 Confirm
+%h3 Shipping Address
+= current_order.shipping_address.first_name
+= link_to "(edit)", addresses_url
+= current_order.shipping_address
+
+
 = form_for current_order do |f|
   = f.hidden_field :state_id, value: 2
-  = f.submit
+  = f.submit "Place order"
