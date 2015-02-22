@@ -6,4 +6,7 @@ class ShippingAddress < ActiveRecord::Base
 
   validates :first_name, :last_name, :address, :zipcode, :city,
             :phone, :country_id, presence: true
+  validates :first_name, :last_name, :city, length: { maximum: 50 }
+  validates :address, length: { maximum: 100 }
+  validates :zipcode, numericality: true, length: { maximum: 20 }
 end

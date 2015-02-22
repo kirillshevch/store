@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
          :omniauthable
 
   has_many :reviews
-  has_many :books
   has_many :orders
   has_one  :credit_card
   has_many :order_items

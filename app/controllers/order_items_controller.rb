@@ -4,8 +4,7 @@ class OrderItemsController < ApplicationController
   end
 
   def create
-    item = current_order.order_items
-    if item.create!(order_item_params)
+    if current_order.order_items.create!(order_item_params)
       flash[:success] = t('add_to_cart')
       redirect_to :back
     else

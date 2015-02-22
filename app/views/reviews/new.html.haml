@@ -1,5 +1,7 @@
 %h2 New review for #{link_to @book.title, book_url(@book.id)}
 = form_for @review, url: book_review_url, method: :post do |f|
   = f.number_field :number
+  = f.text_field :title
   = f.text_area :text
+  = f.hidden_field :book_id, value: @book.id
   = f.submit

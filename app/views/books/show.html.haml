@@ -6,3 +6,9 @@
   = f.number_field :quantity, value: 1
   = f.hidden_field :book_id, value: @book.id
   = f.submit
+
+%h4 Reviews #{link_to "Add review for this book", new_book_review_url(book_id: @book.id)}
+-unless @book.reviews.nil?
+  -@book.reviews.each do |review|
+    = review.number
+    = review.text

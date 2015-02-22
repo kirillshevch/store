@@ -4,7 +4,6 @@ class Book < ActiveRecord::Base
   belongs_to :author
   belongs_to :category
   has_many   :reviews
-  has_many   :users
   has_many   :order_items, dependent: :destroy
 
   validates :title, :short_description, :full_description, :price,

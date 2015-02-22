@@ -24,9 +24,6 @@ class AddressesController < ApplicationController
     if current_order.billing_address.nil?
       address = current_order.build_billing_address(address_params)
       if address.save
-        if current_user.billing_address.nil?
-          current_user.billing_address.create(address_params)
-        end
         copy_address(address_params)
         redirect_to delivery_url
       else
@@ -60,9 +57,6 @@ class AddressesController < ApplicationController
 
     def copy_address(address_params)
       if params[:copyaddress]
-        if current_user.shipping_address.nil?
-          current_user.shipping_address.create(address_params)
-        end
         current_order.create_shipping_address(address_params)
       end
     end
