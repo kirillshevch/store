@@ -1,4 +1,5 @@
 class Book < ActiveRecord::Base
+  mount_uploader :image, ImageUploader
   paginates_per 9
 
   belongs_to :author

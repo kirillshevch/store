@@ -7,8 +7,8 @@ class Ability
       can :access, :rails_admin
       can :dashboard
       can :manage, [Book, Author, Category]
-      can :read,   [Rating, Order]
-      can :update, [Rating, Order]
+      can :read,   [Review, Order]
+      can :update, [Review, Order]
     end
   end
 end

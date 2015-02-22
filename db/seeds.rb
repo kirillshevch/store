@@ -10,4 +10,14 @@ Dir[Rails.root.join("spec/support/*.rb")].each {|f| require f}
 
 FactoryGirl.create :books
 
-# TODO create states
+Country.create([
+                   {name: "Ukraine"},
+                   {name: "Russian"}
+               ])
+State.create([
+                 {state: "In progress"},
+                 {state: "In queue"},
+                 {state: "In delivery"},
+                 {state: "Delivered"},
+                 {state: "Canceled"}
+             ])
