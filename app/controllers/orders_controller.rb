@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
 
     def check_step_address
       if current_order.shipping_address.nil?
-        redirect_to addresses_url
+        redirect_to new_address_url
       end
     end
 

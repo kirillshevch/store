@@ -25,7 +25,6 @@ class AddressesController < ApplicationController
       address = current_order.build_billing_address(address_params)
       if address.save
         copy_address(address_params)
-        redirect_to delivery_url
       else
         redirect_to :back, alert: "Save address error"
       end
@@ -36,7 +35,6 @@ class AddressesController < ApplicationController
     address = current_order.billing_address
     if address.update(address_params)
       copy_address(address_params)
-      redirect_to delivery_url
     else
       redirect_to :back, alert: "Address update error"
     end
@@ -58,6 +56,13 @@ class AddressesController < ApplicationController
     def copy_address(address_params)
       if params[:copyaddress]
         current_order.create_shipping_address(address_params)
+        redirect_to delivery_url
+      else
+        if current_order.shipping_address.nil?
+          redirect_to new_shipping_address_url
+        else
+          redirect_to delivery_url
+        end
       end
     end
 end
