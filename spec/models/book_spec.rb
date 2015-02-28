@@ -27,13 +27,5 @@ RSpec.describe Book, :type => :model do
     it 'belongs to categories' do
       expect(book).to belong_to(:category)
     end
-
-    it 'has many ratings' do
-      expect(book).to have_many(:ratings)
-    end
-
-    it 'has many users' do
-      expect(book).to have_many(:users).through(:ratings)
-    end
   end
 end

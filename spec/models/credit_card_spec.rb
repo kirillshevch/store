@@ -12,5 +12,6 @@ RSpec.describe CreditCard, :type => :model do
 
   context 'testing associations' do
     it { expect(credit_card).to belong_to(:user) }
+    it { expect(credit_card).to belong_to(:visitor) }
   end
 end

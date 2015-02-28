@@ -1,13 +1,27 @@
 %h2 Checkout
-%h2 Billing address
-= form_for @billing_address, url: address_url, method: :put do |f|
-  = f.text_field :first_name, placeholder: "First name"
-  = f.text_field :last_name, placeholder: "Last name"
-  = f.text_field :address, placeholder: "Address"
-  = f.text_field :city, placeholder: "City"
-  = f.collection_select :country_id, @countries, :id, :name
-  = f.text_field :zipcode, placeholder: "Zipcode"
-  = f.text_field :phone, placeholder: "Phone"
-
-  = check_box_tag :copyaddress, "ok", true
-  = f.submit
+.row
+  .col-xs-4
+    %h3 Billing address
+  .col-xs-4
+    %h3 Shipping address
+  .col-xs-4
+    %h3 Order summary
+.row
+  .col-xs-12
+    = form_for @billing_address, url: address_url, method: :put do |f|
+      .col-xs-4
+        .form-group.form-address
+          = f.text_field :first_name, placeholder: "First name", class: "form-control input-address"
+          = f.text_field :last_name, placeholder: "Last name", class: "form-control input-address"
+          = f.text_field :address, placeholder: "Address", class: "form-control input-address"
+          = f.text_field :city, placeholder: "City", class: "form-control input-address"
+          = f.collection_select(:country_id, @countries, :id, :name, {}, {class: "form-control input-address"})
+          = f.text_field :zipcode, placeholder: "Zipcode", class: "form-control input-address"
+          = f.text_field :phone, placeholder: "Phone", class: "form-control input-address"
+          = f.submit "Save and contine", class: "btn btn-default"
+      .col-xs-4
+        .form-group.form-address
+          %div{style: "overflow:auto; margin: 0 auto"}
+          = check_box_tag :copyaddress, "ok", true
+          %p Use billing address
+      .col-xs-4

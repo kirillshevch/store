@@ -1,13 +1,13 @@
 %h2 Checkout
 %h2 Billing address
 = form_for @billing_address, url: addresses_url, method: :post do |f|
-  = f.text_field :first_name, placeholder: "First name"
-  = f.text_field :last_name, placeholder: "Last name"
-  = f.text_field :address, placeholder: "Address"
-  = f.text_field :city, placeholder: "City"
-  = f.collection_select :country_id, @countries, :id, :name
-  = f.text_field :zipcode, placeholder: "Zipcode"
-  = f.text_field :phone, placeholder: "Phone"
-
-  = check_box_tag :copyaddress, "ok", true
-  = f.submit
+  .form-group
+    = f.text_field :first_name, placeholder: "First name", class: "form-control"
+    = f.text_field :last_name, placeholder: "Last name", class: "form-control"
+    = f.text_field :address, placeholder: "Address", class: "form-control"
+    = f.text_field :city, placeholder: "City", class: "form-control"
+    = f.collection_select :country_id, @countries, :id, :name, class: "form-control"
+    = f.text_field :zipcode, placeholder: "Zipcode", class: "form-control"
+    = f.text_field :phone, placeholder: "Phone", class: "form-control"
+    = check_box_tag :copyaddress, "ok", true
+    = f.submit

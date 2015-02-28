@@ -14,6 +14,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.container {
+  width: 970px;
+}
+
 // For flash messages
 .alert-notice {
   @extend .alert-info

@@ -1,3 +1,28 @@
 // Place all the styles related to the OrderItem controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.quantity-input {
+  width: 50px;
+}
+.book-price {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 4px;
+}
+.title-main {
+
+}
+
+.content-main {
+  overflow: auto;
+}
+
+.content-main p {
+  overflow: auto;
+  padding-left: 15px;
+}
+
+.form-main {
+
+}

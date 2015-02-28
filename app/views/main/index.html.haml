@@ -1,20 +1,23 @@
 #myCarousel.carousel.slide{"data-ride" => "carousel"}
   / Carousel items
-  .carousel-inner
-    -@books.each do |value|
-      .item
-        = value.title
-        = value.author.first_name
-        = value.author.last_name
-        .carousel-caption
-          = value.full_description
-          = image_tag value.image
-          = value.price
+  .carousel-inner{"role" => "listbox"}
+    -@books.each_with_index do |value, index|
+      %div{class: "item #{active(index)}"}
+        .title-main
+          = "#{value.title} by #{value.author.first_name} #{value.author.last_name}"
+        .content-main
+          = image_tag value.image, align: 'left'
+          %p= value.full_description
+        .form-main
+          = form_for @orderitem do |f|
+            = "$#{value.price}"
+            = f.number_field :quantity, value: 1
+            = f.hidden_field :book_id, value: value.id
+            = f.submit
 
-  / Carousel nav
   %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"}
     %span.glyphicon.glyphicon-chevron-left
   %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"}
     %span.glyphicon.glyphicon-chevron-right
 
-%h2 Welcome to our amazing Bookstore! Choose anything you wish, we'll sjip it anywhere!
+%h2.welcome Welcome to our amazing Bookstore! Choose anything you wish, we'll ship it anywhere!

@@ -17,8 +17,12 @@ FactoryGirl.define do
     full_description  Faker::Lorem.paragraph(4)
     author
     category
-    image             Faker::Avatar.image
+    image             ''
     price             Faker::Number.number(3)
+
+    factory :best_book do
+      best_seller true
+    end
   end
 
   factory :author do
