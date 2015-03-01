@@ -47,10 +47,29 @@ FactoryGirl.define do
   end
 
   factory :credit_card do
-    number 1111111111111111
+    number '12345678901234'
     cvv 111
     month 12
     year Time.now.year
     user
   end
+
+  factory :state do
+    state 'In progress'
+  end
+
+  factory :order do
+    total_price nil
+    completed_date nil
+    state
+    user
+    visitor_id nil
+    delivery 5
+  end
+
+  #factory :billing_address do
+    #address
+   # zipcode
+    #city
+ # end
 end

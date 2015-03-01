@@ -9,8 +9,8 @@ class CreditCardsController < ApplicationController
   end
 
   def create
-    # TODO что-то не так
-    if current_user.create_credit_card(card_params)
+    card = current_user.build_credit_card(card_params)
+    if card.save
       redirect_to confirm_url
     else
       redirect_to :back, alert: "Error create credit card"
@@ -18,13 +18,21 @@ class CreditCardsController < ApplicationController
   end
 
   def edit
-    @card = current_user.credit_card
-    render 'new'
+    if current_user.credit_card.nil?
+      redirect_to new_credit_card_url, alert: "Create a credit card before editing"
+    else
+      @card = current_user.credit_card
+      render 'new'
+    end
   end
 
   def update
-    current_user.credit_card.update(card_params)
-    redirect_to confirm_url
+    card = current_user.credit_card
+    if card.update(card_params)
+      redirect_to confirm_url
+    else
+      redirect_to :back, alert: "Invalid attributes"
+    end
   end
 
   private
