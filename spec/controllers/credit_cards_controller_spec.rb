@@ -15,11 +15,6 @@ RSpec.describe CreditCardsController, :type => :controller do
         user.stub(:build_credit_card).and_return build_credit_card
       end
 
-      it 'receives build credit card and return build card' do
-        expect(user).to receive(:build_credit_card)
-        get :new
-      end
-
       it 'render :new template' do
         get :new
         expect(response).to render_template :new

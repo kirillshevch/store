@@ -67,6 +67,15 @@ FactoryGirl.define do
     delivery 5
   end
 
+  factory :review do
+    text Faker::Lorem.paragraph(4)
+    number 10
+    user
+    book
+    visitor_id nil
+    title Faker::Lorem.sentence(4)
+  end
+
   #factory :billing_address do
     #address
    # zipcode
