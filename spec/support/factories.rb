@@ -35,13 +35,6 @@ FactoryGirl.define do
     name Faker::Name.name
   end
 
-  factory :rating do
-    review Faker::Lorem.paragraph(4)
-    number 1
-    user
-    book
-  end
-
   factory :country do
     name Faker::Address.country
   end
@@ -58,27 +51,39 @@ FactoryGirl.define do
     state 'In progress'
   end
 
-  factory :order do
-    total_price nil
-    completed_date nil
-    state
-    user
-    visitor_id nil
-    delivery 5
-  end
+ # factory :order do
+  #  state
+  #  user
+  #  delivery 5
+  #end
 
   factory :review do
     text Faker::Lorem.paragraph(4)
     number 10
     user
     book
-    visitor_id nil
     title Faker::Lorem.sentence(4)
   end
 
-  #factory :billing_address do
-    #address
-   # zipcode
-    #city
- # end
+  factory :billing_address do
+    address Faker::Address.street_address
+    zipcode Faker::Address.zip
+    city    Faker::Address.city
+    phone   Faker::PhoneNumber.cell_phone
+    country
+    user
+    first_name Faker::Name.first_name
+    last_name  Faker::Name.last_name
+  end
+
+  factory :shipping_address do
+    address Faker::Address.street_address
+    zipcode Faker::Address.zip
+    city    Faker::Address.city
+    phone   Faker::PhoneNumber.cell_phone
+    country
+    user
+    first_name Faker::Name.first_name
+    last_name  Faker::Name.last_name
+  end
 end

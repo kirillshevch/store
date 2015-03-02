@@ -6,5 +6,7 @@ class BillingAddress < ActiveRecord::Base
 
   validates :first_name, :last_name, :address, :zipcode, :city,
             :phone, :country_id, presence: true
-  validates :zipcode, numericality: true
+  validates :first_name, :last_name, :city, length: { maximum: 50 }
+  validates :address, length: { maximum: 100 }
+  validates :zipcode, length: { maximum: 20 }
 end
