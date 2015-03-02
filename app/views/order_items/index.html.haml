@@ -15,7 +15,7 @@
           = f.hidden_field :book_id,  value: value.book.id
           = f.submit "up", class: "btn btn-default"
     .col-xs-1.book-price
-      %b= "$#{value.book.price * value.quantity}"
+      %b= "$#{value.price}"
       = link_to order_item_url(value.id), method: :delete, class: "close" do
         %span{"aria-hidden" => "true"} &times
 .row

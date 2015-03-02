@@ -51,11 +51,10 @@ FactoryGirl.define do
     state 'In progress'
   end
 
- # factory :order do
-  #  state
-  #  user
-  #  delivery 5
-  #end
+  factory :order do
+    state
+    user
+  end
 
   factory :review do
     text Faker::Lorem.paragraph(4)
@@ -85,5 +84,12 @@ FactoryGirl.define do
     user
     first_name Faker::Name.first_name
     last_name  Faker::Name.last_name
+  end
+
+  factory :order_item do
+    quantity 1
+    order
+    book
+    user
   end
 end

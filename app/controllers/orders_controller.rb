@@ -8,11 +8,15 @@ class OrdersController < ApplicationController
   end
 
   def delivery
-    check_step_address
+    if current_order.shipping_address.nil?
+      redirect_to new_address_url
+    end
   end
 
   def confirm
-    check_step_payment
+    if current_user.credit_card.nil?
+      redirect_to new_credit_card_url
+    end
   end
 
   def update
@@ -22,18 +26,6 @@ class OrdersController < ApplicationController
   end
 
   private
-
-    def check_step_address
-      if current_order.shipping_address.nil?
-        redirect_to new_address_url
-      end
-    end
-
-    def check_step_payment
-      if current_user.credit_card.nil?
-        redirect_to new_credit_card_url
-      end
-    end
 
     def delivery_params
       params.require(:order).permit(:delivery, :state_id)

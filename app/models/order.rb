@@ -8,4 +8,12 @@ class Order < ActiveRecord::Base
   has_many   :order_items, dependent: :destroy
 
   validates :state_id, presence: true
+
+  before_update :count_price
+
+  def count_price
+    price = order_items.map {|item| item.price}.sum
+    sum = (sum + delivery).to_i
+    self.price = sum
+  end
 end
