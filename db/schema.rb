@@ -47,15 +47,16 @@ ActiveRecord::Schema.define(version: 20150302082430) do
     t.string   "short_description"
     t.text     "full_description"
     t.integer  "author_id"
+    t.integer  "categories_id"
     t.string   "image"
     t.integer  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "best_seller",       default: false
-    t.integer  "category_id"
   end
 
   add_index "books", ["author_id"], name: "index_books_on_author_id", using: :btree
+  add_index "books", ["categories_id"], name: "index_books_on_categories_id", using: :btree
 
   create_table "categories", force: true do |t|
     t.string   "name"

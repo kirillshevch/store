@@ -57,8 +57,6 @@ gem 'haml-rails'
 # Beautiful web 2.0 design
 gem 'bootstrap-sass', '~> 3.3.3'
 
-gem 'ratyrate'
-
 group :development do
   gem 'html2haml'
 end
