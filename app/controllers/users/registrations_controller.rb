@@ -10,8 +10,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
    def create
      flash[:success] = "Authentication success!"
-     @visitor_id = cookies[:visitor_id]
-     cookies.delete :visitor_id
      super
    end
 

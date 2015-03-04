@@ -11,7 +11,7 @@
       %ul.nav.navbar-nav.navbar-right
         %li
           = link_to "#{t('cart')} #{cart_status}", cart_url
-        -if !cookies[:visitor_id]
+        -if user_signed_in?
           %li
             = link_to t('sign_out'), destroy_user_session_path, :method => :delete
         -else
