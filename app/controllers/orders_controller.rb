@@ -21,7 +21,6 @@ class OrdersController < ApplicationController
 
   def update
     current_order.update(delivery_params)
-    #TODO послита комплита заказа отправлять на заказ
     redirect_to new_credit_card_url
   end
 

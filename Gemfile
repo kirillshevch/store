@@ -5,6 +5,8 @@ gem 'rails', '4.0.2'
 
 gem 'rails-i18n', '~> 4.0.0'
 
+# step by step checkout
+gem 'wicked'
 
 # Use postgresql as the database for Active Record
 gem 'pg'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150302082430) do
+ActiveRecord::Schema.define(version: 20150304175915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 20150302082430) do
     t.datetime "updated_at"
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "visitor_id"
     t.integer  "order_id"
     t.string   "zipcode"
   end
@@ -47,7 +46,7 @@ ActiveRecord::Schema.define(version: 20150302082430) do
     t.string   "short_description"
     t.text     "full_description"
     t.integer  "author_id"
-    t.integer  "categories_id"
+    t.integer  "category_id"
     t.string   "image"
     t.integer  "price"
     t.datetime "created_at"
@@ -56,7 +55,7 @@ ActiveRecord::Schema.define(version: 20150302082430) do
   end
 
   add_index "books", ["author_id"], name: "index_books_on_author_id", using: :btree
-  add_index "books", ["categories_id"], name: "index_books_on_categories_id", using: :btree
+  add_index "books", ["category_id"], name: "index_books_on_category_id", using: :btree
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -77,7 +76,6 @@ ActiveRecord::Schema.define(version: 20150302082430) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "visitor_id"
     t.string   "number"
   end
 
@@ -90,7 +88,6 @@ ActiveRecord::Schema.define(version: 20150302082430) do
     t.datetime "updated_at"
     t.integer  "book_id"
     t.integer  "user_id"
-    t.integer  "visitor_id"
     t.integer  "price"
   end
 
@@ -102,7 +99,6 @@ ActiveRecord::Schema.define(version: 20150302082430) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "visitor_id"
     t.integer  "delivery"
     t.integer  "price"
   end
@@ -117,7 +113,6 @@ ActiveRecord::Schema.define(version: 20150302082430) do
     t.integer  "book_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "visitor_id"
     t.string   "title"
     t.boolean  "visible",    default: false
   end
@@ -135,7 +130,6 @@ ActiveRecord::Schema.define(version: 20150302082430) do
     t.datetime "updated_at"
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "visitor_id"
     t.integer  "order_id"
     t.string   "zipcode"
   end

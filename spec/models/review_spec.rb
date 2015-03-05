@@ -11,6 +11,5 @@ RSpec.describe Review, :type => :model do
   context 'testing associations' do
     it { expect(review).to belong_to(:user) }
     it { expect(review).to belong_to(:book) }
-    it { expect(review).to belong_to(:visitor) }
   end
 end
