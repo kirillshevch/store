@@ -7,7 +7,6 @@ RSpec.describe OrderItem, :type => :model do
     it { expect(order_item).to belong_to(:order) }
     it { expect(order_item).to belong_to(:book) }
     it { expect(order_item).to belong_to(:user) }
-    it { expect(order_item).to belong_to(:visitor) }
   end
 
   context '.count_price' do

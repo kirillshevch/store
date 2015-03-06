@@ -14,10 +14,3 @@ Country.create([
                    {name: "Ukraine"},
                    {name: "Russian"}
                ])
-State.create([
-                 {state: "In progress"},
-                 {state: "In queue"},
-                 {state: "In delivery"},
-                 {state: "Delivered"},
-                 {state: "Canceled"}
-             ])

@@ -5,7 +5,6 @@ RSpec.describe BillingAddress, type: :model do
   context 'testing associations' do
     it { expect(billing_address).to belong_to(:country) }
     it { expect(billing_address).to belong_to(:user) }
-    it { expect(billing_address).to belong_to(:visitor) }
     it { expect(billing_address).to belong_to(:order) }
   end
 end

@@ -13,7 +13,7 @@
             = "$#{value.price}"
             = f.number_field :quantity, value: 1
             = f.hidden_field :book_id, value: value.id
-            = f.submit
+            = f.submit "Add book to cart"
 
   %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"}
     %span.glyphicon.glyphicon-chevron-left

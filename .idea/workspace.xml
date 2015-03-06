@@ -2,6 +2,63 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19a4ec8d-3f24-4488-92ed-de7eb2ea5b08" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20150304175915_remove_visitor_from_tables.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20150306102259_delete_state_id_from_order.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20150306113732_drop_table_old_tables.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/features/add_book_to_card_spec.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/checkouts/address.html.haml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/checkouts.css.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/checkouts.js.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/checkouts_controller.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/helpers/checkouts_helper.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/helpers/checkouts_helper_spec.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/checkouts/complete.html.haml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/checkouts/confirm.html.haml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/checkouts/delivery.html.haml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/checkouts/payment.html.haml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/checkouts/shipping_address.html.haml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/.generators" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/.rakeTasks" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/store.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/state.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/visitor.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20150204142621_create_states.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20150218084829_create_visitors.rb" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/spec/models/state_spec.rb" afterPath="$PROJECT_DIR$/spec/views/checkouts/show.html.haml_spec.rb" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/spec/models/visitor_spec.rb" afterPath="$PROJECT_DIR$/spec/views/checkouts/update.html.haml_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/_header.html.haml" afterPath="$PROJECT_DIR$/app/views/layouts/_header.html.haml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/billing_address.rb" afterPath="$PROJECT_DIR$/app/models/billing_address.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/models/billing_address_spec.rb" afterPath="$PROJECT_DIR$/spec/models/billing_address_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/credit_card.rb" afterPath="$PROJECT_DIR$/app/models/credit_card.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/models/credit_card_spec.rb" afterPath="$PROJECT_DIR$/spec/models/credit_card_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/support/factories.rb" afterPath="$PROJECT_DIR$/spec/support/factories.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/main/index.html.haml" afterPath="$PROJECT_DIR$/app/views/main/index.html.haml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/order_items/index.html.haml" afterPath="$PROJECT_DIR$/app/views/order_items/index.html.haml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/addresses/new.html.haml" afterPath="$PROJECT_DIR$/app/views/addresses/new.html.haml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/order.rb" afterPath="$PROJECT_DIR$/app/models/order.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/order_item.rb" afterPath="$PROJECT_DIR$/app/models/order_item.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/models/order_item_spec.rb" afterPath="$PROJECT_DIR$/spec/models/order_item_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/orders_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/orders_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/rails_helper.rb" afterPath="$PROJECT_DIR$/spec/rails_helper.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users/registrations_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users/registrations_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/review.rb" afterPath="$PROJECT_DIR$/app/models/review.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/models/review_spec.rb" afterPath="$PROJECT_DIR$/spec/models/review_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/seeds.rb" afterPath="$PROJECT_DIR$/db/seeds.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/shipping_address.rb" afterPath="$PROJECT_DIR$/app/models/shipping_address.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/models/shipping_address_spec.rb" afterPath="$PROJECT_DIR$/spec/models/shipping_address_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/books/show.html.haml" afterPath="$PROJECT_DIR$/app/views/books/show.html.haml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="store.iws" />
@@ -39,21 +96,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="order_items_controller_spec.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/controllers/order_items_controller_spec.rb">
+      <file leaf-file-name="order.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/models/order.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="624" max-vertical-offset="1206">
-              <caret line="40" column="47" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.39344263" vertical-offset="0" max-vertical-offset="756">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="crud_author_spec.rb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/spec/features/crud_author_spec.rb">
+      <file leaf-file-name="billing_address.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/billing_address.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.29508197" vertical-offset="108" max-vertical-offset="954">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -559,6 +616,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="648">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -672,13 +730,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2511628" vertical-offset="0" max-vertical-offset="645">
           <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/billing_address.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11162791" vertical-offset="0" max-vertical-offset="645">
-          <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -831,26 +882,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/order.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39344263" vertical-offset="0" max-vertical-offset="450">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/order_item.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4918033" vertical-offset="0" max-vertical-offset="366">
           <caret line="10" column="17" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/controllers/order_items_controller_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="624" max-vertical-offset="1206">
-          <caret line="40" column="47" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
           <folding />
         </state>
       </provider>
@@ -871,8 +906,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/features/crud_author_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.29508197" vertical-offset="108" max-vertical-offset="954">
+        <state vertical-scroll-proportion="-0.47906977" vertical-offset="309" max-vertical-offset="954">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/controllers/order_items_controller_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24651162" vertical-offset="561" max-vertical-offset="1206">
+          <caret line="40" column="47" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/billing_address.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/order.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39344263" vertical-offset="0" max-vertical-offset="450">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150302082430) do
+ActiveRecord::Schema.define(version: 20150306113732) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 20150302082430) do
     t.datetime "updated_at"
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "visitor_id"
     t.integer  "order_id"
     t.string   "zipcode"
   end
@@ -47,15 +46,16 @@ ActiveRecord::Schema.define(version: 20150302082430) do
     t.string   "short_description"
     t.text     "full_description"
     t.integer  "author_id"
+    t.integer  "category_id"
     t.string   "image"
     t.integer  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "best_seller",       default: false
-    t.integer  "category_id"
   end
 
   add_index "books", ["author_id"], name: "index_books_on_author_id", using: :btree
+  add_index "books", ["category_id"], name: "index_books_on_category_id", using: :btree
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -76,7 +76,6 @@ ActiveRecord::Schema.define(version: 20150302082430) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "visitor_id"
     t.string   "number"
   end
 
@@ -89,7 +88,6 @@ ActiveRecord::Schema.define(version: 20150302082430) do
     t.datetime "updated_at"
     t.integer  "book_id"
     t.integer  "user_id"
-    t.integer  "visitor_id"
     t.integer  "price"
   end
 
@@ -97,16 +95,14 @@ ActiveRecord::Schema.define(version: 20150302082430) do
 
   create_table "orders", force: true do |t|
     t.date     "completed_date"
-    t.integer  "state_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "visitor_id"
     t.integer  "delivery"
     t.integer  "price"
+    t.string   "state"
   end
 
-  add_index "orders", ["state_id"], name: "index_orders_on_state_id", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "reviews", force: true do |t|
@@ -116,7 +112,6 @@ ActiveRecord::Schema.define(version: 20150302082430) do
     t.integer  "book_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "visitor_id"
     t.string   "title"
     t.boolean  "visible",    default: false
   end
@@ -134,19 +129,12 @@ ActiveRecord::Schema.define(version: 20150302082430) do
     t.datetime "updated_at"
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "visitor_id"
     t.integer  "order_id"
     t.string   "zipcode"
   end
 
   add_index "shipping_addresses", ["country_id"], name: "index_shipping_addresses_on_country_id", using: :btree
   add_index "shipping_addresses", ["user_id"], name: "index_shipping_addresses_on_user_id", using: :btree
-
-  create_table "states", force: true do |t|
-    t.string   "state"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false
@@ -170,10 +158,5 @@ ActiveRecord::Schema.define(version: 20150302082430) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-
-  create_table "visitors", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
 end
