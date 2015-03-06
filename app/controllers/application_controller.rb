@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
       cookies[:order_id] = new_order.id
     end
   end
-
+# refactoring this, delete state_id,
   def current_order
     if current_user.nil?
       Order.find_by(id: cookies[:order_id], state_id: 1)
