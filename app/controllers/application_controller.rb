@@ -9,18 +9,18 @@ class ApplicationController < ActionController::Base
 
   def set_order
     if current_user.nil? && !cookies[:order_id]
-      new_order = Order.create(state_id: 1)
+      new_order = Order.create
       cookies[:order_id] = new_order.id
     end
   end
 # refactoring this, delete state_id,
   def current_order
     if current_user.nil?
-      Order.find_by(id: cookies[:order_id], state_id: 1)
+      Order.find_by(id: cookies[:order_id], state: :in_progress)
     else
-      order = current_user.orders.find_by(state_id: 1)
+      order = current_user.orders.find_by(state: :in_progress)
       if order.nil?
-        current_user.orders.create!(state_id: 1)
+        current_user.orders.create
       else
         order
       end

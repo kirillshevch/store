@@ -4,11 +4,6 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.2'
 
 gem 'rails-i18n', '~> 4.0.0'
-#aasm
-# step by step checkout
-gem 'wicked'
-
-gem 'virtus'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -61,6 +56,11 @@ gem 'haml-rails'
 # Beautiful web 2.0 design
 gem 'bootstrap-sass', '~> 3.3.3'
 
+gem 'virtus'
+
+gem 'wicked'
+
+gem 'aasm'
 group :development do
   gem 'html2haml'
 end

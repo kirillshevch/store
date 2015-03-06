@@ -12,6 +12,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (4.1.0)
     actionmailer (4.0.2)
       actionpack (= 4.0.2)
       mail (~> 2.5.4)
@@ -257,6 +258,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
   bootstrap-sass (~> 3.3.3)
   cancancan (~> 1.10)
   capybara
