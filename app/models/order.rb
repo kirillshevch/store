@@ -30,7 +30,7 @@ class Order < ActiveRecord::Base
 
   def count_price
     price = order_items.map {|item| item.price}.sum
-    sum = (sum + delivery).to_i
+    sum = (sum).to_i + (delivery).to_i
     self.price = sum
   end
 end

@@ -1,0 +1,27 @@
+%h2 Checkout
+.row
+  .col-xs-4
+    %h3 Billing address
+  .col-xs-4
+    %h3 Shipping address
+  .col-xs-4
+    %h3 Order summary
+.row
+  .col-xs-12
+    = form_for @checkout_form, url: checkout_path, method: :put do |f|
+      .col-xs-4
+        .form-group.form-address
+          = f.text_field :billing_first_name, placeholder: "First name", class: "form-control input-address"
+          = f.text_field :billing_last_name, placeholder: "Last name", class: "form-control input-address"
+          = f.text_field :billing_addr, placeholder: "Address", class: "form-control input-address"
+          = f.text_field :billing_city, placeholder: "City", class: "form-control input-address"
+          = f.collection_select(:billing_country_id, @countries, :id, :name, {}, {class: "form-control input-address"})
+          = f.text_field :billing_zipcode, placeholder: "Zipcode", class: "form-control input-address"
+          = f.text_field :billing_phone, placeholder: "Phone", class: "form-control input-address"
+          = f.submit "Save and contine", class: "btn btn-default"
+      .col-xs-4
+        .form-group.form-address
+          %div{style: "overflow:auto; margin: 0 auto"}
+          = f.check_box :copyaddress, {}, true, false
+          %p Use billing address
+      .col-xs-4

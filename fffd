@@ -1,0 +1,15 @@
+
+[1mFrom:[0m /home/kirill/workspace/rubygarage/store/app/models/concerns/checkout_form.rb @ line 33 CheckoutForm#submit:
+
+    [1;34m31[0m: [32mdef[0m [1;34msubmit[0m(params)
+    [1;34m32[0m:   binding.pry
+ => [1;34m33[0m:   billing_address.attributes = { [35mfirst_name[0m: [33m:billing_first_name[0m, [35mlast_name[0m: [33m:billing_last_name[0m, [35maddress[0m: [33m:billing_addr[0m,
+    [1;34m34[0m:                                  [35mzipcode[0m: [33m:billing_zipcode[0m, [35mcity[0m: [33m:billing_city[0m, [35mcountry_id[0m: [33m:billing_country_id[0m,
+    [1;34m35[0m:                                  [35mphone[0m: [33m:billing_phone[0m  }
+    [1;34m36[0m:   [1;36mself[0m.attributes = params.slice([33m:delivery[0m)
+    [1;34m37[0m:   [32mif[0m valid?
+    [1;34m38[0m:     @order.save
+    [1;34m39[0m:     billing_address.save!
+    [1;34m40[0m:   [32mend[0m
+    [1;34m41[0m: [32mend[0m
+

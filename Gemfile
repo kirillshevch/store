@@ -61,6 +61,8 @@ gem 'virtus'
 gem 'wicked'
 
 gem 'aasm'
+
+gem 'pry-byebug'
 group :development do
   gem 'html2haml'
 end
