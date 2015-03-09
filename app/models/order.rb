@@ -17,16 +17,11 @@ class Order < ActiveRecord::Base
     state :delivered
     state :canceled
 
-    # TODO
     event :checkout do
       transitions from: :in_progress, to: :in_queue
     end
   end
 
-  # TODO
-  def checkout
-
-  end
 
   def count_price
     sum = order_items.map {|item| item.price}.sum + (delivery).to_i

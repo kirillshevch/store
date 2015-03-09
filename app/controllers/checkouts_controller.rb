@@ -1,6 +1,6 @@
 class CheckoutsController < ApplicationController
   include Wicked::Wizard
-  steps :billing_address, :shipping_address, :delivery, :payment, :confirm, :complete
+  steps *CheckoutForm.form_steps
   #service objects
   def show
     @checkout_form = CheckoutForm.new(current_order)

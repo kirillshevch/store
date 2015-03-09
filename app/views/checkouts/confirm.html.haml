@@ -1,12 +1,33 @@
 %h2 Checkout
 %h2 Confirm
 %h3 Shipping Address
+= link_to "(edit)", checkout_path(:shipping_address)
 = current_order.shipping_address.first_name
 = current_order.shipping_address.last_name
 = current_order.shipping_address.address
 = current_order.shipping_address.city
-= current_order.shipping_address.country
+/= current_order.country.name
 = current_order.shipping_address.phone
 
-= link_to "(edit)", addresses_url
-/= current_order.shipping_address.
+Billing Address
+= link_to "(edit)", checkout_path(:billing_address)
+= current_order.billing_address.first_name
+= current_order.billing_address.last_name
+= current_order.billing_address.address
+= current_order.billing_address.city
+/= current_order.billing_address.country
+= current_order.billing_address.phone
+
+Shipment
+= link_to "(edit)", checkout_path(:delivery)
+= current_order.delivery
+
+Payment Information
+= link_to "(edit)", checkout_path(:payment)
+/= current_order.credit_card.number
+= current_order.credit_card.month
+= current_order.credit_card.year
+/ TODO
+= form_for current_order, method: :put do |f|
+  = f.hidden_field :state, "test"
+  = f.submit

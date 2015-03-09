@@ -1,9 +1,0 @@
-%h2 Checkout
-= form_for current_order do |f|
-  = f.label :delivery, "UPS Ground + $5.00"
-  = f.check_box :delivery, { checked: current_order.delivery == 5 ? true : false }, 5
-  = f.label :delivery, "UPS Two Day + $10.00"
-  = f.check_box :delivery, { checked: current_order.delivery == 10 ? true : false }, 10
-  = f.label :delivery, "UPS One Day + $15.00"
-  = f.check_box :delivery, { checked: current_order.delivery == 15 ? true : false }, 15
-  = f.submit

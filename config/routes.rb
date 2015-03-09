@@ -4,7 +4,7 @@ Store::Application.routes.draw do
 
   root "main#index"
 
-  resources :checkouts
+  resources :checkouts, only: [:index, :show, :update]
   resources :addresses, except: [:index, :destroy]
   resources :books, only: [:show] do
     resource :review, only: [:new, :create]

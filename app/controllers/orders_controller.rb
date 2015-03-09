@@ -7,26 +7,13 @@ class OrdersController < ApplicationController
     @order = current_user.orders.find(params[:id])
   end
 
-  def delivery
-    if current_order.shipping_address.nil?
-      redirect_to new_address_url
-    end
-  end
-
-  def confirm
-    if current_user.credit_card.nil?
-      redirect_to new_credit_card_url
-    end
-  end
-
   def update
-    current_order.update(delivery_params)
-    redirect_to new_credit_card_url
   end
 
   private
 
     def delivery_params
-      params.require(:order).permit(:delivery, :state_id)
+      params.require(:order).permit(:state)
     end
+
 end
