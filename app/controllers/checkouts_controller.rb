@@ -16,11 +16,11 @@ class CheckoutsController < ApplicationController
         jump_to(:delivery)
       end
       render_wizard(@checkout_form)
-
     end
   end
 
   private
+
     def permitted
       case step
         when :billing_address

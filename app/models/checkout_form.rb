@@ -3,6 +3,8 @@ class CheckoutForm
   include Virtus.model
   include ActiveModel::Model
 
+  attribute :delivery, Integer
+
   attribute :billing_first_name, String
   attribute :billing_last_name, String
   attribute :billing_addr, String
@@ -19,6 +21,11 @@ class CheckoutForm
   attribute :shipping_city, String
   attribute :shipping_phone, String
   attribute :shipping_country_id, Integer
+
+  attribute :number, Integer
+  attribute :cvv, Integer
+  attribute :month, Integer
+  attribute :year, Integer
 
   def initialize(order)
     @order = order
@@ -37,6 +44,14 @@ class CheckoutForm
                           shipping_country_id: @order.shipping_address.country_id }
     end
 
+    if @order.delivery.present?
+      self.attributes = { delivery: @order.delivery }
+    end
+
+    if @order.credit_card.present?
+      self.attributes = { number: @order.credit_card.number, cvv: @order.credit_card.cvv, month: @order.credit_card.month,
+                          year: @order.credit_card.year }
+    end
   end
 
   def billing_address
@@ -57,22 +72,31 @@ class CheckoutForm
     shipping_address
   end
 
+  def credit_card
+    if @order.credit_card.present?
+      credit_card = @order.credit_card
+    else
+      credit_card = @order.build_credit_card
+    end
+    credit_card
+  end
+
   def submit(params)
     billing_address.attributes = address_attributes("billing_", params)
     shipping_address.attributes = address_attributes("shipping_", params)
+    credit_card.attributes = { number: params[:number], cvv: params[:cvv], month: params[:month], year: params[:year] }
     if params[:copyaddress]
       shipping_address.attributes = address_attributes("billing_", params)
     end
-
-    self.attributes = { delivery: params[:delivery] }
+    @order.attributes = { delivery: params[:delivery] }
   end
 
   def save
-    if valid?
-      billing_address.save! if billing_address.valid?
-      shipping_address.save! if shipping_address.valid?
-      @order.save
-    end
+    billing_address.save! if billing_address.valid?
+    shipping_address.save! if shipping_address.valid?
+    credit_card.save! if credit_card.valid?
+    @order.save! if @order.valid?
+    true
   end
 
   def persisted?

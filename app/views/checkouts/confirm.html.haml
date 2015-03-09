@@ -1,0 +1,12 @@
+%h2 Checkout
+%h2 Confirm
+%h3 Shipping Address
+= current_order.shipping_address.first_name
+= current_order.shipping_address.last_name
+= current_order.shipping_address.address
+= current_order.shipping_address.city
+= current_order.shipping_address.country
+= current_order.shipping_address.phone
+
+= link_to "(edit)", addresses_url
+/= current_order.shipping_address.

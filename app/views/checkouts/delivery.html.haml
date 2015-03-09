@@ -1,9 +1,9 @@
 %h2 Checkout
 = form_for @checkout_form, url: checkout_path, method: :put do |f|
   = f.label :delivery, "UPS Ground + $5.00"
-  = f.check_box :delivery, { checked: current_order.delivery == 5 ? true : false }, 5
-  = f.label :delivery, "UPS Two Day + $15.00"
-  = f.check_box :delivery, { checked: current_order.delivery == 15 ? true : false }, 15
+  = radio_button("checkout_form", "delivery", 5)
   = f.label :delivery, "UPS One Day + $10.00"
-  = f.check_box :delivery, { checked: current_order.delivery == 10 ? true : false }, 10
+  = radio_button("checkout_form", "delivery", 10)
+  = f.label :delivery, "UPS Two Day + $15.00"
+  = radio_button("checkout_form", "delivery", 15)
   = f.submit
