@@ -28,6 +28,6 @@ Payment Information
 = current_order.credit_card.month
 = current_order.credit_card.year
 / TODO
-= form_for current_order, method: :put do |f|
-  = f.hidden_field :state, "test"
+= form_for @checkout_form, url: checkout_path, method: :put do |f|
+  = f.hidden_field :state, value: "in_queue"
   = f.submit

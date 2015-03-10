@@ -7,7 +7,6 @@ class Order < ActiveRecord::Base
   has_one    :shipping_address, dependent: :destroy
   has_many   :order_items, dependent: :destroy
 
-
   before_update :count_price
 
   aasm column: :state do
@@ -24,7 +23,7 @@ class Order < ActiveRecord::Base
 
 
   def count_price
-    sum = order_items.map {|item| item.price}.sum + (delivery).to_i
+    sum = order_items.map {|item| item.price}.sum + self.delivery
     self.price = sum
   end
 end

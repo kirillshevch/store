@@ -3,12 +3,6 @@ class CheckoutForm
   include Virtus.model
   include ActiveModel::Model
 
-  attr_accessor :form_step
-
-  cattr_accessor :form_steps do
-    %w(billing_address shipping_address delivery payment confirm)
-  end
-
   attribute :billing_first_name, String
   attribute :billing_last_name, String
   attribute :billing_addr, String
@@ -35,30 +29,28 @@ class CheckoutForm
   attribute :state, String
 
   validates :billing_first_name, :billing_last_name, :billing_address, :billing_zipcode, :billing_city,
-            :billing_phone, :billing_country_id, on: :update, presence: true, if: -> { required_for_step?(:billing_address) }
-  validates :billing_first_name, :billing_last_name, :billing_city, on: :update, length: { maximum: 50 }, if: -> { required_for_step?(:billing_address) }
-  validates :billing_address, on: :update, length: { maximum: 100 }, if: -> { required_for_step?(:billing_address) }
-  validates :billing_zipcode, on: :update, length: { maximum: 20 }, if: -> { required_for_step?(:billing_address) }
+            :billing_phone, :billing_country_id, presence: true, if: -> { @step == :billing_address }
+  validates :billing_first_name, :billing_last_name, :billing_city, length: { maximum: 50 }, if: -> { @step == :billing_address }
+  validates :billing_address, length: { maximum: 100 }, if: -> { @step == :billing_address }
+  validates :billing_zipcode, length: { maximum: 20 }, if: -> { @step == :billing_address }
 
   validates :shipping_first_name, :shipping_last_name, :shipping_address, :shipping_zipcode, :shipping_city,
-            :shipping_phone, :shipping_country_id, on: :update, presence: true, if: -> { required_for_step?(:shipping_address) }
-  validates :shipping_first_name, :shipping_last_name, :shipping_city, on: :update, length: { maximum: 50 }, if: -> { required_for_step?(:shipping_address) }
-  validates :shipping_address, on: :update, length: { maximum: 100 }, if: -> { required_for_step?(:shipping_address) }
-  validates :shipping_zipcode, on: :update, length: { maximum: 20 }, if: -> { required_for_step?(:shipping_address) }
+            :shipping_phone, :shipping_country_id, presence: true, if: -> { @step == :shipping_address }
+  validates :shipping_first_name, :shipping_last_name, :shipping_city, length: { maximum: 50 }, if: -> { @step == :shipping_address }
+  validates :shipping_address, length: { maximum: 100 }, if: -> { @step == :shipping_address }
+  validates :shipping_zipcode, length: { maximum: 20 }, if: -> { @step == :shipping_address }
 
-  validates :delivery, presence: true, on: :update, if: -> { required_for_step?(:delivery) }
+  validates :number, :cvv, :month, :year, presence: true, numericality: true, if: -> { @step == :payment }
+  validates :number, length: { is: 14 }, if: -> { @step == :payment }
+  validates :cvv,    length: { is: 3 }, if: -> { @step == :payment }
+  validates :month,  inclusion: { in: 1..12 }, if: -> { @step == :payment }
+  validates :year,   inclusion: { in: 2015..2030 }, if: -> { @step == :payment }
 
-  validates :number, :cvv, :month, :year, on: :update, presence: true, if: -> { required_for_step?(:payment) }
-  validates :number, on: :update, length: { is: 14 },    if: -> { required_for_step?(:payment) }
-  validates :cvv,    on: :update, length: { is: 3 },     if: -> { required_for_step?(:payment) }
-  validates :month,  on: :update, inclusion: { in: 1..12 },      if: -> { required_for_step?(:payment) }
-  validates :year,   on: :update, inclusion: { in: 2015..2030 }, if: -> { required_for_step?(:payment) }
+  validates :delivery, presence: true, if: -> { @step == :delivery }
 
-  validates :state, presence: true, on: :update, if: -> { required_for_step?(:confirm) }
-
-  def initialize(order)
+  def initialize(order, step)
+    @step = step
     @order = order
-
     if @order.billing_address.present?
       self.attributes = { billing_first_name: @order.billing_address.first_name, billing_last_name: @order.billing_address.last_name,
                           billing_addr: @order.billing_address.address, billing_zipcode: @order.billing_address.zipcode,
@@ -111,13 +103,17 @@ class CheckoutForm
   end
 
   def submit(params)
+
     billing_address.attributes = address_attributes("billing_", params)
     shipping_address.attributes = address_attributes("shipping_", params)
     credit_card.attributes = { number: params[:number], cvv: params[:cvv], month: params[:month], year: params[:year] }
     if params[:copyaddress]
       shipping_address.attributes = address_attributes("billing_", params)
     end
-    @order.attributes = { delivery: params[:delivery] }
+    if params[:delivery]
+      @order.attributes = { delivery: params[:delivery] }
+    end
+    self.attributes = params
   end
 
   def save
@@ -126,8 +122,15 @@ class CheckoutForm
       shipping_address.save! if shipping_address.valid?
       credit_card.save! if credit_card.valid?
       @order.save! if @order.valid?
+      true
     else
       false
+    end
+  end
+
+  def checkout_complete
+    if @order.billing_address.present? && @order.shipping_address.present? && @order.credit_card.present? && @order.delivery > 0
+      @order.checkout
     end
   end
 
@@ -141,10 +144,5 @@ class CheckoutForm
       { first_name: params[("#{prefix}first_name").to_sym], last_name: params[("#{prefix}last_name").to_sym], address: params[("#{prefix}addr").to_sym],
         zipcode: params[("#{prefix}zipcode").to_sym], city: params[("#{prefix}city").to_sym],
         phone: params[("#{prefix}phone").to_sym], country_id: params[("#{prefix}country_id").to_sym]  }
-    end
-
-    def required_for_step?(step)
-      return true if form_step.nil?
-      return true if self.form_steps.index(step.to_s) == self.form_steps.index(form_step)
     end
 end
