@@ -10,13 +10,14 @@ class ApplicationController < ActionController::Base
   def set_order
     if current_user.nil? && !cookies[:order_id]
       new_order = Order.create
-      cookies[:order_id] = new_order.id
+      cookies.signed[:order_id] = new_order.id
+      new_order.update(secret_key: cookies[:order_id])
     end
   end
 # refactoring this
   def current_order
     if current_user.nil?
-      Order.find_by(id: cookies[:order_id], state: :in_progress)
+      Order.find_by(secret_key: cookies[:order_id], state: :in_progress)
     else
       order = current_user.orders.find_by(state: :in_progress)
       if order.nil?
