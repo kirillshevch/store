@@ -6,7 +6,7 @@ class Users::OmniauthCallbacksController < ApplicationController
       cookies.delete :visitor_id
       sign_in_and_redirect @user, :event => :authentication
     else
-      flash[:notice] = "authentication error"
+      flash[:notice] = 'authentication error'
       redirect_to root_path
     end
   end

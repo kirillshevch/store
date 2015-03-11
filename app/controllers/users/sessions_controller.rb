@@ -1,27 +1,19 @@
 class Users::SessionsController < Devise::SessionsController
-# before_filter :configure_sign_in_params, only: [:create]
 
-  # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  after_action :set_order_user_id, only: [:create]
 
-  # POST /resource/sign_in
-  # def create
-  #  super
-  # end
+   def create
+    super
+   end
 
-  # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  private
 
-  # protected
-
-  # You can put the params you want to permit in the empty array.
-  # def configure_sign_in_params
-  #   devise_parameter_sanitizer.for(:sign_in) << :attribute
-  # end
-
-
+  def set_order_user_id
+    if cookies[:order_for_sign_up]
+      # TODO DRY
+      order = Order.find_by(secret_key: cookies[:order_for_sign_up])
+      order.update(user_id: current_user.id)
+      cookies.delete :order_for_sign_up
+    end
+  end
 end
