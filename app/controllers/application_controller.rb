@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
       new_order.update(secret_key: cookies[:order_id])
     end
   end
-# refactoring this
+
   def current_order
     if current_user.nil?
       Order.find_by(secret_key: cookies[:order_id], state: :in_progress)
