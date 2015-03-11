@@ -48,6 +48,8 @@ class Access
           @url = checkout_path(:payment)
           false
         end
+      when :wicked_finish
+        true
     end
   end
 

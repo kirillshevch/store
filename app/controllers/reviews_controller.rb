@@ -1,7 +1,11 @@
 class ReviewsController < ApplicationController
   def new
-    @book = Book.find(params[:book_id])
-    @review = @book.reviews.new
+    if current_user
+      @book = Book.find(params[:book_id])
+      @review = @book.reviews.new
+    else
+      redirect_to new_user_session_path, alert: "Sign in before add review"
+    end
   end
 
   def create

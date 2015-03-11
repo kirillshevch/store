@@ -6,7 +6,6 @@
 = current_order.shipping_address.last_name
 = current_order.shipping_address.address
 = current_order.shipping_address.city
-/= current_order.country.name
 = current_order.shipping_address.phone
 
 Billing Address
@@ -15,7 +14,6 @@ Billing Address
 = current_order.billing_address.last_name
 = current_order.billing_address.address
 = current_order.billing_address.city
-/= current_order.billing_address.country
 = current_order.billing_address.phone
 
 Shipment
@@ -24,10 +22,10 @@ Shipment
 
 Payment Information
 = link_to "(edit)", checkout_path(:payment)
-/= current_order.credit_card.number
+= current_order.credit_card.number
 = current_order.credit_card.month
 = current_order.credit_card.year
-/ TODO
+
 = form_for @checkout_form, url: checkout_path, method: :put do |f|
   = f.hidden_field :state, value: "in_queue"
   = f.submit

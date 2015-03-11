@@ -4,7 +4,7 @@
   = f.text_field :last_name, placeholder: "Last name"
   = f.text_field :address, placeholder: "Address"
   = f.text_field :city, placeholder: "City"
-  = f.collection_select :country_id, @countries, :id, :name
+  = f.collection_select :country_id, countries, :id, :name
   = f.text_field :zipcode, placeholder: "Zipcode"
   = f.text_field :phone, placeholder: "Phone"
   = f.submit
@@ -15,7 +15,7 @@
   = f.text_field :last_name, placeholder: "Last name"
   = f.text_field :address, placeholder: "Address"
   = f.text_field :city, placeholder: "City"
-  = f.collection_select :country_id, @countries, :id, :name
+  = f.collection_select :country_id, countries, :id, :name
   = f.text_field :zipcode, placeholder: "Zipcode"
   = f.text_field :phone, placeholder: "Phone"
   = f.submit

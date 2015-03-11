@@ -14,7 +14,7 @@
           = f.text_field :shipping_last_name, placeholder: "Last name", class: "forms-control input-address"
           = f.text_field :shipping_addr, placeholder: "Address", class: "forms-control input-address"
           = f.text_field :shipping_city, placeholder: "City", class: "forms-control input-address"
-          = f.collection_select(:shipping_country_id, @countries, :id, :name, {}, {class: "forms-control input-address"})
+          = f.collection_select(:shipping_country_id, countries, :id, :name, {}, {class: "forms-control input-address"})
           = f.text_field :shipping_zipcode, placeholder: "Zipcode", class: "forms-control input-address"
           = f.text_field :shipping_phone, placeholder: "Phone", class: "forms-control input-address"
           = f.submit "Save and contine", class: "btn btn-default"
