@@ -16,5 +16,4 @@
 /config/database.yml
 .idea
 .rvm-gemset
-app/forms/checkout_form.rb
 /public/uploads
