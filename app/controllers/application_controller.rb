@@ -3,17 +3,9 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :set_order, :current_order
+  before_action :set_order, :current_order, :set_locale
 
   helper_method :current_order
-
-  def set_order
-    if current_user.nil? && !cookies[:order_id]
-      new_order = Order.create
-      cookies.signed[:order_id] = new_order.id
-      new_order.update(secret_key: cookies[:order_id])
-    end
-  end
 
   def current_order
     if current_user.nil?
@@ -27,4 +19,26 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+
+  private
+
+    def set_order
+      if current_user.nil? && !cookies[:order_id]
+        new_order = Order.create
+        cookies.signed[:order_id] = new_order.id
+        new_order.update(secret_key: cookies[:order_id])
+      end
+    end
+
+    def set_locale
+      if params[:locale].blank?
+        I18n.locale = :'en'
+      else
+        I18n.locale = params[:locale]
+      end
+    end
+
+    def default_url_options(options = {})
+      {:locale => I18n.locale}
+    end
 end
