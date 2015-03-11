@@ -1,11 +1,16 @@
 class CheckoutsController < ApplicationController
   include Wicked::Wizard
   steps :billing_address, :shipping_address, :delivery, :payment, :confirm
-  #service objects
+
   def show
-    @checkout_form = CheckoutForm.new(current_order, step)
-    @countries = Country.all
-    render_wizard
+    access = Access.new(current_order, step)
+    if access.step_access?
+      @checkout_form = CheckoutForm.new(current_order, step)
+      @countries = Country.all
+      render_wizard
+    else
+      redirect_to access.redirect_url, alert: access.error_text
+    end
   end
 
   def update
@@ -25,24 +30,8 @@ class CheckoutsController < ApplicationController
 
   private
 
-    def permitted
-      case step
-        when :billing_address
-          [:billing_first_name, :billing_last_name, :billing_addr, :billing_zipcode, :billing_city,
-           :billing_phone, :billing_country_id, :copyaddress, :form_step]
-        when :shipping_address
-          [:shipping_first_name, :shipping_last_name, :shipping_addr, :shipping_zipcode, :shipping_city,
-           :shipping_phone, :shipping_country_id]
-        when :delivery
-          [:delivery]
-        when :payment
-          [:number, :month, :year, :cvv]
-        when :confirm
-          [:state]
-      end
-    end
-
     def checkout_form_params
+      permitted = Permitted.new(step).step_permitted
       params.require(:checkout_form).permit(permitted)
     end
 end
