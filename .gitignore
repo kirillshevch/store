@@ -17,3 +17,4 @@
 .idea
 .rvm-gemset
 app/models/checkout_form.rb
+/public/uploads
