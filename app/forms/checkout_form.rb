@@ -81,7 +81,6 @@ class CheckoutForm
     else
       billing_address = @order.build_billing_address
     end
-    billing_address
   end
 
   def shipping_address
@@ -90,7 +89,6 @@ class CheckoutForm
     else
       shipping_address = @order.build_shipping_address
     end
-    shipping_address
   end
 
   def credit_card
@@ -99,7 +97,6 @@ class CheckoutForm
     else
       credit_card = @order.build_credit_card
     end
-    credit_card
   end
 
   def submit(params)
