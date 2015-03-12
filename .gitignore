@@ -15,5 +15,5 @@
 /tmp
 /config/database.yml
 .idea
-.rvm-gemset
+.ruby-gemset
 /public/uploads

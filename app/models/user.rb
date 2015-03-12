@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
   has_many :reviews
   has_many :orders
   has_one  :credit_card
-  has_many :order_items
   has_one  :billing_address
   has_one  :shipping_address
 
