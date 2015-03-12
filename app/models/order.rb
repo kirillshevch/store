@@ -19,11 +19,35 @@ class Order < ActiveRecord::Base
     event :checkout do
       transitions from: :in_progress, to: :in_queue
     end
+
+    event :sended do
+      transitions from: :in_queue, to: :in_delivery
+    end
+
+    event :complete, before: :set_completed_date do
+      transitions from: :in_delivery, to: :delivered
+    end
   end
 
-
-  def count_price
-    sum = order_items.map {|item| item.price}.sum + self.delivery
-    self.price = sum
+  rails_admin do
+    list do
+      include_all_fields
+      field :state, :state
+    end
+    edit do
+      include_all_fields
+      field :state, :state
+    end
   end
+
+  private
+
+    def count_price
+      sum = order_items.map {|item| item.price}.sum + self.delivery
+      self.price = sum
+    end
+
+    def set_completed_date
+      self.completed_date = Date.today
+    end
 end

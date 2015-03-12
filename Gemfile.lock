@@ -189,6 +189,9 @@ GEM
       remotipart (~> 1.0)
       safe_yaml (~> 1.0)
       sass-rails (>= 4.0, < 6)
+    rails_admin_aasm (0.0.3)
+      aasm
+      rails_admin
     railties (4.0.2)
       actionpack (= 4.0.2)
       activesupport (= 4.0.2)
@@ -280,6 +283,7 @@ DEPENDENCIES
   rails (= 4.0.2)
   rails-i18n (~> 4.0.0)
   rails_admin (~> 0.6.6)
+  rails_admin_aasm
   rspec-rails
   sass-rails!
   shoulda-matchers

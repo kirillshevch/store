@@ -22,6 +22,8 @@ gem 'bootstrap-sass', '~> 3.3.3'
 gem 'virtus'
 gem 'wicked'
 gem 'aasm'
+gem 'rails_admin_aasm'
+
 
 group :development do
   gem 'html2haml'

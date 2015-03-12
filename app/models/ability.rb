@@ -8,7 +8,7 @@ class Ability
       can :dashboard
       can :manage, [Book, Author, Category, Order]
       can :update, Review
-      can :state, Order
+      can :all_events, Order
     elsif user
       can :manage, [ShippingAddress, BillingAddress, CreditCard, OrderItem]
       can :manage, Order, user_id: user.id
