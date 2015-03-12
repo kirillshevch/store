@@ -2,6 +2,7 @@ class Order < ActiveRecord::Base
   include AASM
 
   belongs_to :user
+  belongs_to :coupon
   has_one    :credit_card, dependent: :destroy
   has_one    :billing_address, dependent: :destroy
   has_one    :shipping_address, dependent: :destroy
@@ -22,6 +23,10 @@ class Order < ActiveRecord::Base
 
     event :sended do
       transitions from: :in_queue, to: :in_delivery
+    end
+
+    event :cancel do
+      transitions from: :in_queue, to: :canceled
     end
 
     event :complete, before: :set_completed_date do

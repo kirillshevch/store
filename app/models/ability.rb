@@ -6,7 +6,7 @@ class Ability
     if user.admin?
       can :access, :rails_admin
       can :dashboard
-      can :manage, [Book, Author, Category, Order]
+      can :manage, [Book, Author, Category, Order, Coupon]
       can :update, Review
       can :all_events, Order
     elsif user

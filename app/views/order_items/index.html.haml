@@ -9,9 +9,9 @@
     .col-xs-1.book-price
       %b= "$#{value.book.price}"
     .col-xs-2
-      = form_for(value, method: "put", html: {class: "forms-inline"}) do |f|
+      = form_for(value, method: "put", html: {class: "form-inline"}) do |f|
         .form-group
-          = f.number_field :quantity, class: "forms-control", style: "width: 50px;", value: value.quantity
+          = f.number_field :quantity, class: "form-control", style: "width: 50px;", value: value.quantity
           = f.hidden_field :book_id,  value: value.book.id
           = f.submit "up", class: "btn btn-default"
     .col-xs-1.book-price
@@ -27,5 +27,5 @@
     = link_to "empty cart", order_item_url(:all), method: :delete, class: "btn btn-default"
     = link_to "continue shopping", shop_url, class: "btn btn-default"
   .col-xs-3
-    = link_to "update", "#", class: "btn btn-default" # TODO coupon system
+    = link_to "update", "#", class: "btn btn-default"
     = link_to "checkout", checkout_path(:billing_address), class: "btn btn-default"

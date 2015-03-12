@@ -43,10 +43,6 @@ FactoryGirl.define do
     user
   end
 
-  factory :state do
-    state 'In progress'
-  end
-
   factory :order do
     state
     user
