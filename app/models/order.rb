@@ -21,7 +21,7 @@ class Order < ActiveRecord::Base
       transitions from: :in_progress, to: :in_queue
     end
 
-    event :sended do
+    event :send_order do
       transitions from: :in_queue, to: :in_delivery
     end
 
@@ -48,7 +48,11 @@ class Order < ActiveRecord::Base
   private
 
     def count_price
-      sum = order_items.map {|item| item.price}.sum + self.delivery
+      if self.coupon
+        sum = order_items.map {|item| item.price}.sum + self.delivery - self.coupon.discount
+      else
+        sum = order_items.map {|item| item.price}.sum + self.delivery
+      end
       self.price = sum
     end
 

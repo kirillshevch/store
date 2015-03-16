@@ -26,6 +26,7 @@ class ApplicationController < ActionController::Base
       if current_user.nil? && !cookies[:order_id]
         new_order = Order.create
         cookies.signed[:order_id] = new_order.id
+        cookies[:order_for_sign_up] = cookies[:order_id]
         new_order.update(secret_key: cookies[:order_id])
       end
     end

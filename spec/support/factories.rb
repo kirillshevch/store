@@ -27,8 +27,8 @@ FactoryGirl.define do
 
   factory :book do
     title             Faker::Lorem.word
-    short_description Faker::Lorem.sentence(4)
-    full_description  Faker::Lorem.paragraph(4)
+    short_description Faker::Lorem.sentence(2)
+    full_description  Faker::Lorem.paragraph(2)
     author
     category
     image             ''
@@ -44,7 +44,6 @@ FactoryGirl.define do
   end
 
   factory :order do
-    state
     user
   end
 
@@ -83,5 +82,10 @@ FactoryGirl.define do
     order
     book
     user
+  end
+
+  factory :coupon do
+    code '111111'
+    discount 1
   end
 end

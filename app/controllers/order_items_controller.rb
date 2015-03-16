@@ -1,4 +1,10 @@
 class OrderItemsController < ApplicationController
+  load_and_authorize_resource
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to :back, alert: "Error"
+  end
+
   def index
     @items = current_order.order_items
   end

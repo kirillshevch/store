@@ -2,6 +2,9 @@ class Access
 
   include Rails.application.routes.url_helpers
 
+  # TODO использовать checkout_form
+  # form = CheckoutForm.new(current_order, step)
+  # form.valid?
   def initialize(order, step)
     @order, @step = order, step
   end

@@ -18,10 +18,7 @@ class CheckoutsController < ApplicationController
       if checkout_form_params[:copyaddress]
         jump_to(:delivery)
       end
-      if checkout_form_params[:state]
-        unless current_user
-          cookies[:order_for_sign_up] = cookies[:order_id]
-        end
+      if step == :confirm
         cookies.delete :order_id
         @checkout_form.checkout_complete
       end

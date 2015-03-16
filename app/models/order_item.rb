@@ -2,6 +2,8 @@ class OrderItem < ActiveRecord::Base
   belongs_to :order
   belongs_to :book
 
+  default_scope { order('id') }
+
   before_save :count_price
 
   validates :quantity, numericality: true, inclusion: { in: 1..99 }

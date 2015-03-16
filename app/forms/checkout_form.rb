@@ -77,25 +77,25 @@ class CheckoutForm
 
   def billing_address
     if @order.billing_address.present?
-      billing_address = @order.billing_address
+      @order.billing_address
     else
-      billing_address = @order.build_billing_address
+      @order.build_billing_address
     end
   end
 
   def shipping_address
     if @order.shipping_address.present?
-      shipping_address = @order.shipping_address
+      @order.shipping_address
     else
-      shipping_address = @order.build_shipping_address
+      @order.build_shipping_address
     end
   end
 
   def credit_card
     if @order.credit_card.present?
-      credit_card = @order.credit_card
+      @order.credit_card
     else
-      credit_card = @order.build_credit_card
+      @order.build_credit_card
     end
   end
 
@@ -126,6 +126,7 @@ class CheckoutForm
   end
 
   def checkout_complete
+    # сделать step all
     if @order.billing_address.present? && @order.shipping_address.present? && @order.credit_card.present? && @order.delivery > 0
       @order.checkout
     end

@@ -1,4 +1,10 @@
 class BillingAddressesController < ApplicationController
+  load_and_authorize_resource
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to :back, alert: "Error"
+  end
+
   def create
     address = current_user.build_billing_address(address_params)
     if address.save
