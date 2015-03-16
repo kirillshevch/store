@@ -1,9 +1,4 @@
 class OrderItemsController < ApplicationController
-  load_and_authorize_resource
-
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to :back, alert: "Error"
-  end
 
   def index
     @items = current_order.order_items
@@ -33,7 +28,7 @@ class OrderItemsController < ApplicationController
       current_order.order_items.delete(:all)
       redirect_to :back
     else
-      current_order.order_items.delete(params[:id])
+     current_order.order_items.delete(params[:id])
       redirect_to :back
     end
   end

@@ -1,14 +1,8 @@
 class ShippingAddressesController < ApplicationController
-  load_and_authorize_resource
-
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to :back, alert: "Error"
-  end
-
   def create
     address = current_user.build_shipping_address(address_params)
     if address.save
-      redirect_to :back
+      redirect_to :back, notice: "Success add shipping address"
     else
       redirect_to :back, alert: "Create shipping address error"
     end
@@ -17,7 +11,7 @@ class ShippingAddressesController < ApplicationController
   def update
     address = current_user.shipping_address
     if address.update(address_params)
-      redirect_to :back
+      redirect_to :back, notice: "Success update shipping address"
     else
       redirect_to :back, alert: "Update shipping address error"
     end

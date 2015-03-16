@@ -1,14 +1,9 @@
 class BillingAddressesController < ApplicationController
-  load_and_authorize_resource
-
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to :back, alert: "Error"
-  end
 
   def create
     address = current_user.build_billing_address(address_params)
     if address.save
-      redirect_to :back
+      redirect_to :back, notice: "Success add billing address"
     else
       redirect_to :back, alert: "Create billing address error"
     end
@@ -17,7 +12,7 @@ class BillingAddressesController < ApplicationController
   def update
     address = current_user.billing_address
     if address.update(address_params)
-      redirect_to :back
+      redirect_to :back, notice: "Success update billing address"
     else
       redirect_to :back, alert: "Update billing address error"
     end

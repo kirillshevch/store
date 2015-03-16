@@ -28,4 +28,4 @@ Payment Information
 
 = form_for @checkout_form, url: checkout_path, method: :put do |f|
   = f.hidden_field :state, value: "in_queue"
-  = f.submit
+  = f.submit "Place order"

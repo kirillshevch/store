@@ -6,7 +6,7 @@ feature 'Checkout Wizard' do
   given!(:author) { FactoryGirl.create(:author) }
   given!(:category) { FactoryGirl.create(:category) }
   given!(:book) { FactoryGirl.create(:book, author: author, category: category) }
-  given!(:order) { FactoryGirl.create(:order, user_id: user.id) }
+  given(:order) { FactoryGirl.create(:order, user_id: user.id) }
 
   context 'User without addresses and credit card' do
     background do
@@ -49,13 +49,51 @@ feature 'Checkout Wizard' do
 
 
       within('#new_checkout_form') do
+        choose('checkout_form[delivery]', match: :first)
 
+        click_button 'Save and continue'
       end
 
+      expect(current_path).to eq(checkout_path(:payment))
+
+      within('#new_checkout_form') do
+        fill_in 'Number', with: '12345678901234'
+        fill_in 'Month', with: 12
+        fill_in 'Year', with: Time.now.year
+        fill_in 'cvv', with: '111'
+
+        click_button 'Save and continue'
+      end
+
+      expect(current_path).to eq(checkout_path(:confirm))
+
+      click_button 'Place order'
+
+      expect(current_path).to eq(order_path(order.id))
+
+      # TODO expect(current_path).to have_content('Go back to store')
     end
 
     scenario 'steps with valid params (copyaddress)' do
+      visit cart_path
 
+      click_link 'checkout'
+
+      expect(current_path).to eq(checkout_path(:billing_address))
+
+      within('#new_checkout_form') do
+        fill_in 'First name', with: Faker::Name.first_name
+        fill_in 'Last name', with: Faker::Name.last_name
+        fill_in 'Address', with: Faker::Address.street_address
+        fill_in 'City', with: Faker::Address.city
+        fill_in 'Zipcode', with: Faker::Address.zip
+        fill_in 'Phone', with: Faker::PhoneNumber.cell_phone
+        check('checkout_form[copyaddress]')
+
+        click_button 'Save and continue'
+      end
+
+      expect(current_path).to eq(checkout_path(:delivery))
     end
 
   end

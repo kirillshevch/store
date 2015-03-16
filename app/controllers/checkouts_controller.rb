@@ -30,7 +30,8 @@ class CheckoutsController < ApplicationController
 
     def finish_wizard_path
       if current_user
-        order_url(current_order)
+        order = current_user.orders.order('id DESC').find_by(state: :in_queue)
+        order_url(order)
       else
         flash[:notice] = "Sign up to view the order"
         new_user_registration_url

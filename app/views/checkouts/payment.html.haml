@@ -2,7 +2,7 @@
 %h2 Credit Card
 = form_for @checkout_form, url: checkout_path, method: :put do |f|
   = f.text_field :number, placeholder: "Number"
-  = f.number_field :month
-  = f.number_field :year
+  = f.number_field :month, placeholder: "Month"
+  = f.number_field :year, placeholder: "Year"
   = f.text_field :cvv, placeholder: "cvv"
-  = f.submit
+  = f.submit "Save and continue"

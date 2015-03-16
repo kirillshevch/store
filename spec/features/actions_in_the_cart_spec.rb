@@ -43,13 +43,22 @@ feature 'Cart' do
 
   scenario 'User visit cart and change quantity book' do
 
-  # TODO
-
    within first('.form-group') do
       fill_in 'Quantity', with: 5
       click_button 'up'
    end
 
+   expect(page).to  have_content(book.price*5)
+  end
+
+  scenario 'User visit cart and error change quantity book' do
+
+    within first('.form-group') do
+      fill_in 'Quantity', with: -5
+      click_button 'up'
+    end
+
+    expect(page).to  have_content('Error update book quantity')
   end
 
   scenario 'User visit cart and add coupon' do
@@ -57,5 +66,12 @@ feature 'Cart' do
     click_button('Update')
 
     expect(page).to have_content("Discount: #{coupon.discount}$")
+  end
+
+  scenario 'User visit cart and add undefined coupon' do
+    fill_in 'Code', with: 0
+    click_button('Update')
+
+    expect(page).to have_content('Undefined coupon')
   end
 end
