@@ -1,5 +1,5 @@
 %h2 Billing address
-= form_for @billing_address, url: billing_action(@billing_address.id) do |f|
+= form_for @billing_address do |f|
   = f.text_field :first_name, placeholder: "First name"
   = f.text_field :last_name, placeholder: "Last name"
   = f.text_field :address, placeholder: "Address"
@@ -7,10 +7,10 @@
   = f.collection_select :country_id, countries, :id, :name
   = f.text_field :zipcode, placeholder: "Zipcode"
   = f.text_field :phone, placeholder: "Phone"
-  = f.submit
+  = f.submit "Save"
 
 %h2 Shipping address
-= form_for @shipping_address, url: shipping_action(@shipping_address.id) do |f|
+= form_for @shipping_address do |f|
   = f.text_field :first_name, placeholder: "First name"
   = f.text_field :last_name, placeholder: "Last name"
   = f.text_field :address, placeholder: "Address"
@@ -18,7 +18,7 @@
   = f.collection_select :country_id, countries, :id, :name
   = f.text_field :zipcode, placeholder: "Zipcode"
   = f.text_field :phone, placeholder: "Phone"
-  = f.submit
+  = f.submit "Save"
 %h2
 = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
   = devise_error_messages!

@@ -1,4 +1,5 @@
 class OrderItemsController < ApplicationController
+
   def index
     @items = current_order.order_items
   end
@@ -27,7 +28,7 @@ class OrderItemsController < ApplicationController
       current_order.order_items.delete(:all)
       redirect_to :back
     else
-      current_order.order_items.delete(params[:id])
+     current_order.order_items.delete(params[:id])
       redirect_to :back
     end
   end

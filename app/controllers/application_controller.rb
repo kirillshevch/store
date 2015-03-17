@@ -26,6 +26,9 @@ class ApplicationController < ActionController::Base
       if current_user.nil? && !cookies[:order_id]
         new_order = Order.create
         cookies.signed[:order_id] = new_order.id
+        # todo очень просто
+        cookies[:order_for_sign_up] = cookies[:order_id]
+
         new_order.update(secret_key: cookies[:order_id])
       end
     end
@@ -40,5 +43,9 @@ class ApplicationController < ActionController::Base
 
     def default_url_options(options = {})
       {:locale => I18n.locale}
+    end
+
+    def current_ability
+      @current_ability ||= Ability.new(current_user, current_order)
     end
 end

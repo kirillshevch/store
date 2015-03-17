@@ -3,7 +3,7 @@
 = @book.price
 = @book.full_description
 = form_for @orderitem do |f|
-  = f.number_field :quantity, value: 1
+  = f.number_field :quantity, value: 1, placeholder: "quantity"
   = f.hidden_field :book_id, value: @book.id
   = f.submit "Add book to cart"
 
