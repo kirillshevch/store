@@ -11,6 +11,7 @@ feature 'Cart' do
 
   background do
     login_as user
+    # todo через factory
     order.order_items.create(quantity: 1, book_id: book.id)
     order.order_items.create(quantity: 1, book_id: book1.id)
 

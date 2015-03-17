@@ -14,6 +14,7 @@ feature 'Checkout Wizard' do
       order.order_items.create(quantity: 1, book_id: book.id)
     end
 
+    # TODO разбить на шаги
     scenario 'steps with valid params' do
       visit cart_path
 
