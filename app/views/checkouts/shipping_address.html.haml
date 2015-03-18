@@ -3,8 +3,9 @@
   .col-xs-4
     %h3 Shipping address
   .col-xs-4
-    %h3 Order summary
+
   .col-xs-4
+    %h3 Order summary
 .row
   .col-xs-12
     = form_for @checkout_form, url: checkout_path, method: :put do |f|
@@ -19,5 +20,5 @@
           = f.text_field :shipping_phone, placeholder: "Phone", class: "form-control input-address"
           = f.submit "Save and continue", class: "btn btn-default"
       .col-xs-4
-        .form-group.form-address
       .col-xs-4
+        = render 'total'

@@ -3,13 +3,13 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :set_order, :current_order, :set_locale
+  before_action :set_order, :current_order, :set_locale, :current_ability
 
   helper_method :current_order
 
   def current_order
     if current_user.nil?
-      Order.find_by(secret_key: cookies[:order_id], state: :in_progress)
+      Order.find_by(id: cookies.signed[:order_id], state: :in_progress)
     else
       order = current_user.orders.find_by(state: :in_progress)
       if order.nil?
@@ -26,10 +26,6 @@ class ApplicationController < ActionController::Base
       if current_user.nil? && !cookies[:order_id]
         new_order = Order.create
         cookies.signed[:order_id] = new_order.id
-        # todo очень просто
-        cookies[:order_for_sign_up] = cookies[:order_id]
-
-        new_order.update(secret_key: cookies[:order_id])
       end
     end
 

@@ -9,11 +9,8 @@ class Users::SessionsController < Devise::SessionsController
   private
 
   def set_order_user_id
-    if cookies[:order_for_sign_up]
-      order = Order.find_by(secret_key: cookies[:order_for_sign_up])
-      order.update(user_id: current_user.id)
-      cookies.delete :order_for_sign_up
-      cookies.delete :order_id
-    end
+    order = Order.find(cookies.signed[:order_id])
+    order.update(user_id: current_user.id)
+    cookies.delete :order_id
   end
 end

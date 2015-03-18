@@ -6,6 +6,8 @@
 
 
 %h3 Categories - #{@category.name}
-= render 'books'
-
-= render 'categories'
+.row
+  .col-xs-9
+    = render 'books'
+  .col-xs-3
+    = render 'categories'

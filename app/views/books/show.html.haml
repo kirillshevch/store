@@ -1,14 +1,20 @@
-= @book.title
-= image_tag @book.image
-= @book.price
-= @book.full_description
-= form_for @orderitem do |f|
-  = f.number_field :quantity, value: 1, placeholder: "quantity"
-  = f.hidden_field :book_id, value: @book.id
-  = f.submit "Add book to cart"
-
-%h4 Reviews #{link_to "Add review for this book", new_book_review_url(book_id: @book.id)}
--unless @book.reviews.nil?
-  -@book.reviews.each do |review|
-    = review.number
-    = review.text
+%h2= @book.title
+.row
+  .col-xs-4
+    = image_tag @book.image
+  .col-xs-8
+    = @book.price
+    = @book.full_description
+    = form_for @orderitem do |f|
+      = f.number_field :quantity, value: 1, placeholder: "quantity"
+      = f.hidden_field :book_id, value: @book.id
+      = f.submit "Add book to cart"
+.row
+  .col-xs-12
+    %h4 Reviews #{link_to "Add review for this book", new_book_review_url(book_id: @book.id)}
+.row
+  .col-xs-12
+    -unless @book.reviews.nil?
+      -@book.reviews.each do |review|
+        = review.number
+        = review.text

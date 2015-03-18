@@ -18,20 +18,24 @@
       %b= "$#{value.price}"
       = link_to order_item_url(value.id), method: :delete, class: "close" do
         %span &times
-.row
+.row.line
   .col-xs-10
   .col-xs-2
+    .subtotal
+      %b= "Subtotal: $#{current_order.price}"
 
 .row
-  .col-xs-9
+  .col-xs-8
     = link_to "empty cart", order_item_url(:all), method: :delete, class: "btn btn-default"
     = link_to "continue shopping", shop_url, class: "btn btn-default"
-  .col-xs-3
-    -if current_order.coupon
-      Discount: #{current_order.coupon.discount}$
-    -else
-      = form_for current_order do |f|
-        = f.text_field :coupon, placeholder: "Code"
-        = f.submit "Update", class: "btn btn-default"
-
-    = link_to "checkout", checkout_path(:billing_address), class: "btn btn-default"
+  .col-xs-4
+    .right-buttons
+      -if current_order.coupon
+        %b Discount: #{current_order.coupon.discount}$
+        = link_to "checkout", checkout_path(:billing_address), class: "btn btn-default"
+      -else
+        = form_for current_order do |f|
+          .form-inline.float-form
+            = f.text_field :coupon, placeholder: "Code", class: "form-control coupon-code-input", style: "width: 125px"
+            = f.submit "Update", class: "btn btn-default"
+            = link_to "checkout", checkout_path(:billing_address), class: "btn btn-default"

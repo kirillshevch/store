@@ -1,8 +1,20 @@
 %h2 Checkout
-%h2 Credit Card
-= form_for @checkout_form, url: checkout_path, method: :put do |f|
-  = f.text_field :number, placeholder: "Number"
-  = f.number_field :month, placeholder: "Month"
-  = f.number_field :year, placeholder: "Year"
-  = f.text_field :cvv, placeholder: "cvv"
-  = f.submit "Save and continue"
+.row
+  .col-xs-4
+    %h3 Credit Card
+  .col-xs-4
+  .col-xs-4
+    %h3 Order summary
+.row
+  .col-xs-12
+    = form_for @checkout_form, url: checkout_path, method: :put do |f|
+      .col-xs-4
+        .form-group.form-address
+          = f.text_field :number, placeholder: "Number", class: "form-control input-address"
+          = f.number_field :month, placeholder: "Month", class: "form-control input-address"
+          = f.number_field :year, placeholder: "Year", class: "form-control input-address"
+          = f.text_field :cvv, placeholder: "cvv", class: "form-control input-address"
+          = f.submit "Save and continue", class: "btn btn-default"
+      .col-xs-4
+      .col-xs-4
+        = render 'total'

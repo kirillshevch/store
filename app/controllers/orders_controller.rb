@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   load_and_authorize_resource
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to new_user_registration_url, alert: "Sign up to view the order"
+    redirect_to root_url, alert: "Access denied"
   end
 
   def index
