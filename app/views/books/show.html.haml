@@ -8,10 +8,10 @@
     = form_for @orderitem do |f|
       = f.number_field :quantity, value: 1, placeholder: "quantity"
       = f.hidden_field :book_id, value: @book.id
-      = f.submit "Add book to cart"
+      = f.submit t('books.add_to_cart')
 .row
   .col-xs-12
-    %h4 Reviews #{link_to "Add review for this book", new_book_review_url(book_id: @book.id)}
+    %h4 #{t('books.review')} #{link_to t('books.add_review'), new_book_review_url(book_id: @book.id)}
 .row
   .col-xs-12
     -unless @book.reviews.nil?

@@ -1,10 +1,10 @@
-%h2 Checkout
+%h2= t('checkout.checkout')
 .row
   .col-xs-4
-    %h3 Delivery
+    %h3= t('checkout.delivery')
   .col-xs-4
   .col-xs-4
-    %h3 Order summary
+    %h3= t('checkout.summary')
 .row
   .col-xs-12
     = form_for @checkout_form, url: checkout_path, method: :put do |f|
@@ -16,7 +16,7 @@
           = radio_button("checkout_form", "delivery", 10)
           = f.label :delivery, "UPS Two Day + $15.00"
           = radio_button("checkout_form", "delivery", 15)
-          = f.submit "Save and continue", class: "btn btn-default"
+          = f.submit t('checkout.save'), class: "btn btn-default"
       .col-xs-4
       .col-xs-4
         = render 'total'

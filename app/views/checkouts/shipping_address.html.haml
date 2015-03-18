@@ -1,11 +1,11 @@
-%h2 Checkout
+%h2= t('checkout.checkout')
 .row
   .col-xs-4
-    %h3 Shipping address
+    %h3= t('checkout.ship_address')
   .col-xs-4
 
   .col-xs-4
-    %h3 Order summary
+    %h3= t('checkout.summary')
 .row
   .col-xs-12
     = form_for @checkout_form, url: checkout_path, method: :put do |f|
@@ -18,7 +18,7 @@
           = f.collection_select(:shipping_country_id, countries, :id, :name, {}, {class: "form-control input-address"})
           = f.text_field :shipping_zipcode, placeholder: "Zipcode", class: "form-control input-address"
           = f.text_field :shipping_phone, placeholder: "Phone", class: "form-control input-address"
-          = f.submit "Save and continue", class: "btn btn-default"
+          = f.submit t('checkout.save'), class: "btn btn-default"
       .col-xs-4
       .col-xs-4
         = render 'total'

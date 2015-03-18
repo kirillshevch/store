@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   load_and_authorize_resource
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_url, alert: "Access denied"
+    redirect_to root_url, alert: t('access_denied')
   end
 
   def index
@@ -21,13 +21,13 @@ class OrdersController < ApplicationController
         if order.update(coupon_id: coupon.id)
           redirect_to :back
         else
-          redirect_to :back, alert: "Update error"
+          redirect_to :back, alert: t('orders.upd_error')
         end
       else
-        redirect_to :back, alert: "Old coupon"
+        redirect_to :back, alert: t('orders.old_coupon')
       end
     else
-      redirect_to :back, alert: "Undefined coupon"
+      redirect_to :back, alert: t('orders.undefined_coupon')
     end
   end
 

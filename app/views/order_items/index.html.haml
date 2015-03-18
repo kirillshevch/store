@@ -22,12 +22,12 @@
   .col-xs-10
   .col-xs-2
     .subtotal
-      %b= "Subtotal: $#{current_order.price}"
+      %b= "#{t('checkout.subtotal')}: $#{current_order.price}"
 
 .row
   .col-xs-8
-    = link_to "empty cart", order_item_url(:all), method: :delete, class: "btn btn-default"
-    = link_to "continue shopping", shop_url, class: "btn btn-default"
+    = link_to t('order_items.empty_cart'), order_item_url(:all), method: :delete, class: "btn btn-default"
+    = link_to t('order_items.continue_shop'), shop_url, class: "btn btn-default"
   .col-xs-4
     .right-buttons
       -if current_order.coupon

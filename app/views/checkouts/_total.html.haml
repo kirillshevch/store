@@ -1,4 +1,4 @@
 .totals
-  = "Item total: #{cart_status}"
+  = "#{t('checkout.item_total')}: #{cart_status}"
   %br
-  = "Order total: #{current_order.price}$"
+  = "#{t('checkout.order_total')}: #{current_order.price}$"

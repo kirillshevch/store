@@ -1,11 +1,11 @@
-%h2 Checkout
+%h2= t('checkout.checkout')
 .row
   .col-xs-4
-    %h3 Billing address
+    %h3= t('checkout.bill_address')
   .col-xs-4
-    %h3 Shipping address
+    %h3= t('checkout.ship_address')
   .col-xs-4
-    %h3 Order summary
+    %h3= t('checkout.summary')
 .row
   .col-xs-12
     = form_for @checkout_form, url: checkout_path, method: :put do |f|
@@ -18,11 +18,11 @@
           = f.collection_select(:billing_country_id, countries, :id, :name, {}, {class: "form-control input-address"})
           = f.text_field :billing_zipcode, placeholder: "Zipcode", class: "form-control input-address"
           = f.text_field :billing_phone, placeholder: "Phone", class: "form-control input-address"
-          = f.submit "Save and continue", class: "btn btn-default"
+          = f.submit t('checkout.save'), class: "btn btn-default"
       .col-xs-4
         .form-group.form-address
           %div{style: "overflow:auto; margin: 0 auto"}
           = f.check_box :copyaddress, {}, true, false
-          %p Use billing address
+          %p= t('checkout.use_bill')
       .col-xs-4
         = render 'total'

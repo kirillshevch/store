@@ -1,20 +1,20 @@
-%h2 Checkout
+%h2= t('checkout.checkout')
 .row
   .col-xs-4
-    %h3 Credit Card
+    %h3= t('credit_card.credit_card')
   .col-xs-4
   .col-xs-4
-    %h3 Order summary
+    %h3= t('checkout.summary')
 .row
   .col-xs-12
     = form_for @checkout_form, url: checkout_path, method: :put do |f|
       .col-xs-4
         .form-group.form-address
-          = f.text_field :number, placeholder: "Number", class: "form-control input-address"
-          = f.number_field :month, placeholder: "Month", class: "form-control input-address"
-          = f.number_field :year, placeholder: "Year", class: "form-control input-address"
-          = f.text_field :cvv, placeholder: "cvv", class: "form-control input-address"
-          = f.submit "Save and continue", class: "btn btn-default"
+          = f.text_field :number, placeholder: t('credit_card.number'), class: "form-control input-address"
+          = f.number_field :month, placeholder: t('credit_card.month'), class: "form-control input-address"
+          = f.number_field :year, placeholder: t('credit_card.year'), class: "form-control input-address"
+          = f.text_field :cvv, placeholder: t('credit_card.cvv'), class: "form-control input-address"
+          = f.submit t('checkout.save'), class: "btn btn-default"
       .col-xs-4
       .col-xs-4
         = render 'total'

@@ -1,6 +1,6 @@
 .row
   .col-xs-12
-    %h3 In progress
+    %h3= t('orders.in_progress')
 -current_order.order_items.each do |value|
   .row.line
     .col-xs-2
@@ -17,17 +17,17 @@
       %b= "$#{value.price}"
 .row.line
   .col-xs-8
-    = link_to "Go to cart", cart_url, class: "btn btn-default"
+    = link_to t('orders.go_to_cart'), cart_url, class: "btn btn-default"
   .col-xs-4
     .right-buttons
       .subtotal
-        %b= "Subtotal: $#{current_order.price}"
+        %b= "#{t('checkout.subtotal')}: $#{current_order.price}"
 .row
   .col-xs-12
-    %h3 Waiting for processing
+    %h3= t('orders.wait')
 .row
   .col-xs-12
-    %h3 In delivery
+    %h3= t('orders.in_delivery')
 .row
   .col-xs-12
-    %h3 Delivered
+    %h3= t('orders.delivered')

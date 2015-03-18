@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
   load_and_authorize_resource
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to new_user_registration_url, alert: "Sign up before add review"
+    redirect_to root_url, alert: t('access_denied')
   end
 
   def new
@@ -15,7 +15,7 @@ class ReviewsController < ApplicationController
     if review.save
       redirect_to book_url(review_params[:book_id])
     else
-      redirect_to :back, alert: "Error create review"
+      redirect_to :back, alert: t('reviews.create_error')
     end
   end
 

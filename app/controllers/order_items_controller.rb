@@ -10,7 +10,7 @@ class OrderItemsController < ApplicationController
       flash[:success] = t('add_to_cart')
       redirect_to :back
     else
-      redirect_to :back, alert: "Error add to cart"
+      redirect_to :back, alert: t('order_items.error_add')
     end
   end
 
@@ -19,7 +19,7 @@ class OrderItemsController < ApplicationController
     if item.update_attributes(order_item_params)
       redirect_to :back
     else
-      redirect_to :back, alert: "Error update book quantity"
+      redirect_to :back, alert: t('order_items.error_upd')
     end
   end
 

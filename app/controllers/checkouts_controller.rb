@@ -33,7 +33,7 @@ class CheckoutsController < ApplicationController
         order = current_user.orders.order('id DESC').find_by(state: :in_queue)
         order_url(order)
       else
-        flash[:notice] = "Sign up to view the order"
+        flash[:notice] = t('checkout.sign_up_view_order')
         new_user_registration_url
       end
     end
