@@ -29,24 +29,24 @@ class CheckoutForm
   attribute :state, String
 
   validates :billing_first_name, :billing_last_name, :billing_address, :billing_zipcode, :billing_city,
-            :billing_phone, :billing_country_id, presence: true, if: -> { @step == :billing_address }
-  validates :billing_first_name, :billing_last_name, :billing_city, length: { maximum: 50 }, if: -> { @step == :billing_address }
-  validates :billing_address, length: { maximum: 100 }, if: -> { @step == :billing_address }
-  validates :billing_zipcode, length: { maximum: 20 }, if: -> { @step == :billing_address }
+            :billing_phone, :billing_country_id, presence: true, if: -> { (@step == :billing_address) || (@step == :all) }
+  validates :billing_first_name, :billing_last_name, :billing_city, length: { maximum: 50 }, if: -> { (@step == :billing_address) || (@step == :all) }
+  validates :billing_address, length: { maximum: 100 }, if: -> { (@step == :billing_address) || (@step == :all) }
+  validates :billing_zipcode, length: { maximum: 20 }, if: -> { (@step == :billing_address) || (@step == :all) }
 
   validates :shipping_first_name, :shipping_last_name, :shipping_address, :shipping_zipcode, :shipping_city,
-            :shipping_phone, :shipping_country_id, presence: true, if: -> { @step == :shipping_address }
-  validates :shipping_first_name, :shipping_last_name, :shipping_city, length: { maximum: 50 }, if: -> { @step == :shipping_address }
-  validates :shipping_address, length: { maximum: 100 }, if: -> { @step == :shipping_address }
-  validates :shipping_zipcode, length: { maximum: 20 }, if: -> { @step == :shipping_address }
+            :shipping_phone, :shipping_country_id, presence: true, if: -> { (@step == :shipping_address) || (@step == :all) }
+  validates :shipping_first_name, :shipping_last_name, :shipping_city, length: { maximum: 50 }, if: -> { (@step == :shipping_address) || (@step == :all) }
+  validates :shipping_address, length: { maximum: 100 }, if: -> { (@step == :shipping_address) || (@step == :all) }
+  validates :shipping_zipcode, length: { maximum: 20 }, if: -> { (@step == :shipping_address) || (@step == :all) }
 
-  validates :number, :cvv, :month, :year, presence: true, numericality: true, if: -> { @step == :payment }
-  validates :number, length: { is: 14 }, if: -> { @step == :payment }
-  validates :cvv,    length: { is: 3 }, if: -> { @step == :payment }
-  validates :month,  inclusion: { in: 1..12 }, if: -> { @step == :payment }
-  validates :year,   inclusion: { in: 2015..2030 }, if: -> { @step == :payment }
+  validates :number, :cvv, :month, :year, presence: true, numericality: true, if: -> { (@step == :payment) || (@step == :all) }
+  validates :number, length: { is: 14 }, if: -> { (@step == :payment) || (@step == :all) }
+  validates :cvv,    length: { is: 3 }, if: -> { (@step == :payment) || (@step == :all) }
+  validates :month,  inclusion: { in: 1..12 }, if: -> { (@step == :payment) || (@step == :all) }
+  validates :year,   inclusion: { in: 2015..2030 }, if: -> { (@step == :payment) || (@step == :all) }
 
-  validates :delivery, presence: true, if: -> { @step == :delivery }
+  validates :delivery, presence: true, if: -> { (@step == :delivery) || (@step == :all) }
 
   def initialize(order, step)
     @step = step
@@ -126,8 +126,8 @@ class CheckoutForm
   end
 
   def checkout_complete
-    # сделать step all
-    if @order.billing_address.present? && @order.shipping_address.present? && @order.credit_card.present? && @order.delivery > 0
+    @step = :all
+    if valid?
       @order.checkout
     end
   end
@@ -138,9 +138,9 @@ class CheckoutForm
 
   private
 
-    def address_attributes(prefix, params)
-      { first_name: params[("#{prefix}first_name").to_sym], last_name: params[("#{prefix}last_name").to_sym], address: params[("#{prefix}addr").to_sym],
-        zipcode: params[("#{prefix}zipcode").to_sym], city: params[("#{prefix}city").to_sym],
-        phone: params[("#{prefix}phone").to_sym], country_id: params[("#{prefix}country_id").to_sym]  }
-    end
+  def address_attributes(prefix, params)
+    { first_name: params[("#{prefix}first_name").to_sym], last_name: params[("#{prefix}last_name").to_sym], address: params[("#{prefix}addr").to_sym],
+      zipcode: params[("#{prefix}zipcode").to_sym], city: params[("#{prefix}city").to_sym],
+      phone: params[("#{prefix}phone").to_sym], country_id: params[("#{prefix}country_id").to_sym]  }
+  end
 end
