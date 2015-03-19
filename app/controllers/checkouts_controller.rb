@@ -3,9 +3,9 @@ class CheckoutsController < ApplicationController
   steps :billing_address, :shipping_address, :delivery, :payment, :confirm
 
   def show
-    access = Access.new(current_order, step)
+    access = Access.new(current_user, current_order, step)
     if access.step_access? || (params[:id] == "wicked_finish")
-      @checkout_form = CheckoutForm.new(current_order, step)
+      @checkout_form = CheckoutForm.new(current_user, current_order, step)
       render_wizard
     else
       redirect_to access.redirect_url, alert: access.error_text
@@ -13,7 +13,7 @@ class CheckoutsController < ApplicationController
   end
 
   def update
-    @checkout_form = CheckoutForm.new(current_order, step)
+    @checkout_form = CheckoutForm.new(current_user, current_order, step)
     if @checkout_form.submit(checkout_form_params)
       if checkout_form_params[:copyaddress]
         jump_to(:delivery)

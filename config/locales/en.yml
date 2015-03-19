@@ -68,3 +68,9 @@ en:
     review: "Review"
     add_review: "Add review for this book"
     add_to_cart: "Add book to cart"
+  access:
+    select_book: "Select book before checkout"
+    bill_error: "Specify the billing address"
+    ship_error: "Specify the shipping address"
+    deliv_error: "Select a delivery method"
+    pay_error: "Specify the credit card"

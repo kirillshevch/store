@@ -48,21 +48,35 @@ class CheckoutForm
 
   validates :delivery, presence: true, if: -> { (@step == :delivery) || (@step == :all) }
 
-  def initialize(order, step)
-    @step = step
-    @order = order
+  def initialize(user, order, step)
+    @user, @order, @step = user, order, step
     if @order.billing_address.present?
       self.attributes = { billing_first_name: @order.billing_address.first_name, billing_last_name: @order.billing_address.last_name,
                           billing_addr: @order.billing_address.address, billing_zipcode: @order.billing_address.zipcode,
                           billing_city: @order.billing_address.city, billing_phone: @order.billing_address.phone,
                           billing_country_id: @order.billing_address.country_id }
+    elsif @user
+      unless @user.billing_address.nil?
+        self.attributes = { billing_first_name: @user.billing_address.first_name, billing_last_name: @user.billing_address.last_name,
+                            billing_addr: @user.billing_address.address, billing_zipcode: @user.billing_address.zipcode,
+                            billing_city: @user.billing_address.city, billing_phone: @user.billing_address.phone,
+                            billing_country_id: @user.billing_address.country_id }
+      end
     end
+
 
     if @order.shipping_address.present?
       self.attributes = { shipping_first_name: @order.shipping_address.first_name, shipping_last_name: @order.shipping_address.last_name,
                           shipping_addr: @order.shipping_address.address, shipping_zipcode: @order.shipping_address.zipcode,
                           shipping_city: @order.shipping_address.city, shipping_phone: @order.shipping_address.phone,
                           shipping_country_id: @order.shipping_address.country_id }
+    elsif @user
+      unless @user.shipping_address.nil?
+        self.attributes = { shipping_first_name: @user.shipping_address.first_name, shipping_last_name: @user.shipping_address.last_name,
+                            shipping_addr: @user.shipping_address.address, shipping_zipcode: @user.shipping_address.zipcode,
+                            shipping_city: @user.shipping_address.city, shipping_phone: @user.shipping_address.phone,
+                            shipping_country_id: @user.shipping_address.country_id }
+      end
     end
 
     if @order.delivery.present?
@@ -115,9 +129,12 @@ class CheckoutForm
 
   def save
     if valid?
-      billing_address.save! if billing_address.valid?
-      shipping_address.save! if shipping_address.valid?
-      credit_card.save! if credit_card.valid?
+      if (@step == :billing_address) || (@step == :shipping_address)
+        billing_address.save! if billing_address.valid?
+        shipping_address.save! if shipping_address.valid?
+      elsif @step == :set_credit
+        credit_card.save! if credit_card.valid?
+      end
       @order.save! if @order.valid?
       true
     else
