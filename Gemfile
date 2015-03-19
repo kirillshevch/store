@@ -23,7 +23,7 @@ gem 'virtus'
 gem 'wicked'
 gem 'aasm'
 gem 'rails_admin_aasm'
-
+gem 'show_me_the_cookies'
 
 group :development do
   gem 'html2haml'

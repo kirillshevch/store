@@ -21,7 +21,7 @@ class Access
         if @form.valid?
           true
         else
-          @error = t('access.bill_error')
+          @error = 'test' #t('access.bill_error')
           @url = checkout_path(:billing_address)
           false
         end

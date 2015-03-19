@@ -59,7 +59,7 @@ en:
     in_progress: "In progress"
     in_delivery: "In delivery"
     delivered: "Delivered"
-    go_to_cart: "Go to cart"
+    go_to_shop: "Go to shop"
   reviews:
     create_error: "Error create review"
     new_review: "New review for"
