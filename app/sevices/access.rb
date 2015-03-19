@@ -2,11 +2,8 @@ class Access
 
   include Rails.application.routes.url_helpers
 
-  # TODO использовать checkout_form
-  # form = CheckoutForm.new(current_order, step)
-  # form.valid?
-  def initialize(order, step)
-    @order, @step = order, step
+  def initialize(user, order, step)
+    @user, @order, @step = user, order, step
   end
 
   def step_access?
@@ -15,39 +12,43 @@ class Access
         if @order.order_items.present?
           true
         else
-          @error = "Select book before checkout"
+          @error = t('access.select_book')
           @url = shop_path
           false
         end
       when :shipping_address
-        if @order.billing_address.present?
+        @form = CheckoutForm.new(@user, @order, :billing_address)
+        if @form.valid?
           true
         else
-          @error = "Specify the billing address"
+          @error = 'test' #t('access.bill_error')
           @url = checkout_path(:billing_address)
           false
         end
       when :delivery
-        if @order.shipping_address.present?
+        @form = CheckoutForm.new(@user, @order, :shipping_address)
+        if @form.valid?
           true
         else
-          @error = "Specify the shipping address"
+          @error = t('access.ship_error')
           @url = checkout_path(:shipping_address)
           false
         end
       when :payment
-        if @order.delivery > 0
+        @form = CheckoutForm.new(@user, @order, :delivery)
+        if @form.valid?
           true
         else
-          @error = "Select a delivery method"
+          @error = t('access.deliv_error')
           @url = checkout_path(:delivery)
           false
         end
       when :confirm
-        if @order.credit_card.present?
+        @form = CheckoutForm.new(@user, @order, :all)
+        if @form.valid?
           true
         else
-          @error = "Specify the credit card"
+          @error = t('access.pay_error')
           @url = checkout_path(:payment)
           false
         end

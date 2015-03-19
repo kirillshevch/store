@@ -40,7 +40,7 @@ FactoryGirl.define do
     cvv 111
     month 12
     year Time.now.year
-    user
+    order
   end
 
   factory :order do
@@ -62,6 +62,7 @@ FactoryGirl.define do
     phone   Faker::PhoneNumber.cell_phone
     country
     user
+    order
     first_name Faker::Name.first_name
     last_name  Faker::Name.last_name
   end
@@ -81,7 +82,6 @@ FactoryGirl.define do
     quantity 1
     order
     book
-    user
   end
 
   factory :coupon do

@@ -1,7 +1,8 @@
-%h2 New review for #{link_to @book.title, book_url(@book.id)}
+%h2 #{t('reviews.new_review')} #{link_to @book.title, book_url(@book.id)}
 = form_for @review, url: book_review_url, method: :post do |f|
-  = f.number_field :number, placeholder: "Rating"
-  = f.text_field :title, placeholder: "Short review"
-  = f.text_area :text, placeholder: "Full review"
-  = f.hidden_field :book_id, value: @book.id
-  = f.submit "Add"
+  .form-group.form-address
+    = f.number_field :number, placeholder: "Rating", class: "form-control review-input"
+    = f.text_field :title, placeholder: "Short review", class: "form-control review-input review-title"
+    = f.text_area :text, placeholder: "Full review", class: "form-control review-input review-area"
+    = f.hidden_field :book_id, value: @book.id
+    = f.submit t('reviews.add'), class: "btn btn-default"

@@ -5,7 +5,9 @@
 = link_to @category.name, request.url
 
 
-%h3 Categories - #{@category.name}
-= render 'books'
-
-= render 'categories'
+%h3 #{t('categories')} - #{@category.name}
+.row
+  .col-xs-9
+    = render 'books'
+  .col-xs-3
+    = render 'categories'

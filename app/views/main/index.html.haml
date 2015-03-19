@@ -13,11 +13,11 @@
             = "$#{value.price}"
             = f.number_field :quantity, value: 1
             = f.hidden_field :book_id, value: value.id
-            = f.submit "Add book to cart"
+            = f.submit t('books.add_to_cart')
 
   %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"}
     %span.glyphicon.glyphicon-chevron-left
   %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"}
     %span.glyphicon.glyphicon-chevron-right
 
-%h2.welcome Welcome to our amazing Bookstore! Choose anything you wish, we'll ship it anywhere!
+%h2.welcome= t('welcome')

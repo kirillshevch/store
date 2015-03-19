@@ -10,9 +10,6 @@
   font-size: 18px;
   margin-top: 4px;
 }
-.title-main {
-
-}
 
 .content-main {
   overflow: auto;
@@ -23,6 +20,23 @@
   padding-left: 15px;
 }
 
-.form-main {
+.float-form {
+  float: left;
+  margin-right: 5px;
+}
 
+.line {
+  border-top: 1px solid;
+  margin: 5px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.subtotal {
+  float: right;
+}
+
+.right-buttons {
+  float: right;
+  overflow: auto;
 }

@@ -1,0 +1,33 @@
+.row
+  .col-xs-12
+    %h3= t('orders.in_progress')
+-current_order.order_items.each do |value|
+  .row.line
+    .col-xs-2
+      = image_tag value.book.image.thumb, class: "img-thumbnail"
+    .col-xs-6
+      %b= value.book.title
+      %br
+      = value.book.short_description
+    .col-xs-1.book-price
+      %b= "$#{value.book.price}"
+    .col-xs-2.book-price
+      %b= value.quantity
+    .col-xs-1.book-price
+      %b= "$#{value.price}"
+.row.line
+  .col-xs-8
+    = link_to t('orders.go_to_cart'), cart_url, class: "btn btn-default"
+  .col-xs-4
+    .right-buttons
+      .subtotal
+        %b= "#{t('checkout.subtotal')}: $#{current_order.price}"
+.row
+  .col-xs-12
+    %h3= t('orders.wait')
+.row
+  .col-xs-12
+    %h3= t('orders.in_delivery')
+.row
+  .col-xs-12
+    %h3= t('orders.delivered')

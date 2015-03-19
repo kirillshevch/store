@@ -13,6 +13,10 @@
           = link_to "#{t('cart')} #{cart_status}", cart_url
         -if user_signed_in?
           %li
+            = link_to t('orders.orders'), orders_url
+          %li
+            = link_to t('settings'), edit_user_registration_url
+          %li
             = link_to t('sign_out'), destroy_user_session_path, :method => :delete
         -else
           %li
