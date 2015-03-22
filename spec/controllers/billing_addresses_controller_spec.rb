@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe BillingAddressesController, :type => :controller do
-  let(:address_params) { FactoryGirl.attributes_for(:billing_address).stringify_keys }
-  let(:billing_address) { FactoryGirl.build_stubbed(:billing_address) }
-  let(:user) { FactoryGirl.create(:user) }
+  let!(:user) { FactoryGirl.create(:user) }
+  let!(:country) { FactoryGirl.create(:country) }
+  let!(:address_params) { FactoryGirl.attributes_for(:billing_address, country_id: country.id) }
+  let!(:billing_address) { FactoryGirl.build_stubbed(:billing_address, country_id: country.id, user_id: user.id) }
 
   describe 'POST #create' do
 

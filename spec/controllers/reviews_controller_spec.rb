@@ -9,6 +9,7 @@ RSpec.describe ReviewsController, type: :controller do
 
   describe 'GET #new' do
     before do
+      login_as user
       Book.stub(:find).and_return book
       book.stub_chain(:reviews, :new).and_return new_review
       get :new, book_id: book.id

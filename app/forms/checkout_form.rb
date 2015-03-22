@@ -28,6 +28,9 @@ class CheckoutForm
   attribute :delivery, Integer
   attribute :state, String
 
+  # TODO refactroing: add step_checker method
+  # with method(if)?
+
   validates :billing_first_name, :billing_last_name, :billing_address, :billing_zipcode, :billing_city,
             :billing_phone, :billing_country_id, presence: true, if: -> { (@step == :billing_address) || (@step == :all) }
   validates :billing_first_name, :billing_last_name, :billing_city, length: { maximum: 50 }, if: -> { (@step == :billing_address) || (@step == :all) }
@@ -114,7 +117,6 @@ class CheckoutForm
   end
 
   def submit(params)
-
     billing_address.attributes = address_attributes("billing_", params)
     shipping_address.attributes = address_attributes("shipping_", params)
     credit_card.attributes = { number: params[:number], cvv: params[:cvv], month: params[:month], year: params[:year] }

@@ -1,3 +1,5 @@
+# todo get params
+# todo currentcy(for $)
 en:
   bookstore: "The Bookstore"
   home: "Home"
@@ -39,6 +41,7 @@ en:
     place_order: "Place order"
     delivery: "Delivery"
     save: "Save and continue"
+    invalid_params: "Invalid params"
   credit_card:
     credit_card: "Credit Card"
     number: "Number"

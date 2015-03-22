@@ -1,6 +1,6 @@
 .row
   .col-xs-12
-    %h3 "#{t('orders.orders')} #{@order.id}"
+    %h3 #{t('orders.orders')} #{@order.id}
 -@order.order_items.each do |value|
   .row.line
     .col-xs-2

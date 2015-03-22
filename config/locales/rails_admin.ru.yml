@@ -145,4 +145,3 @@ ru:
         default_col_sep: ","
         col_sep: "Разделитель столбцов"
         col_sep_help: "Оставьте пустым, чтобы было по умолчанию ('%{value}')" # value is default_col_sep
-    

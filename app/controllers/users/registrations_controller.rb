@@ -1,6 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  include SetOrder
 
-  after_action :set_order_user_id, only: [:create]
+  after_action :set_order_user_id, :set_order_in_queue_user_id, only: [:create]
 
    def create
      super
@@ -19,12 +20,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
        @shipping_address = current_user.shipping_address
      end
    end
-
-  private
-
-    def set_order_user_id
-      order = Order.find(cookies.signed[:order_id])
-      order.update(user_id: current_user.id)
-      cookies.delete :order_id
-    end
 end

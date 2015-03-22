@@ -45,16 +45,16 @@ class Order < ActiveRecord::Base
     end
   end
 
-  private
-
-    def count_price
-      if self.coupon
-        sum = order_items.map {|item| item.price}.sum + self.delivery - self.coupon.discount
-      else
-        sum = order_items.map {|item| item.price}.sum + self.delivery
-      end
-      self.price = sum
+  def count_price
+    if self.coupon
+      sum = order_items.map {|item| item.price}.sum + self.delivery - self.coupon.discount
+    else
+      sum = order_items.map {|item| item.price}.sum + self.delivery
     end
+    self.price = sum
+  end
+
+  private
 
     def set_completed_date
       self.completed_date = Date.today

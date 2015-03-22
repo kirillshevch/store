@@ -33,6 +33,10 @@ FactoryGirl.define do
     category
     image             ''
     price             Faker::Number.number(3)
+
+    factory :best_book do
+      best_seller true
+    end
   end
 
   factory :credit_card do
@@ -44,7 +48,6 @@ FactoryGirl.define do
   end
 
   factory :order do
-    user
   end
 
   factory :review do

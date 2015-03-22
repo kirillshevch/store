@@ -15,14 +15,19 @@ class CheckoutsController < ApplicationController
   def update
     @checkout_form = CheckoutForm.new(current_user, current_order, step)
     if @checkout_form.submit(checkout_form_params)
-      if checkout_form_params[:copyaddress]
-        jump_to(:delivery)
+      if @checkout_form.save
+        if checkout_form_params[:copyaddress]
+          jump_to(:delivery)
+        end
+        if step == :confirm
+          cookies.signed['order_id_for_sign_up'] = current_order.id
+          cookies.delete :order_id
+          @checkout_form.checkout_complete
+        end
+        render_wizard(@checkout_form)
+      else
+        redirect_to :back, alert: t('checkout.invalid_params')
       end
-      if step == :confirm
-        cookies.delete :order_id
-        @checkout_form.checkout_complete
-      end
-      render_wizard(@checkout_form)
     end
   end
 
