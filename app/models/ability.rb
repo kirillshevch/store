@@ -22,7 +22,7 @@ class Ability
       can :manage, Order, id: order.id
       can :manage, OrderItem, order_id: order.id
       can :new, [ShippingAddress, BillingAddress]
-      can [:create, :update], [ShippingAddress, BillingAddress]
+      can [:create, :update], [ShippingAddress, BillingAddress], order_id: order.id
     end
   end
 end

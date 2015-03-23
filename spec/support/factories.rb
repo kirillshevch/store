@@ -18,7 +18,7 @@ FactoryGirl.define do
   end
 
   factory :category do
-    name Faker::Name.name
+    sequence(:name) { |n| "name#{n}" }
   end
 
   factory :country do

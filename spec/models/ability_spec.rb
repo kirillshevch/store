@@ -46,11 +46,11 @@ describe 'User' do
       it { should be_able_to(:manage, order) }
       it { should be_able_to(:manage, OrderItem.new(order_id: order.id)) }
       it { should be_able_to(:new, BillingAddress.new) }
-      it { should be_able_to(:create, BillingAddress.new) }
-      it { should be_able_to(:update, BillingAddress.new) }
+      it { should be_able_to(:create, BillingAddress.new(order_id: order.id)) }
+      it { should be_able_to(:update, BillingAddress.new(order_id: order.id)) }
       it { should be_able_to(:new, ShippingAddress.new) }
-      it { should be_able_to(:create, ShippingAddress.new) }
-      it { should be_able_to(:update, ShippingAddress.new) }
+      it { should be_able_to(:create, ShippingAddress.new(order_id: order.id)) }
+      it { should be_able_to(:update, ShippingAddress.new(order_id: order.id)) }
     end
   end
 end

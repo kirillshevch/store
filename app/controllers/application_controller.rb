@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   before_action :set_order, :current_order, :set_locale, :current_ability
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, alert: t('access_denied')
+  end
+
   helper_method :current_order
 
   def current_order

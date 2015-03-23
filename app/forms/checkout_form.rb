@@ -28,28 +28,26 @@ class CheckoutForm
   attribute :delivery, Integer
   attribute :state, String
 
-  # TODO refactroing: add step_checker method
-  # with method(if)?
-
   validates :billing_first_name, :billing_last_name, :billing_address, :billing_zipcode, :billing_city,
-            :billing_phone, :billing_country_id, presence: true, if: -> { (@step == :billing_address) || (@step == :all) }
-  validates :billing_first_name, :billing_last_name, :billing_city, length: { maximum: 50 }, if: -> { (@step == :billing_address) || (@step == :all) }
-  validates :billing_address, length: { maximum: 100 }, if: -> { (@step == :billing_address) || (@step == :all) }
-  validates :billing_zipcode, length: { maximum: 20 }, if: -> { (@step == :billing_address) || (@step == :all) }
+            :billing_phone, :billing_country_id, presence: true, if: -> { step_checker(@step, :billing_address) }
+  validates :billing_first_name, :billing_last_name, :billing_city, length: { maximum: 50 }, if: -> { step_checker(@step, :billing_address) }
+  validates :billing_address, length: { maximum: 100 }, if: -> { step_checker(@step, :billing_address) }
+  validates :billing_zipcode, length: { maximum: 20 }, if: -> { step_checker(@step, :billing_address) }
 
   validates :shipping_first_name, :shipping_last_name, :shipping_address, :shipping_zipcode, :shipping_city,
-            :shipping_phone, :shipping_country_id, presence: true, if: -> { (@step == :shipping_address) || (@step == :all) }
-  validates :shipping_first_name, :shipping_last_name, :shipping_city, length: { maximum: 50 }, if: -> { (@step == :shipping_address) || (@step == :all) }
-  validates :shipping_address, length: { maximum: 100 }, if: -> { (@step == :shipping_address) || (@step == :all) }
-  validates :shipping_zipcode, length: { maximum: 20 }, if: -> { (@step == :shipping_address) || (@step == :all) }
+            :shipping_phone, :shipping_country_id, presence: true, if: -> { step_checker(@step, :shipping_address) }
+  validates :shipping_first_name, :shipping_last_name, :shipping_city, length: { maximum: 50 }, if: -> { step_checker(@step, :shipping_address) }
+  validates :shipping_address, length: { maximum: 100 }, if: -> { step_checker(@step, :shipping_address) }
+  validates :shipping_zipcode, length: { maximum: 20 }, if: -> { step_checker(@step, :shipping_address) }
 
-  validates :number, :cvv, :month, :year, presence: true, numericality: true, if: -> { (@step == :payment) || (@step == :all) }
-  validates :number, length: { is: 14 }, if: -> { (@step == :payment) || (@step == :all) }
-  validates :cvv,    length: { is: 3 }, if: -> { (@step == :payment) || (@step == :all) }
-  validates :month,  inclusion: { in: 1..12 }, if: -> { (@step == :payment) || (@step == :all) }
-  validates :year,   inclusion: { in: 2015..2030 }, if: -> { (@step == :payment) || (@step == :all) }
+  validates :number, :cvv, :month, :year, presence: true, numericality: true, if: -> { step_checker(@step, :payment) }
+  validates :number, length: { is: 14 }, if: -> { step_checker(@step, :payment) }
+  validates :cvv,    length: { is: 3 }, if: -> { step_checker(@step, :payment) }
+  validates :month,  inclusion: { in: 1..12 }, if: -> { step_checker(@step, :payment) }
+  validates :year,   inclusion: { in: 2015..2030 }, if: -> { step_checker(@step, :payment) }
 
-  validates :delivery, presence: true, if: -> { (@step == :delivery) || (@step == :all) }
+  validates :delivery, presence: true, if: -> { step_checker(@step, :delivery) }
+  validates :delivery, inclusion: { in: 5..15 }, if: -> { step_checker(@step, :delivery) }
 
   def initialize(user, order, step)
     @user, @order, @step = user, order, step
@@ -86,7 +84,7 @@ class CheckoutForm
       self.attributes = { delivery: @order.delivery }
     end
 
-    if @order.credit_card.present?
+    unless @order.credit_card.nil?
       self.attributes = { number: @order.credit_card.number, cvv: @order.credit_card.cvv, month: @order.credit_card.month,
                           year: @order.credit_card.year }
     end
@@ -148,6 +146,14 @@ class CheckoutForm
     @step = :all
     if valid?
       @order.checkout
+    end
+  end
+
+  def step_checker(step, valid_step)
+    if (step == valid_step) || (step == :all)
+      true
+    else
+      false
     end
   end
 

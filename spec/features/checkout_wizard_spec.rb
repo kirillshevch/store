@@ -34,7 +34,7 @@ feature 'Checkout Wizard' do
 
       expect(current_path).to eq(checkout_path(:shipping_address))
     end
-    # TODO rename all before
+
     context 'shipping address step' do
       given!(:billing_address) { FactoryGirl.create(:billing_address, country_id: country.id, order_id: order.id, user_id: user.id) }
 

@@ -1,6 +1,7 @@
 class Access
 
   include Rails.application.routes.url_helpers
+  include ActionView::Helpers::TranslationHelper
 
   def initialize(user, order, step)
     @user, @order, @step = user, order, step
@@ -21,7 +22,7 @@ class Access
         if @form.valid?
           true
         else
-          @error = 'test' #t('access.bill_error')
+          @error = t('access.bill_error')
           @url = checkout_path(:billing_address)
           false
         end
