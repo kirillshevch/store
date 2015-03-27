@@ -1,4 +1,7 @@
 class OrderItemsController < ApplicationController
+  include SetOrder
+  load_and_authorize_resource except: [:index, :destroy]
+  before_action :order_update_price
 
   def index
     @items = current_order.order_items
@@ -28,7 +31,7 @@ class OrderItemsController < ApplicationController
       current_order.order_items.delete(:all)
       redirect_to :back
     else
-     current_order.order_items.delete(params[:id])
+      current_order.order_items.delete(params[:id])
       redirect_to :back
     end
   end

@@ -21,13 +21,70 @@
   .col-xs-4
     .right-buttons
       .subtotal
-        %b= "#{t('checkout.subtotal')}: $#{current_order.price}"
+        %b= "#{t('checkout.subtotal')}: #{number_to_currency(current_order.price)}"
 .row
   .col-xs-12
     %h3= t('orders.wait')
+    -@orders.each do |value|
+      -if (value.state == 'in_queue')
+        .row.line
+          .col-xs-2
+            Number
+          .col-xs-2
+            Completed at
+          .col-xs-2
+            Total
+          .col-xs-2
+        .row
+          .col-xs-2
+            = value.id
+          .col-xs-2
+            = value.completed_date
+          .col-xs-2
+            = number_to_currency(value.price)
+          .col-xs-2
+            = link_to "view", value
 .row
   .col-xs-12
     %h3= t('orders.in_delivery')
+    -@orders.each do |value|
+      -if (value.state == 'in_delivery')
+        .row.line
+          .col-xs-2
+            Number
+          .col-xs-2
+            Completed at
+          .col-xs-2
+            Total
+          .col-xs-2
+        .row
+          .col-xs-2
+            = value.id
+          .col-xs-2
+            = value.completed_date
+          .col-xs-2
+            = number_to_currency(value.price)
+          .col-xs-2
+            = link_to "view", value
 .row
   .col-xs-12
     %h3= t('orders.delivered')
+    -@orders.each do |value|
+      -if (value.state == 'delivery')
+        .row.line
+          .col-xs-2
+            Number
+          .col-xs-2
+            Completed at
+          .col-xs-2
+            Total
+          .col-xs-2
+        .row
+          .col-xs-2
+            = value.id
+          .col-xs-2
+            = value.completed_date
+          .col-xs-2
+            = number_to_currency(value.price)
+          .col-xs-2
+            = link_to "view", value

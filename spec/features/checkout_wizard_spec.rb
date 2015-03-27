@@ -35,7 +35,7 @@ feature 'Checkout Wizard' do
       expect(current_path).to eq(checkout_path(:shipping_address))
     end
 
-    context 'before billing address step' do
+    context 'shipping address step' do
       given!(:billing_address) { FactoryGirl.create(:billing_address, country_id: country.id, order_id: order.id, user_id: user.id) }
 
       scenario 'shipping address step' do
@@ -57,11 +57,11 @@ feature 'Checkout Wizard' do
       end
     end
 
-    context 'before shipping address step' do
+    context 'delivery and payment step' do
       given!(:billing_address) { FactoryGirl.create(:billing_address, country_id: country.id, order_id: order.id, user_id: user.id) }
       given!(:shipping_address) { FactoryGirl.create(:shipping_address, country_id: country.id, order_id: order.id, user_id: user.id) }
 
-      scenario 'billing address step' do
+      scenario 'delivery step' do
         visit checkout_path(:delivery)
 
         within('#new_checkout_form') do
@@ -89,7 +89,7 @@ feature 'Checkout Wizard' do
       end
     end
 
-    context 'before payment step' do
+    context 'final step' do
       given!(:billing_address) { FactoryGirl.create(:billing_address, country_id: country.id, order_id: order.id, user_id: user.id) }
       given!(:shipping_address) { FactoryGirl.create(:shipping_address, country_id: country.id, order_id: order.id, user_id: user.id) }
       given!(:credit_card) { FactoryGirl.create(:credit_card, order_id: order.id) }

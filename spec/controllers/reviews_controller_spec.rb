@@ -4,11 +4,18 @@ RSpec.describe ReviewsController, type: :controller do
   let(:review_params) { FactoryGirl.attributes_for(:review).stringify_keys }
   let(:user) { FactoryGirl.create(:user) }
   let(:book) { FactoryGirl.create(:book) }
-  let(:review) { FactoryGirl.build_stubbed(:review) }
-  let(:new_review) { Review.new(book: book) }
+  let(:review) { FactoryGirl.build_stubbed(:review, user_id: user.id, book_id: book.id) }
+  let(:new_review) { Review.new(user_id: user.id, book_id: book.id) }
+
+  before do
+    @ability = Object.new
+    @ability.extend(CanCan::Ability)
+    @controller.stub(:current_ability).and_return(@ability)
+  end
 
   describe 'GET #new' do
     before do
+      @ability.can :new, Review
       Book.stub(:find).and_return book
       book.stub_chain(:reviews, :new).and_return new_review
       get :new, book_id: book.id
@@ -28,6 +35,10 @@ RSpec.describe ReviewsController, type: :controller do
   end
 
   describe 'POST #create' do
+    before do
+      @ability.can :create, Review
+    end
+
     context 'with valid attributes' do
       before do
         controller.stub(:current_user).and_return user

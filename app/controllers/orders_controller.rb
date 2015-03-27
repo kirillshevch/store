@@ -1,12 +1,12 @@
 class OrdersController < ApplicationController
   load_and_authorize_resource
 
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_url, alert: t('access_denied')
-  end
-
   def index
-    @orders = current_user.orders
+    if current_user
+      @orders = current_user.orders
+    else
+      redirect_to new_user_registration_url, notice: t('checkout.sign_up_view_order')
+    end
   end
 
   def show
