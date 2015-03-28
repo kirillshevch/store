@@ -150,11 +150,7 @@ class CheckoutForm
   end
 
   def step_checker(step, valid_step)
-    if (step == valid_step) || (step == :all)
-      true
-    else
-      false
-    end
+    (step == valid_step) || (step == :all)
   end
 
   def persisted?

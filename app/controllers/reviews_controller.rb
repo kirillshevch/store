@@ -1,17 +1,14 @@
 class ReviewsController < ApplicationController
-  load_and_authorize_resource
-
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_url, alert: t('access_denied')
-  end
 
   def new
     @book = Book.find(params[:book_id])
     @review = @book.reviews.new
+    authorize! :new, @review
   end
 
   def create
     review = current_user.reviews.build(review_params)
+    authorize! :create, review
     if review.save
       redirect_to book_url(review_params[:book_id])
     else

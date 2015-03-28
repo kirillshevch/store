@@ -1,12 +1,9 @@
 class OrdersController < ApplicationController
-  load_and_authorize_resource
+  before_action :load_user
+  load_and_authorize_resource through: :user
 
   def index
-    if current_user
-      @orders = current_user.orders
-    else
-      redirect_to new_user_registration_url, notice: t('checkout.sign_up_view_order')
-    end
+    @orders = Order.accessible_by(current_ability)
   end
 
   def show

@@ -24,6 +24,7 @@ gem 'wicked'
 gem 'aasm'
 gem 'rails_admin_aasm'
 gem 'show_me_the_cookies'
+gem 'pry-byebug'
 
 group :development do
   gem 'html2haml'

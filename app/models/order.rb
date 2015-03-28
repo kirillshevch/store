@@ -41,7 +41,7 @@ class Order < ActiveRecord::Base
     end
     edit do
       include_all_fields
-      field :state, :state
+      # field :state, :state
     end
   end
 

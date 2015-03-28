@@ -45,16 +45,16 @@
       %br
       = value.book.short_description
     .col-xs-1.book-price
-      %b= "$#{value.book.price}"
+      %b= number_to_currency(value.book.price)
     .col-xs-2.book-price
       %b= value.quantity
     .col-xs-1.book-price
-      %b= "$#{value.price}"
+      %b= number_to_currency(value.price)
 .row.line
   .col-xs-10
   .col-xs-2
     .subtotal
-      %b= "#{t('checkout.subtotal')}: $#{current_order.price}"
+      %b= "#{t('checkout.subtotal')}: #{number_to_currency(current_order.price)}"
 
 
 

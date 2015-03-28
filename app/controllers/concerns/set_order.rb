@@ -14,9 +14,4 @@ module SetOrder
       cookies.delete :order_id_for_sign_up
     end
   end
-
-  def order_update_price
-    current_order.count_price
-    current_order.save
-  end
 end

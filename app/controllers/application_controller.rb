@@ -24,6 +24,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def load_user
+    @user = current_user
+  end
+
   private
 
     def set_order

@@ -5,11 +5,14 @@ module OrderItemHelper
       "empty"
     else
       items = current_order.order_items
-      @price = 0
+      price, count = 0, 0
         items.each do |val|
-          @price += val.book.price*val.quantity
+          price += val.book.price*val.quantity
         end
-      "(#{count}) #{@price}$"
+        items.each do |val|
+          count += val.quantity
+        end
+      "(#{count}) #{price}$"
     end
   end
 end
