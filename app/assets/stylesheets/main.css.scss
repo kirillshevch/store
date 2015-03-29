@@ -16,14 +16,31 @@
 }
 .price-content {
   margin: 0 auto;
-  width: 327px;
+  width: 285px;
 }
 
-.float-p {
+.left-p {
   float: left;
+  font-size: 18px;
+  margin-right: 15px;
+  margin-top: 3px;
+  width: 65px;
 }
 
 .input-quantity {
   float: left;
   width: 50px;
+}
+
+.button-margin {
+  margin-left: 15px;
+}
+
+.title-best-book  {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.title-best-book b {
+  font-size: 18px;
 }

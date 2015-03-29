@@ -1,6 +1,4 @@
 class OrdersController < ApplicationController
-  before_action :load_user
-  load_and_authorize_resource through: :user
 
   def index
     @orders = Order.accessible_by(current_ability)
@@ -8,6 +6,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = current_user.orders.find(params[:id])
+    authorize! :read, @order
   end
 
   def update
@@ -15,6 +14,7 @@ class OrdersController < ApplicationController
     if coupon
       if coupon.status
         order = current_order
+        authorize! :update, order
         if order.update(coupon_id: coupon.id)
           redirect_to :back
         else

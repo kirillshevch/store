@@ -17,7 +17,7 @@ class Order < ActiveRecord::Base
     state :delivered
     state :canceled
 
-    event :checkout do
+    event :checkout, before: :set_completed_date do
       transitions from: :in_progress, to: :in_queue
     end
 
@@ -29,7 +29,7 @@ class Order < ActiveRecord::Base
       transitions from: :in_queue, to: :canceled
     end
 
-    event :complete, before: :set_completed_date do
+    event :complete do
       transitions from: :in_delivery, to: :delivered
     end
   end

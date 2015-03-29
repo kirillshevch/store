@@ -1,15 +1,17 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the OrderItemHelper. For example:
-#
-# describe OrderItemHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
-RSpec.describe OrderItemHelper, :type => :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+RSpec.describe OrderItemHelper, type: :helper do
+  let(:order) { FactoryGirl.create(:order) }
+
+  describe '#cart_status' do
+    before do
+      create_ability!
+
+      #.stub(:current_order).and_return order
+    end
+
+    it 'returns the cart status' do
+      expect(helper.cart_status).to eq('empty')
+    end
+  end
 end

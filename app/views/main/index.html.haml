@@ -2,17 +2,23 @@
   .carousel-inner{"role" => "listbox"}
     -@books.each_with_index do |value, index|
       %div{class: "item #{active(index)}"}
+        .title-best-book
+          %div
+            %b= "#{value.title} "
+            = "by #{value.author.first_name} #{value.author.last_name}"
         .content-main
           = image_tag value.image, align: 'left'
-          %p= "#{value.title} by #{value.author.first_name} #{value.author.last_name}"
+
           %p= value.full_description
         .price-content
           .form-main
             = form_for @orderitem do |f|
-              %p{class: "left-p"}= "$#{value.price}"
-              = f.number_field :quantity, value: 1, class: "input-quantity form-control"
-              = f.hidden_field :book_id, value: value.id
-              = f.submit t('books.add_to_cart'), class: "btn btn-default"
+              .left-p
+                %b= "#{number_to_currency(value.price)}"
+              %div
+                = f.number_field :quantity, value: 1, class: "input-quantity form-control"
+                = f.hidden_field :book_id, value: value.id
+                = f.submit t('books.add_to_cart'), class: "btn btn-default button-margin"
 
   %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"}
     %span.glyphicon.glyphicon-chevron-left

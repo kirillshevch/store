@@ -33,7 +33,8 @@ describe 'User' do
       it { expect(ability).to be_able_to(:update, BillingAddress.new(user_id: user.id)) }
       it { expect(ability).to be_able_to(:create, ShippingAddress.new(user_id: user.id)) }
       it { expect(ability).to be_able_to(:update, ShippingAddress.new(user_id: user.id)) }
-      it { expect(ability).to be_able_to(:manage, Order.new(user_id: user.id)) }
+      it { expect(ability).to be_able_to(:manage, Order.new(id: order.id, user_id: user.id)) }
+      it { expect(ability).to be_able_to(:read, Order.new(user_id: user.id)) }
       it { expect(ability).to be_able_to(:new, Review.new) }
       it { expect(ability).to be_able_to(:create, Review.new(user_id: user.id)) }
 

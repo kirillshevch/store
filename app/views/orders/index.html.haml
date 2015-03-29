@@ -22,23 +22,26 @@
     .right-buttons
       .subtotal
         %b= "#{t('checkout.subtotal')}: #{number_to_currency(current_order.price)}"
+      -if current_order.coupon
+        .subtotal.discount-order
+          %b Discount: #{number_to_currency(current_order.coupon.discount)}
 .row
   .col-xs-12
     %h3= t('orders.wait')
     -@orders.each do |value|
       -if value.in_queue?
         .row.line
+          .col-xs-1
+            %b Number
           .col-xs-2
-            Number
+            %b Completed at
           .col-xs-2
-            Completed at
-          .col-xs-2
-            Total
+            %b Total
           .col-xs-2
         .row
-          .col-xs-2
+          .col-xs-1.id-order
             = value.id
-          .col-xs-2
+          .col-xs-2.date-order
             = value.completed_date
           .col-xs-2
             = number_to_currency(value.price)
@@ -50,7 +53,7 @@
     -@orders.each do |value|
       -if value.in_delivery?
         .row.line
-          .col-xs-2
+          .col-xs-1
             Number
           .col-xs-2
             Completed at
@@ -58,9 +61,9 @@
             Total
           .col-xs-2
         .row
-          .col-xs-2
+          .col-xs-1.id-order
             = value.id
-          .col-xs-2
+          .col-xs-2.date-order
             = value.completed_date
           .col-xs-2
             = number_to_currency(value.price)
@@ -72,7 +75,7 @@
     -@orders.each do |value|
       -if value.delivered?
         .row.line
-          .col-xs-2
+          .col-xs-1
             Number
           .col-xs-2
             Completed at
@@ -80,9 +83,9 @@
             Total
           .col-xs-2
         .row
-          .col-xs-2
+          .col-xs-1.id-order
             = value.id
-          .col-xs-2
+          .col-xs-2.date-order
             = value.completed_date
           .col-xs-2
             = number_to_currency(value.price)

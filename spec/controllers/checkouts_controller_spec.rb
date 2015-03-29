@@ -5,6 +5,7 @@ RSpec.describe CheckoutsController, type: :controller do
   let(:order) { FactoryGirl.create(:order, user_id: user.id) }
   let(:order_item) { FactoryGirl.create(:order_item, order_id: order.id) }
   let(:access) { Access.new(user, order, :example_step) }
+  let(:checkout_form) { CheckoutForm.new(user, order, :example_step) }
 
   describe 'GET #show' do
     context 'allow access' do
@@ -138,6 +139,12 @@ RSpec.describe CheckoutsController, type: :controller do
   end
 
   describe 'PUT #update' do
+    context 'success update' do
+      before do
+        CheckoutForm.stub(:new).and_return checkout_form
+        checkout_form.stub_chain(:submit, :save).and_return true
+      end
 
+    end
   end
 end

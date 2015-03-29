@@ -12,7 +12,7 @@ module OrderItemHelper
         items.each do |val|
           count += val.quantity
         end
-      "(#{count}) #{price}$"
+      "(#{count}) #{number_to_currency(price)}"
     end
   end
 end

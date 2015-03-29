@@ -64,9 +64,9 @@ en:
   reviews:
     create_error: "Error create review"
     new_review: "New review for"
-    add: "add"
+    add: "Add"
   books:
-    review: "Review"
+    review: "Reviews"
     add_review: "Add review for this book"
     add_to_cart: "Add book to cart"
   access:

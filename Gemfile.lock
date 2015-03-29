@@ -133,6 +133,9 @@ GEM
     kaminari (0.16.2)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    kaminari-bootstrap (3.0.1)
+      kaminari (>= 0.13.0)
+      rails
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -294,6 +297,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails (= 3.1.2)
   kaminari
+  kaminari-bootstrap (~> 3.0.1)
   mini_magick (~> 4.0.2)
   omniauth (~> 1.2.2)
   omniauth-facebook (~> 2.0.0)
