@@ -5,40 +5,52 @@ RSpec.describe CheckoutsController, type: :controller do
   let(:order) { FactoryGirl.create(:order, user_id: user.id) }
   let(:order_item) { FactoryGirl.create(:order_item, order_id: order.id) }
   let(:access) { Access.new(user, order, :example_step) }
+  let(:checkout_form) { CheckoutForm.new(user, order, :example_step) }
 
   describe 'GET #show' do
-    context 'step_access? return true' do
+    context 'allow access' do
       before do
         Access.stub(:new).and_return access
         access.stub(:step_access?).and_return true
       end
 
-      it 'renders :billing_address template' do
-        get :show, id: :billing_address
-        expect(response).to render_template :billing_address
+      context 'billing address step' do
+        it 'renders :billing_address template' do
+          get :show, id: :billing_address
+          expect(response).to render_template :billing_address
+        end
       end
 
-      it 'renders :shipping_address template' do
-        get :show, id: 'shipping_address'
-        expect(response).to render_template :shipping_address
+      context 'shipping address step' do
+        it 'renders :shipping_address template' do
+          get :show, id: 'shipping_address'
+          expect(response).to render_template :shipping_address
+        end
       end
 
-      it 'renders :delivery template' do
-        get :show, id: 'delivery'
-        expect(response).to render_template :delivery
+      context 'delivery step' do
+        it 'renders :delivery template' do
+          get :show, id: 'delivery'
+          expect(response).to render_template :delivery
+        end
       end
 
-      it 'renders :payment template' do
-        get :show, id: 'payment'
-        expect(response).to render_template :payment
+      context 'payment step' do
+        it 'renders :payment template' do
+          get :show, id: 'payment'
+          expect(response).to render_template :payment
+        end
       end
 
-      it 'renders :confirm template' do
-        get :show, id: 'confirm'
-        expect(response).to render_template :confirm
+      context 'confirm step' do
+        it 'renders :confirm template' do
+          get :show, id: 'confirm'
+          expect(response).to render_template :confirm
+        end
       end
     end
-    context 'step_access? return false' do
+
+    context 'access denied' do
       before do
         Access.stub(:new).and_return access
         access.stub(:step_access?).and_return false
@@ -127,6 +139,12 @@ RSpec.describe CheckoutsController, type: :controller do
   end
 
   describe 'PUT #update' do
+    context 'success update' do
+      before do
+        CheckoutForm.stub(:new).and_return checkout_form
+        checkout_form.stub_chain(:submit, :save).and_return true
+      end
 
+    end
   end
 end

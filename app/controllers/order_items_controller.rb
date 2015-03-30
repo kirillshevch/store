@@ -1,5 +1,4 @@
 class OrderItemsController < ApplicationController
-  include SetOrder
   load_and_authorize_resource except: [:index, :destroy]
   before_action :order_update_price
 
@@ -40,5 +39,10 @@ class OrderItemsController < ApplicationController
 
     def order_item_params
       params.require(:order_item).permit(:quantity, :book_id)
+    end
+
+    def order_update_price
+      current_order.count_price
+      current_order.save
     end
 end

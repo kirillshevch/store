@@ -1,6 +1,18 @@
 .row
-  .col-xs-12
+  .col-xs-4
     %h2= t('checkout.checkout')
+  .col-xs-8
+    %ul.steps
+      %li
+        = link_to 'Billing address', checkout_path(:billing_address)
+      %li
+        = link_to 'Shipping address', checkout_path(:shipping_address)
+      %li
+        = link_to 'Delivery', checkout_path(:delivery)
+      %li
+        = link_to 'Payment', checkout_path(:payment)
+      %li.underline
+        = link_to 'Confirm', checkout_path(:confirm)
 .row
   .col-xs-12
     %h2= t('checkout.confirm')
@@ -15,7 +27,7 @@
     %p= current_order.shipping_address.phone
   .col-xs-3
     %b= t('checkout.bill_address')
-    %p= link_to "(edit)", checkout_path(:billing_address)
+    = link_to "(edit)", checkout_path(:billing_address)
     %p= current_order.billing_address.first_name
     %p= current_order.billing_address.last_name
     %p= current_order.billing_address.address
@@ -31,13 +43,13 @@
     %p= current_order.credit_card.number
     %p= current_order.credit_card.month
     %p= current_order.credit_card.year
-.row
+.row.confirm-order
   .col-xs-12
     = form_for @checkout_form, url: checkout_path, method: :put do |f|
       = f.hidden_field :state, value: "in_queue"
       = f.submit t('checkout.place_order'), class: "btn btn-default"
 -current_order.order_items.each do |value|
-  .row
+  .row.confirm-order
     .col-xs-2
       = image_tag value.book.image.thumb, class: "img-thumbnail"
     .col-xs-6
@@ -45,16 +57,16 @@
       %br
       = value.book.short_description
     .col-xs-1.book-price
-      %b= "$#{value.book.price}"
+      %b= number_to_currency(value.book.price)
     .col-xs-2.book-price
       %b= value.quantity
     .col-xs-1.book-price
-      %b= "$#{value.price}"
+      %b= number_to_currency(value.price)
 .row.line
   .col-xs-10
   .col-xs-2
     .subtotal
-      %b= "#{t('checkout.subtotal')}: $#{current_order.price}"
+      %b= "#{t('checkout.subtotal')}: #{number_to_currency(current_order.price)}"
 
 
 

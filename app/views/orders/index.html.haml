@@ -10,11 +10,11 @@
       %br
       = value.book.short_description
     .col-xs-1.book-price
-      %b= "$#{value.book.price}"
+      %b= number_to_currency(value.book.price)
     .col-xs-2.book-price
       %b= value.quantity
     .col-xs-1.book-price
-      %b= "$#{value.price}"
+      %b= number_to_currency(value.price)
 .row.line
   .col-xs-8
     = link_to t('orders.go_to_cart'), cart_url, class: "btn btn-default"
@@ -22,23 +22,26 @@
     .right-buttons
       .subtotal
         %b= "#{t('checkout.subtotal')}: #{number_to_currency(current_order.price)}"
+      -if current_order.coupon
+        .subtotal.discount-order
+          %b Discount: #{number_to_currency(current_order.coupon.discount)}
 .row
   .col-xs-12
     %h3= t('orders.wait')
     -@orders.each do |value|
-      -if (value.state == 'in_queue')
+      -if value.in_queue?
         .row.line
+          .col-xs-1
+            %b Number
           .col-xs-2
-            Number
+            %b Completed at
           .col-xs-2
-            Completed at
-          .col-xs-2
-            Total
+            %b Total
           .col-xs-2
         .row
-          .col-xs-2
+          .col-xs-1.id-order
             = value.id
-          .col-xs-2
+          .col-xs-2.date-order
             = value.completed_date
           .col-xs-2
             = number_to_currency(value.price)
@@ -48,9 +51,9 @@
   .col-xs-12
     %h3= t('orders.in_delivery')
     -@orders.each do |value|
-      -if (value.state == 'in_delivery')
+      -if value.in_delivery?
         .row.line
-          .col-xs-2
+          .col-xs-1
             Number
           .col-xs-2
             Completed at
@@ -58,9 +61,9 @@
             Total
           .col-xs-2
         .row
-          .col-xs-2
+          .col-xs-1.id-order
             = value.id
-          .col-xs-2
+          .col-xs-2.date-order
             = value.completed_date
           .col-xs-2
             = number_to_currency(value.price)
@@ -70,9 +73,9 @@
   .col-xs-12
     %h3= t('orders.delivered')
     -@orders.each do |value|
-      -if (value.state == 'delivery')
+      -if value.delivered?
         .row.line
-          .col-xs-2
+          .col-xs-1
             Number
           .col-xs-2
             Completed at
@@ -80,9 +83,9 @@
             Total
           .col-xs-2
         .row
-          .col-xs-2
+          .col-xs-1.id-order
             = value.id
-          .col-xs-2
+          .col-xs-2.date-order
             = value.completed_date
           .col-xs-2
             = number_to_currency(value.price)

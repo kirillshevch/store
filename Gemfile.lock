@@ -50,6 +50,10 @@ GEM
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
     builder (3.1.4)
+    byebug (3.5.1)
+      columnize (~> 0.8)
+      debugger-linecache (~> 1.2)
+      slop (~> 3.6)
     cancancan (1.10.1)
     capybara (2.4.4)
       mime-types (>= 1.16)
@@ -62,6 +66,7 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    coderay (1.1.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     coffee-rails (4.0.1)
@@ -71,7 +76,9 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    columnize (0.9.0)
     database_cleaner (1.4.0)
+    debugger-linecache (1.2.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     devise (3.4.1)
@@ -126,9 +133,13 @@ GEM
     kaminari (0.16.2)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    kaminari-bootstrap (3.0.1)
+      kaminari (>= 0.13.0)
+      rails
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.8.2)
     mime-types (1.25.1)
     mini_magick (4.0.2)
     mini_portile (0.6.2)
@@ -158,6 +169,13 @@ GEM
     orm_adapter (0.5.0)
     pg (0.18.1)
     polyglot (0.3.5)
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-byebug (3.0.1)
+      byebug (~> 3.4)
+      pry (~> 0.10)
     rack (1.5.2)
     rack-pjax (0.8.0)
       nokogiri (~> 1.5)
@@ -175,6 +193,9 @@ GEM
     rails-i18n (4.0.3)
       i18n (~> 0.6)
       railties (~> 4.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
     rails_admin (0.6.6)
       builder (~> 3.1)
       coffee-rails (~> 4.0)
@@ -192,6 +213,8 @@ GEM
     rails_admin_aasm (0.0.3)
       aasm
       rails_admin
+    rails_serve_static_assets (0.0.3)
+    rails_stdout_logging (0.0.3)
     railties (4.0.2)
       actionpack (= 4.0.2)
       activesupport (= 4.0.2)
@@ -226,6 +249,7 @@ GEM
       activesupport (>= 3.0.0)
     show_me_the_cookies (2.6.0)
       capybara (~> 2.0)
+    slop (3.6.0)
     sprockets (2.12.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -278,12 +302,15 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails (= 3.1.2)
   kaminari
+  kaminari-bootstrap (~> 3.0.1)
   mini_magick (~> 4.0.2)
   omniauth (~> 1.2.2)
   omniauth-facebook (~> 2.0.0)
   pg
+  pry-byebug
   rails (= 4.0.2)
   rails-i18n (~> 4.0.0)
+  rails_12factor
   rails_admin (~> 0.6.6)
   rails_admin_aasm
   rspec-rails

@@ -13,6 +13,7 @@ en:
   categories: "Categories"
   shop_by: "Shop by categories"
   settings: "Settings"
+  language: "Language"
   welcome: "Welcome to our amazing Bookstore! Choose anything you wish, we'll ship it anywhere!"
   addresses:
     success_add_bill: "Success add billing address"
@@ -64,9 +65,9 @@ en:
   reviews:
     create_error: "Error create review"
     new_review: "New review for"
-    add: "add"
+    add: "Add"
   books:
-    review: "Review"
+    review: "Reviews"
     add_review: "Add review for this book"
     add_to_cart: "Add book to cart"
   access:
@@ -75,3 +76,7 @@ en:
     ship_error: "Specify the shipping address"
     deliv_error: "Select a delivery method"
     pay_error: "Specify the credit card"
+  number:
+    currency:
+      format:
+        unit: "$"

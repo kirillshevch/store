@@ -1,5 +1,5 @@
 -@items.each do |value|
-  .row
+  .row.item
     .col-xs-2
       = image_tag value.book.image.thumb, class: "img-thumbnail"
     .col-xs-6
@@ -7,22 +7,22 @@
       %br
       = value.book.short_description
     .col-xs-1.book-price
-      %b= "$#{value.book.price}"
-    .col-xs-2
+      %b= "#{number_to_currency(value.book.price)}"
+    .col-xs-2.change-quautity-block
       = form_for(value, method: "put", html: {class: "form-inline"}) do |f|
         .form-group
           = f.number_field :quantity, class: "form-control", style: "width: 50px;", value: value.quantity, placeholder: "Quantity"
           = f.hidden_field :book_id,  value: value.book.id
           = f.submit "up", class: "btn btn-default"
-    .col-xs-1.book-price
-      %b= "$#{value.price}"
+    .delete-block.book-price
+      %b= number_to_currency(value.price)
       = link_to order_item_url(value.id), method: :delete, class: "close" do
         %span &times
 .row.line
-  .col-xs-10
-  .col-xs-2
+  .col-xs-9
+  .col-xs-3
     .subtotal
-      %b= "#{t('checkout.subtotal')}: $#{current_order.price}"
+      %b= "#{t('checkout.subtotal')}: #{number_to_currency(current_order.price)}"
 
 .row
   .col-xs-8
@@ -31,7 +31,7 @@
   .col-xs-4
     .right-buttons
       -if current_order.coupon
-        %b Discount: #{current_order.coupon.discount}$
+        %b Discount: #{number_to_currency(current_order.coupon.discount)}
         = link_to "checkout", checkout_path(:billing_address), class: "btn btn-default"
       -else
         = form_for current_order do |f|

@@ -15,6 +15,7 @@ gem 'omniauth-facebook', '~> 2.0.0'
 gem 'rails_admin', '~> 0.6.6'
 gem 'cancancan', '~> 1.10'
 gem 'kaminari'
+gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.0.2'
 gem 'haml-rails'
@@ -24,6 +25,7 @@ gem 'wicked'
 gem 'aasm'
 gem 'rails_admin_aasm'
 gem 'show_me_the_cookies'
+gem 'pry-byebug'
 
 group :development do
   gem 'html2haml'
@@ -39,4 +41,9 @@ group :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
+end
+
+group :production do
+  gem 'rails_12factor'
+
 end

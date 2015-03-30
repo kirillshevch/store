@@ -1,16 +1,12 @@
 class OrdersController < ApplicationController
-  load_and_authorize_resource
 
   def index
-    if current_user
-      @orders = current_user.orders
-    else
-      redirect_to new_user_registration_url, notice: t('checkout.sign_up_view_order')
-    end
+    @orders = Order.accessible_by(current_ability)
   end
 
   def show
     @order = current_user.orders.find(params[:id])
+    authorize! :read, @order
   end
 
   def update
@@ -18,6 +14,7 @@ class OrdersController < ApplicationController
     if coupon
       if coupon.status
         order = current_order
+        authorize! :update, order
         if order.update(coupon_id: coupon.id)
           redirect_to :back
         else

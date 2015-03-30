@@ -9,6 +9,15 @@
         %li{class: "#{nav_active_shop}"}
           = link_to t('shop'), shop_url
       %ul.nav.navbar-nav.navbar-right
+        %li.dropdown
+          %a#drop1.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            = t('language')
+            %span.caret
+          %ul.dropdown-menu{"aria-labelledby" => "drop1", :role => "menu"}
+            %li{:role => "presentation"}
+              = link_to 'English', '?locale=en'
+            %li{:role => "presentation"}
+              = link_to 'Русский', '?locale=ru'
         %li
           = link_to "#{t('cart')} #{cart_status}", cart_url
         -if user_signed_in?

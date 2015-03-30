@@ -1,6 +1,5 @@
 class Ability
   include CanCan::Ability
-
   def initialize(user, order)
     if user
       if user.admin?
@@ -14,7 +13,8 @@ class Ability
         can :manage, OrderItem, order_id: order.id
         can :new, [ShippingAddress, BillingAddress]
         can [:create, :update], [ShippingAddress, BillingAddress], user_id: user.id
-        can :manage, Order, user_id: user.id
+        can :manage, Order, id: order.id, user_id: user.id
+        can :read, Order, user_id: user.id
         can :new, Review
         can :create, Review, user_id: user.id
       end

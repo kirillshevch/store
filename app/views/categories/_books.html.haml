@@ -1,6 +1,11 @@
 -@books.each do |value|
-  = image_tag value.image
-  = link_to value.title, book_url(value.id)
-  = value.price
+  .div-book
+    = image_tag value.image
+    %br
+    = link_to value.title, book_url(value.id)
+    %br
+    %b= number_to_currency(value.price)
 %br
-= paginate @books
+.after-book
+  .paginate-div
+    = paginate @books

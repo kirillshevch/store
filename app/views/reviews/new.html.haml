@@ -1,6 +1,7 @@
 %h2 #{t('reviews.new_review')} #{link_to @book.title, book_url(@book.id)}
 = form_for @review, url: book_review_url, method: :post do |f|
   .form-group.form-address
+    = label(:review, :number, "Rating number (1-10)")
     = f.number_field :number, placeholder: "Rating", class: "form-control review-input"
     = f.text_field :title, placeholder: "Short review", class: "form-control review-input review-title"
     = f.text_area :text, placeholder: "Full review", class: "form-control review-input review-area"

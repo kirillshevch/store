@@ -1,4 +1,18 @@
-%h2= t('checkout.checkout')
+.row
+  .col-xs-4
+    %h2= t('checkout.checkout')
+  .col-xs-8
+    %ul.steps
+      %li
+        = link_to 'Billing address', checkout_path(:billing_address)
+      %li
+        = link_to 'Shipping address', checkout_path(:shipping_address)
+      %li
+        = link_to 'Delivery', checkout_path(:delivery)
+      %li.underline
+        = link_to 'Payment', checkout_path(:payment)
+      %li
+        = link_to 'Confirm', checkout_path(:confirm)
 .row
   .col-xs-4
     %h3= t('credit_card.credit_card')

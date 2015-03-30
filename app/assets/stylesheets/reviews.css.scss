@@ -1,6 +1,25 @@
 // Place all the styles related to the Reviews controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.reviews {
+  margin-top: 30px;
+}
+
+.reviews h3 {
+  margin: 0px;
+  float: left;
+}
+
+.reviews div:nth-child(2) {
+  overflow: auto;
+  padding-left: 18px;
+  padding-top: 4px;
+}
+
+.review {
+  margin-top: 10px;
+}
+
 .review-input {
   margin-bottom: 15px;
   margin-top: 15px;
@@ -15,4 +34,8 @@
   height: 115px;
   margin-bottom: 23px;
   width: 400px;
+}
+
+.book-info {
+  margin-top: 12px;
 }
