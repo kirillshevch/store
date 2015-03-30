@@ -13,6 +13,7 @@ en:
   categories: "Categories"
   shop_by: "Shop by categories"
   settings: "Settings"
+  language: "Language"
   welcome: "Welcome to our amazing Bookstore! Choose anything you wish, we'll ship it anywhere!"
   addresses:
     success_add_bill: "Success add billing address"
