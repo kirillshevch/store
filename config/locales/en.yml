@@ -76,3 +76,7 @@ en:
     ship_error: "Specify the shipping address"
     deliv_error: "Select a delivery method"
     pay_error: "Specify the credit card"
+  number:
+    currency:
+      format:
+        unit: "$"
