@@ -1,7 +1,7 @@
 # Bookstore
 
 ## Demo
-http://vast-mountain-4082.herokuapp.com/
+http://strawberry-surprise-3234.herokuapp.com
 
 ## Admin
 Email: admin@gmail.com
