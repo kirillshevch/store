@@ -41,7 +41,11 @@ class Order < ActiveRecord::Base
     end
     edit do
       include_all_fields
-      # field :state, :state
+      field :state, :enum do
+        enum do
+          ["in_progress", "in_queue", "in_delivery", "canceled", "delivered"]
+        end
+      end
     end
   end
 

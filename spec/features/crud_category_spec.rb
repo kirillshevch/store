@@ -8,7 +8,7 @@ feature 'CRUD categories' do
   end
 
   scenario 'create categories' do
-    visit '/admin/categories/new'
+    visit '/admin/category/new'
     within('#new_category') do
       fill_in      'Name', with: Faker::Lorem.word
       click_button 'Save'
@@ -18,13 +18,13 @@ feature 'CRUD categories' do
   end
 
   scenario 'read categories' do
-    visit "admin/categories/#{@category.id}"
+    visit "admin/category/#{@category.id}"
 
     expect(page).to have_content('Name')
   end
 
   scenario 'edit categories' do
-    visit "admin/categories/#{@category.id}/edit"
+    visit "admin/category/#{@category.id}/edit"
     within('#edit_category') do
       fill_in      'Name', with: Faker::Lorem.word
       click_button 'Save'
@@ -33,7 +33,7 @@ feature 'CRUD categories' do
   end
 
   scenario 'delete categories' do
-    visit "admin/categories/#{@category.id}/delete"
+    visit "admin/category/#{@category.id}/delete"
     click_button 'Yes, I\'m sure'
 
     expect(page).to have_content('Category successfully deleted')

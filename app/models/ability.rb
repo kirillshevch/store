@@ -9,6 +9,7 @@ class Ability
         can :manage, [Book, Author, Category, Order, Review]
         can [:new, :create, :update], Coupon
         can :all_events, Order
+        can :manage, OrderItem, order_id: order.id
       else
         can :manage, OrderItem, order_id: order.id
         can :new, [ShippingAddress, BillingAddress]

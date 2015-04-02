@@ -25,8 +25,10 @@ class CheckoutsController < ApplicationController
           @checkout_form.checkout_complete
         end
         render_wizard(@checkout_form)
+        flash[:alert] = 'ok'
       else
-        redirect_to :back, alert: t('checkout.invalid_params')
+        flash[:alert] = t('checkout.invalid_params')
+        render_wizard(@checkout_form)
       end
     end
   end

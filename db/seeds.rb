@@ -8,8 +8,6 @@
 require 'factory_girl'
 Dir[Rails.root.join("spec/support/*.rb")].each {|f| require f}
 
-FactoryGirl.create :books
-
 Country.create([
                    {name: "Ukraine"},
                    {name: "Russian"}

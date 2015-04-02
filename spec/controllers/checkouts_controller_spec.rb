@@ -138,11 +138,17 @@ RSpec.describe CheckoutsController, type: :controller do
     end
   end
 
-  describe 'PUT #update' do
-    context 'success update' do
+  # TODO
+  describe 'POST #update' do
+    context 'error update' do
       before do
         CheckoutForm.stub(:new).and_return checkout_form
         checkout_form.stub_chain(:submit, :save).and_return true
+      end
+
+      it 'sends alert' do
+        post :update
+        expect(flash[:alert]).to have_content 'Invalid params'
       end
 
     end

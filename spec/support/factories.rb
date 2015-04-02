@@ -32,7 +32,7 @@ FactoryGirl.define do
     author
     category
     image             ''
-    price             Faker::Number.number(3)
+    price             Faker::Number.number(1)
 
     factory :best_book do
       best_seller true

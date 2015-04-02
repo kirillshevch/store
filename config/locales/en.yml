@@ -55,7 +55,7 @@ en:
   orders:
     orders: "Orders"
     upd_error: "Update error"
-    old_coupon: "Old coupon"
+    old_coupon: "Coupon expired"
     undefined_coupon: "Undefined coupon"
     wait: "Waiting for processing"
     in_progress: "In progress"

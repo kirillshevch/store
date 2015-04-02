@@ -14,6 +14,7 @@ class OrderItemsController < ApplicationController
     else
       redirect_to :back, alert: t('order_items.error_add')
     end
+
   end
 
   def update
@@ -28,10 +29,10 @@ class OrderItemsController < ApplicationController
   def destroy
     if params[:id] == "all"
       current_order.order_items.delete(:all)
-      redirect_to :back
+      redirect_to cart_url
     else
       current_order.order_items.delete(params[:id])
-      redirect_to :back
+      redirect_to cart_url
     end
   end
 

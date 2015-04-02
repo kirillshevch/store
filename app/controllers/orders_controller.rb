@@ -1,12 +1,10 @@
 class OrdersController < ApplicationController
+  load_and_authorize_resource except: :update
 
   def index
-    @orders = Order.accessible_by(current_ability)
   end
 
   def show
-    @order = current_user.orders.find(params[:id])
-    authorize! :read, @order
   end
 
   def update
@@ -14,17 +12,16 @@ class OrdersController < ApplicationController
     if coupon
       if coupon.status
         order = current_order
-        authorize! :update, order
         if order.update(coupon_id: coupon.id)
-          redirect_to :back
+          redirect_to cart_url
         else
-          redirect_to :back, alert: t('orders.upd_error')
+          redirect_to cart_url, alert: t('orders.upd_error')
         end
       else
-        redirect_to :back, alert: t('orders.old_coupon')
+        redirect_to cart_url, alert: t('orders.old_coupon')
       end
     else
-      redirect_to :back, alert: t('orders.undefined_coupon')
+      redirect_to cart_url, alert: t('orders.undefined_coupon')
     end
   end
 

@@ -24,7 +24,7 @@ feature 'Add books to cart' do
     end
 
     expect(page).to have_content('Success add to cart!')
-    expect(page).to have_content("Cart: (1) #{order.price}")
+    expect(page).to have_content("Cart: (5) #{order.price}")
   end
 
   scenario 'A user adds book to cart from main page' do

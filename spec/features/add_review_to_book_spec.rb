@@ -36,6 +36,12 @@ feature 'Add review for book' do
   end
 
   context 'Not login user' do
+    given!(:book) { FactoryGirl.create(:book) }
 
+    scenario 'no see link add review' do
+      visit book_path(book.id)
+
+      expect(page).not_to have_content('Add review for this book')
+    end
   end
 end

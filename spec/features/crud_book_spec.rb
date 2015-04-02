@@ -8,7 +8,7 @@ feature 'CRUD books' do
   end
 
   scenario 'create books' do
-    visit '/admin/books/new'
+    visit '/admin/book/new'
     within('#new_book') do
       fill_in 'Title',             with: Faker::Lorem.word
       fill_in 'Short description', with: Faker::Lorem.sentence(4)
@@ -21,7 +21,7 @@ feature 'CRUD books' do
   end
 
   scenario 'read books' do
-    visit "admin/books/#{@book.id}"
+    visit "admin/book/#{@book.id}"
 
     expect(page).to have_content('Details for Book')
     expect(page).to have_content('Title')
@@ -31,7 +31,7 @@ feature 'CRUD books' do
   end
 
   scenario 'edit books' do
-    visit "admin/books/#{@book.id}/edit"
+    visit "admin/book/#{@book.id}/edit"
     within('#edit_book') do
       fill_in 'Title',             with: Faker::Lorem.word
       fill_in 'Short description', with: Faker::Lorem.sentence(4)
@@ -43,7 +43,7 @@ feature 'CRUD books' do
   end
 
   scenario 'delete books' do
-    visit "admin/books/#{@book.id}/delete"
+    visit "admin/book/#{@book.id}/delete"
     click_button 'Yes, I\'m sure'
 
     expect(page).to have_content('Book successfully deleted')
