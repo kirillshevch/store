@@ -7,6 +7,8 @@ class Ability
         can :access, :rails_admin
         can :dashboard
         can :manage, [Book, Author, Category, Order, Review]
+        can :new, [ShippingAddress, BillingAddress]
+        can [:create, :update], [ShippingAddress, BillingAddress], user_id: user.id
         can [:new, :create, :update], Coupon
         can :all_events, Order
         can :manage, OrderItem, order_id: order.id

@@ -2,7 +2,7 @@ module OrderItemHelper
   def cart_status
     count = current_order.order_items.count
     if count == 0
-      "empty"
+      t('empty')
     else
       items = current_order.order_items
       price, count = 0, 0

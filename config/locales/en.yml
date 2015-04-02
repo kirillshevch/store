@@ -15,6 +15,7 @@ en:
   settings: "Settings"
   language: "Language"
   welcome: "Welcome to our amazing Bookstore! Choose anything you wish, we'll ship it anywhere!"
+  empty: "empty"
   addresses:
     success_add_bill: "Success add billing address"
     error_add_bill: "Create billing address error"
@@ -25,7 +26,9 @@ en:
     success_upd_ship: "Success update shipping address"
     error_upd_ship: "Update shipping address error"
   checkout:
-    checkout: "Checkout"
+    checkout: "checkout"
+    update: "update"
+    code: "Code"
     sign_up_view_order: "Sign up to view the order"
     item_total: "Item total"
     order_total: "Order total"

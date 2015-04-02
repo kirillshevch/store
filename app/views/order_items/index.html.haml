@@ -32,10 +32,10 @@
     .right-buttons
       -if current_order.coupon
         %b Discount: #{number_to_currency(current_order.coupon.discount)}
-        = link_to "checkout", checkout_path(:billing_address), class: "btn btn-default"
+        = link_to t('checkout.checkout'), checkout_path(:billing_address), class: "btn btn-default"
       -else
         = form_for current_order do |f|
           .form-inline.float-form
-            = f.text_field :coupon, placeholder: "Code", class: "form-control coupon-code-input", style: "width: 125px"
-            = f.submit "Update", class: "btn btn-default"
-            = link_to "checkout", checkout_path(:billing_address), class: "btn btn-default"
+            = f.text_field :coupon, placeholder: t('checkout.code'), class: "form-control coupon-code-input", style: "width: 125px"
+            = f.submit t('checkout.update'), class: "btn btn-default"
+            = link_to t('checkout.checkout'), checkout_path(:billing_address), class: "btn btn-default"
