@@ -16,6 +16,12 @@ ru:
   language: "Язык"
   welcome: "Добро пожаловать в наш удивительный книжный магазин!"
   empty: "пусто"
+  sign:
+    you_mail: "Email"
+    password: "Пароль"
+    have_acc: "Есть аккаунт?"
+    dont_have_acc: "Нет аккаунта?"
+    forgot: "Забыли пароль?"
   addresses:
     success_add_bill: "Адрес для оплаты успешно добавлен"
     error_add_bill: "Ошибка добавления адреса"

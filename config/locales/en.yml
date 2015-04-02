@@ -16,6 +16,12 @@ en:
   language: "Language"
   welcome: "Welcome to our amazing Bookstore! Choose anything you wish, we'll ship it anywhere!"
   empty: "empty"
+  sign:
+    you_mail: "Your email"
+    password: "Password"
+    have_acc: "Have an account?"
+    dont_have_acc: "Don't have an account?"
+    forgot: "Forgot your password?"
   addresses:
     success_add_bill: "Success add billing address"
     error_add_bill: "Create billing address error"

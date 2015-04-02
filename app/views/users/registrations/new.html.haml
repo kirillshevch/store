@@ -2,12 +2,12 @@
   = link_to image_tag("http://ipic.su/img/img7/fs/facebookicon.1427689582.png"), user_omniauth_authorize_path(:facebook)
 = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { id: "signup", class: "form-signin" }) do |f|
   = devise_error_messages!
-  %h2.form-signin-heading or
+  %h2.form-signin-heading= t('or')
   = f.label :email, class: "sr-only"
   %br/
-  = f.email_field :email, autofocus: true, class: "form-control", placeholder: "Your email"
+  = f.email_field :email, autofocus: true, class: "form-control", placeholder: t('sign.you_mail')
   = f.label :password, class: "sr-only"
-  = f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password"
+  = f.password_field :password, autocomplete: "off", class: "form-control", placeholder: t('sign.password')
   .actions
-    = f.submit "Sign up", class: "btn btn-lg btn-primary btn-block"
-  %p Have an account? #{link_to "Sign in", new_session_path(resource_name)}
+    = f.submit t('sign_up'), class: "btn btn-lg btn-primary btn-block"
+  %p #{t('sign.have_acc')} #{link_to t('sign_in'), new_session_path(resource_name)}
