@@ -7,7 +7,7 @@ RSpec.describe OrderItemHelper, type: :helper do
     before do
       create_ability!
 
-      #.stub(:current_order).and_return order
+      helper.stub(:current_order).and_return order
     end
 
     it 'returns the cart status' do

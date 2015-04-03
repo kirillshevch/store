@@ -24,6 +24,7 @@ describe 'User' do
     context 'when user signed in as user' do
       let(:user) { FactoryGirl.create(:user) }
       let(:order) { FactoryGirl.create(:order, user_id: user.id) }
+
       subject(:ability) { Ability.new(user, order) }
 
       it { expect(ability).to be_able_to(:manage, OrderItem.new(order_id: order.id)) }

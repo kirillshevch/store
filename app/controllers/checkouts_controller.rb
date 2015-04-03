@@ -25,7 +25,6 @@ class CheckoutsController < ApplicationController
           @checkout_form.checkout_complete
         end
         render_wizard(@checkout_form)
-        flash[:alert] = 'ok'
       else
         flash[:alert] = t('checkout.invalid_params')
         render_wizard(@checkout_form)
