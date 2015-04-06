@@ -6,12 +6,13 @@ RSpec.describe CheckoutsController, type: :controller do
   let(:order_item) { FactoryGirl.create(:order_item, order_id: order.id) }
   let(:access) { Access.new(user, order, :example_step) }
   let(:checkout_form) { CheckoutForm.new(user, order, :example_step) }
+  let(:checkout_form_params) { FactoryGirl.attributes_for(:billing_address) }
 
   describe 'GET #show' do
     context 'allow access' do
       before do
-        Access.stub(:new).and_return access
-        access.stub(:step_access?).and_return true
+        allow(Access).to receive(:new).and_return access
+        allow(access).to receive(:step_access?).and_return true
       end
 
       context 'billing address step' do
@@ -52,14 +53,14 @@ RSpec.describe CheckoutsController, type: :controller do
 
     context 'access denied' do
       before do
-        Access.stub(:new).and_return access
-        access.stub(:step_access?).and_return false
+        allow(Access).to receive(:new).and_return access
+        allow(access).to receive(:step_access?).and_return false
       end
 
       context 'billing address' do
         before do
-          access.stub(:redirect_url).and_return shop_path
-          access.stub(:error_text).and_return 'Select book before checkout'
+          allow(access).to receive(:redirect_url).and_return shop_path
+          allow(access).to receive(:error_text).and_return 'Select book before checkout'
           get :show, id: :billing_address
         end
 
@@ -74,8 +75,8 @@ RSpec.describe CheckoutsController, type: :controller do
 
       context 'shipping address' do
         before do
-          access.stub(:redirect_url).and_return checkout_path(:billing_address)
-          access.stub(:error_text).and_return 'Specify the billing address'
+          allow(access).to receive(:redirect_url).and_return checkout_path(:billing_address)
+          allow(access).to receive(:error_text).and_return 'Specify the billing address'
           get :show, id: :shipping_address
         end
 
@@ -90,8 +91,8 @@ RSpec.describe CheckoutsController, type: :controller do
 
       context 'delivery' do
         before do
-          access.stub(:redirect_url).and_return checkout_path(:shipping_address)
-          access.stub(:error_text).and_return 'Specify the shipping address'
+          allow(access).to receive(:redirect_url).and_return checkout_path(:shipping_address)
+          allow(access).to receive(:error_text).and_return 'Specify the shipping address'
           get :show, id: :shipping_address
         end
 
@@ -106,8 +107,8 @@ RSpec.describe CheckoutsController, type: :controller do
 
       context 'payment' do
         before do
-          access.stub(:redirect_url).and_return checkout_path(:delivery)
-          access.stub(:error_text).and_return 'Select a delivery method'
+          allow(access).to receive(:redirect_url).and_return checkout_path(:delivery)
+          allow(access).to receive(:error_text).and_return 'Select a delivery method'
           get :show, id: :shipping_address
         end
 
@@ -122,8 +123,8 @@ RSpec.describe CheckoutsController, type: :controller do
 
       context 'confirm' do
         before do
-          access.stub(:redirect_url).and_return checkout_path(:payment)
-          access.stub(:error_text).and_return 'Specify the credit card'
+          allow(access).to receive(:redirect_url).and_return checkout_path(:payment)
+          allow(access).to receive(:error_text).and_return 'Specify the credit card'
           get :show, id: :shipping_address
         end
 
@@ -138,19 +139,20 @@ RSpec.describe CheckoutsController, type: :controller do
     end
   end
 
-  # TODO
   describe 'POST #update' do
     context 'error update' do
       before do
-        CheckoutForm.stub(:new).and_return checkout_form
-        checkout_form.stub_chain(:submit, :save).and_return true
+        allow(CheckoutForm).to receive(:new).and_return checkout_form
+        allow(checkout_form).to receive(:submit).and_return true
+        allow(checkout_form).to receive(:save).and_return false
       end
 
       it 'sends alert' do
-        post :update
+        put :update, id: :billing_address, checkout_form: checkout_form_params
         expect(flash[:alert]).to have_content 'Invalid params'
       end
-
     end
+
+    #todo
   end
 end

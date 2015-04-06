@@ -30,7 +30,6 @@ RSpec.describe OrderItemsController, type: :controller do
 
   describe 'POST #create' do
     before do
-      request.env['HTTP_REFERER'] = root_path
       controller.stub(:current_order).and_return order
     end
 
@@ -42,7 +41,7 @@ RSpec.describe OrderItemsController, type: :controller do
       end
 
       it 'redirects to back' do
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(cart_path(locale: :en))
       end
 
       it 'sends success' do
@@ -51,6 +50,7 @@ RSpec.describe OrderItemsController, type: :controller do
     end
     context 'invalid params' do
       before do
+        request.env['HTTP_REFERER'] = root_path
         order.stub_chain(:order_items, :build, :save).and_return false
         order.stub_chain(:count_price, :save).and_return true
         post :create, order_item: order_item_params
@@ -88,18 +88,16 @@ RSpec.describe OrderItemsController, type: :controller do
         order.stub_chain(:order_items, :find).and_return order_item
         order_item.stub(:update_attributes).and_return true
         order.stub_chain(:count_price, :save).and_return true
-        request.env['HTTP_REFERER'] = root_path
       end
 
       it 'redirect to back' do
         put :update, id: order_item.id, order_item: order_item_params
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(cart_path(locale: :en))
       end
     end
 
     context 'with invalid params' do
       before do
-        request.env['HTTP_REFERER'] = root_path
         controller.stub(:current_order).and_return order
         order.stub_chain(:order_items, :find).and_return order_item
         order.stub_chain(:count_price, :save).and_return false
@@ -109,7 +107,7 @@ RSpec.describe OrderItemsController, type: :controller do
       end
 
       it 'redirect to back' do
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(cart_path(locale: :en))
       end
 
       it 'sends alert' do
@@ -158,6 +156,7 @@ RSpec.describe OrderItemsController, type: :controller do
         delete :destroy, id: order_item.id
         expect(response).to redirect_to(cart_path(locale: :en))
       end
+
     end
   end
 end

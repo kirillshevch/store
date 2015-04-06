@@ -17,3 +17,4 @@
 .idea
 .ruby-gemset
 /public/uploads
+/coverage

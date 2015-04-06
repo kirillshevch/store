@@ -90,30 +90,6 @@ class CheckoutForm
     end
   end
 
-  def billing_address
-    if @order.billing_address.present?
-      @order.billing_address
-    else
-      @order.build_billing_address
-    end
-  end
-
-  def shipping_address
-    if @order.shipping_address.present?
-      @order.shipping_address
-    else
-      @order.build_shipping_address
-    end
-  end
-
-  def credit_card
-    if @order.credit_card.present?
-      @order.credit_card
-    else
-      @order.build_credit_card
-    end
-  end
-
   def submit(params)
     billing_address.attributes = address_attributes("billing_", params)
     shipping_address.attributes = address_attributes("shipping_", params)
@@ -149,10 +125,6 @@ class CheckoutForm
     end
   end
 
-  def step_checker(step, valid_step)
-    (step == valid_step) || (step == :all)
-  end
-
   def persisted?
     false
   end
@@ -163,5 +135,33 @@ class CheckoutForm
     { first_name: params[("#{prefix}first_name").to_sym], last_name: params[("#{prefix}last_name").to_sym], address: params[("#{prefix}addr").to_sym],
       zipcode: params[("#{prefix}zipcode").to_sym], city: params[("#{prefix}city").to_sym],
       phone: params[("#{prefix}phone").to_sym], country_id: params[("#{prefix}country_id").to_sym]  }
+  end
+
+  def billing_address
+    if @order.billing_address.present?
+      @order.billing_address
+    else
+      @order.build_billing_address
+    end
+  end
+
+  def shipping_address
+    if @order.shipping_address.present?
+      @order.shipping_address
+    else
+      @order.build_shipping_address
+    end
+  end
+
+  def credit_card
+    if @order.credit_card.present?
+      @order.credit_card
+    else
+      @order.build_credit_card
+    end
+  end
+
+  def step_checker(step, valid_step)
+    (step == valid_step) || (step == :all)
   end
 end
