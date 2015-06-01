@@ -10,7 +10,7 @@ class OrderItemsController < ApplicationController
     item = current_order.order_items.build(order_item_params)
     if item.save
       flash[:success] = t('add_to_cart')
-      redirect_to :back
+      redirect_to cart_url
     else
       redirect_to :back, alert: t('order_items.error_add')
     end
@@ -20,9 +20,9 @@ class OrderItemsController < ApplicationController
   def update
     item = current_order.order_items.find(params[:id])
     if item.update_attributes(order_item_params)
-      redirect_to :back
+      redirect_to cart_url
     else
-      redirect_to :back, alert: t('order_items.error_upd')
+      redirect_to cart_url, alert: t('order_items.error_upd')
     end
   end
 

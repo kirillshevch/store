@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   factory :user do
-    email      Faker::Internet.email
+    email     { Faker::Internet.email }
     password   Faker::Internet.password(8)
     first_name Faker::Name.first_name
     last_name  Faker::Name.last_name
@@ -18,11 +18,11 @@ FactoryGirl.define do
   end
 
   factory :category do
-    sequence(:name) { |n| "name#{n}" }
+    name { Faker::Name.first_name }
   end
 
   factory :country do
-    name Faker::Address.country
+    name { Faker::Address.country }
   end
 
   factory :book do
